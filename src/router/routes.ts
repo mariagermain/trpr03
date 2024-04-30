@@ -32,6 +32,11 @@ const routes = [
     }
   },
   {
+    path: '/ask',
+    name: 'AskQuestion',
+    component: () => import('../views/AskQuestionView.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: LoginView

@@ -1,0 +1,27 @@
+<script setup lang="ts">
+
+const emit = defineEmits(['raise-hand', 'drop-hand', 'write-question'])
+
+function raiseHand() : void{
+    emit('raise-hand')
+}
+
+function dropHand() : void{
+    emit('drop-hand')
+}
+
+function writeQuestion() : void{
+    emit('write-question')
+}
+</script>
+
+<template>
+    <div class="container border border-dark border-1 rounded w-60">
+        <span class="col w-100">
+            <button type="button" class="btn btn-primary m-3 mx-auto w-100" id="" @click="raiseHand()">Lever la main</button>
+            <button type="button" class="btn btn-primary m-3 mx-auto w-100" id="" @click="dropHand()">Baisser la main</button>
+            <button type="button" class="btn btn-primary m-3 mx-auto w-100" id="" @click="writeQuestion()">Écrire une question</button>
+        </span>
+    </div>
+</template>
+

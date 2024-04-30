@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue'
 import { useProfileStore } from '../stores/profileStore'
+import StudentActions from '../components/StudentActions.vue'
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const profileStore = useProfileStore()
 
 const name = computed(() => profileStore.name)
@@ -21,6 +24,18 @@ onMounted(async () => {
     confirm("Erreur critique lors de l'accès au store.")
   }
 })
+
+function raiseHand() : void{
+
+}
+
+function dropHand() : void{
+
+}
+
+function writeQuestion() : void{
+  router.push({ name : 'AskQuestion' })
+}
 </script>
 
 <template>
@@ -30,10 +45,7 @@ onMounted(async () => {
     <div>Courriel: {{ email }}</div>
     <div>Role: {{ role }}</div>
     <div>
-      <h2>Liste des étudiants :</h2>
-        <ul>
-          <li v-for="student of students">{{ student }}</li>
-        </ul>
+        <StudentActions @raise-hand="raiseHand" @drop-hand="dropHand" @write-question="writeQuestion"/>
     </div>
   </div>
 </template>
