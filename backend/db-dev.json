@@ -23,12 +23,33 @@
   ],
 
   "cours": [
-    {"id":1,
-    "titre":"progweb",
-    "description":""
-  }
-
+    {
+      "id":1,
+      "titre":"Programmation Web",
+      "description":""
+    },
+    {
+      "id":2,
+      "titre":"Base de données I",
+      "description":""
+    },
+    {
+      "id":3,
+      "titre":"Programmation orientée objets II",
+      "description":""
+    },
+    {
+      "id":4,
+      "titre":"Algorithmique avancée",
+      "description":""
+    },
+    {
+      "id":5,
+      "titre":"Développement de services web",
+      "description":""
+    }
   ],
+
 
   "comments": [
     {
