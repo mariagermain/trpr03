@@ -50,12 +50,15 @@
 
   "categories": [
     {
+      "id":1,
       "value":"Exercice"
     },
     {
+      "id":2,
       "value":"Travail pratique"
     },
     {
+      "id":3,
       "value":"Atelier"
     }
   ],

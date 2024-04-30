@@ -47,7 +47,7 @@ function validateForm() {
         <div class="form-group pb-3">
             <label for="select-category">Catégorie:</label>
             <select class="form-select" id="select-category" v-model="category">
-                <option v-for="c in categories" :key="c.value" v-bind:value="{value : c.value}">{{ c.value }}</option>
+                <option v-for="c in categories" :key="c.id" v-bind:value="{id : c.id, value : c.value}">{{ c.value }}</option>
             </select>
         </div>
         <div class="">

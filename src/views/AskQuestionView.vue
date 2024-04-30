@@ -3,7 +3,8 @@ import QuestionForm from '../components/QuestionForm.vue'
 
 
 function submitQuestion(question : string, category : string) : void {
-
+console.log(question)
+console.log(category)
 }
 </script>
 
