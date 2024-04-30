@@ -9,6 +9,42 @@
       "students":[
         2
       ]
+    },
+    {
+      "email": "student@student.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Théo Hautois",
+      "role": 2,
+      "id": 2,
+      "students":[]
+    }
+  ],
+
+  "cours": [
+    {
+      "id":1,
+      "titre":"Programmation Web",
+      "description":""
+    },
+    {
+      "id":2,
+      "titre":"Base de données I",
+      "description":""
+    },
+    {
+      "id":3,
+      "titre":"Programmation orientée objets II",
+      "description":""
+    },
+    {
+      "id":4,
+      "titre":"Algorithmique avancée",
+      "description":""
+    },
+    {
+      "id":4,
+      "titre":"Développement de services web",
+      "description":""
     }
   ],
 
@@ -23,7 +59,7 @@
       "value":"Atelier"
     }
   ],
-  
+
   "comments": [
     {
       "userId": 1,

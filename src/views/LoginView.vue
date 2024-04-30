@@ -32,7 +32,7 @@ const login = async () => {
   });
   
   if (!authStore.authServiceError) {
-    router.push({ name: 'Profile' });
+    router.push({ name: 'Home' });
   }
 };
 
