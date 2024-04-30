@@ -31,7 +31,7 @@ function validateForm() {
     if (question.trim().length <= 0)
         errorList.value.push("La question ne peut pas être vide") ;
     
-    if (category.value == undefined || category.value == null || category.value == "") 
+    if (category == undefined || category == null) 
         errorList.value.push("Veuillez choisir une catégorie.");
     
     return errorList.value.length == 0;
