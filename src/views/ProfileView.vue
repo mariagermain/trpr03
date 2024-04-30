@@ -6,6 +6,7 @@ const profileStore = useProfileStore()
 
 const name = computed(() => profileStore.name)
 const email = computed(() => profileStore.email)
+const role = computed(() => profilesStore.role)
 const onError = computed(() => profileStore.onError)
 
 onMounted(async () => {
@@ -26,6 +27,7 @@ onMounted(async () => {
     <h1>Profile</h1>
     <div>Nom: {{ name }}</div>
     <div>Courriel: {{ email }}</div>
+    <div>Role: {{ role }}</div>
   </div>
 </template>
 

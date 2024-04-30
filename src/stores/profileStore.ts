@@ -6,6 +6,7 @@ import { useAuthStore } from './authStore'
 export const useProfileStore = defineStore('profileStoreId', () => {
   const email = ref('')
   const name = ref('')
+  const role = ref(1)
   const onError = ref(false)
 
   function _initializeProfile(profile: { email: string; name: string }) {
