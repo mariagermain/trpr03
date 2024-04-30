@@ -7,14 +7,14 @@ export const useProfileStore = defineStore('profileStoreId', () => {
   const email:Ref<string> = ref('')
   const name:Ref<string> = ref('')
   const role:Ref<number> = ref(1)
-  const cours:Ref<number[]> = ref([])
+  const students:Ref<number[]> = ref([])
   const onError:Ref<boolean> = ref(false)
 
-  function _initializeProfile(profile: { email: string; name: string; role:number; cours:number[] }) {
+  function _initializeProfile(profile: { email: string; name: string; role:number; students:number[] }) {
     email.value = profile.email
     name.value = profile.name
     role.value = profile.role
-    cours.value = profile.cours
+    students.value = profile.students
     onError.value = false
   }
 
@@ -34,7 +34,7 @@ export const useProfileStore = defineStore('profileStoreId', () => {
     email, 
     name, 
     role,
-    cours,
+    students,
     onError, 
     getProfile 
   }

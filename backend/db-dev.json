@@ -6,8 +6,8 @@
       "name": "Emmett Brown",
       "role": 1,
       "id": 1,
-      "cours":[
-        1
+      "students":[
+        2
       ]
     },
 
@@ -16,9 +16,7 @@
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Théo Hautois",
       "role": 2,
-      "id": 2,
-      "cours":[
-      ]
+      "id": 2
     }
   ],
 

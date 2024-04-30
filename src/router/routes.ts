@@ -1,6 +1,7 @@
 import HomeView from '../views/HomeView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import LoginView from '../views/LoginView.vue'
+import StudentView from '@/views/StudentView.vue'
 
 const routes = [
   {
@@ -19,6 +20,15 @@ const routes = [
     component: ProfileView,
     meta: {
       requiresAuth: true
+    }
+  },
+  {
+    path: '/student',
+    name: 'Student',
+    component: StudentView,
+    meta: {
+      requiresAuth: true,
+      requiresStudent: true
     }
   },
   {

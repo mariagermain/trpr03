@@ -52,7 +52,7 @@ function logout() {
         <RouterLink 
           v-if="isStudent"
           class="nav-link"
-          :to="{name:'About'}"
+          :to="{name:'Student'}"
           >
             Étudiant
           </RouterLink>
