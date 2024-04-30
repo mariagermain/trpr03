@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, computed, type Ref } from 'vue'
 import { authService } from '../services/authService'
 import jwtDecode from 'jwt-decode'
 
@@ -10,6 +10,7 @@ interface DecodedToken {
 
 export const useAuthStore = defineStore('authStoreId', () => {
   const token = ref('')
+  const role:Ref<number> = ref(0)
   const authServiceError = ref('')
 
   const isLoggedIn = computed(() => !!token.value)
@@ -33,6 +34,7 @@ export const useAuthStore = defineStore('authStoreId', () => {
 
   function logout() {
     token.value = ''
+    role.value = 0
     localStorage.removeItem('token')
   }
 
@@ -44,9 +46,10 @@ export const useAuthStore = defineStore('authStoreId', () => {
   async function login(credential: { email: string; password: string }) {
     try {
       clearError()
-      const newToken = await authService.getToken(credential)
-      if (newToken) {
-        token.value = newToken
+      const loginInfos = await authService.getToken(credential)
+      if (loginInfos) {
+        token.value = loginInfos.token
+        role.value = loginInfos.user.role
         localStorage.setItem('token', token.value)
       }
     } catch (error: any) {
@@ -60,6 +63,7 @@ export const useAuthStore = defineStore('authStoreId', () => {
 
   return { 
     token,
+    role,
     authServiceError,
     isLoggedIn,
     getUserId,

@@ -2,11 +2,14 @@
 import { computed } from 'vue'
 import { useAuthStore } from '../stores/authStore'
 import { useRouter } from 'vue-router'
+import { useProfileStore } from '@/stores/profileStore';
+
 
 const authStore = useAuthStore()
 const router = useRouter()
 
 const isLoggedIn = computed(() => authStore.isLoggedIn)
+const isStudent = computed(() => authStore.role == 2 && isLoggedIn)
 
 function logout() {
   authStore.logout()
@@ -14,6 +17,7 @@ function logout() {
     name: 'Login'
   })
 }
+
 </script>
 
 <template>
@@ -45,6 +49,13 @@ function logout() {
         >
           Profile
         </RouterLink>
+        <RouterLink 
+          v-if="isStudent"
+          class="nav-link"
+          :to="{name:'About'}"
+          >
+            Étudiant
+          </RouterLink>
       </div>
       <div class="d-flex">
         <div class="navbar-nav ml-auto">
@@ -59,6 +70,7 @@ function logout() {
           >
             Connexion
           </RouterLink>
+
         </div>
       </div>
     </div>

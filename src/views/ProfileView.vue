@@ -6,7 +6,8 @@ const profileStore = useProfileStore()
 
 const name = computed(() => profileStore.name)
 const email = computed(() => profileStore.email)
-const role = computed(() => profilesStore.role)
+const role = computed(() => profileStore.role)
+const listeCours = computed(() => profileStore.cours)
 const onError = computed(() => profileStore.onError)
 
 onMounted(async () => {
@@ -28,6 +29,12 @@ onMounted(async () => {
     <div>Nom: {{ name }}</div>
     <div>Courriel: {{ email }}</div>
     <div>Role: {{ role }}</div>
+    <div>
+      <h2>Liste des cours :</h2>
+        <ul>
+          <li v-for="cours of listeCours">{{ cours }}</li>
+        </ul>
+    </div>
   </div>
 </template>
 
