@@ -6,7 +6,7 @@ import { ref, type Ref } from "vue";
 import ErrorList from '../components/ErrorList.vue'
 
 const emit = defineEmits(['loading-error', 'submit-question'])
-const APP_SERVICE = new AppService();
+const APP_SERVICE : AppService = new AppService();
 
 // Formulaire
 let question : string = "";
