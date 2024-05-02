@@ -25,7 +25,7 @@ onMounted(async () => {
 
 <template>
   <div>
-    <h1>Profile</h1>
+    <h1>Espace Prof</h1>
     <div>Nom: {{ name }}</div>
     <div>Courriel: {{ email }}</div>
     <div>Role: {{ role }}</div>

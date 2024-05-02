@@ -7,18 +7,33 @@ const router = createRouter({
   routes: routes
 })
 
+// Vérifie si l'utilisateur est connecter + bon rôle avant de changer de page.
 router.beforeEach((to) => {
   const authStore = useAuthStore()
   authStore.loadPersistedToken()
+
+  // requiresAuth
   if (to.meta.requiresAuth && !authStore.isLoggedIn) {
     return {
       name: 'Login'
     }
-  } else if (to.name === 'Login' && authStore.isLoggedIn) {
+  }
+
+  // /login + connecter = /home 
+  if (to.name === 'Login' && authStore.isLoggedIn) {
     return {
       name: 'Home'
     }
-  } else {
+  } 
+  
+  // requiresStudent
+  if (to.meta.requiresStudent && (authStore.role != 2 || !authStore.isLoggedIn)){
+    return {
+      name : 'Home'
+    }
+  }
+
+  else {
     return true
   }
 })
