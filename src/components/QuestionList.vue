@@ -13,8 +13,10 @@ function selectQuestion(question : Question){
     selectedQuestion.value = question;
 }
 
-function deleteSelectedQuestion(){
+async function deleteSelectedQuestion(){
     APP_SERVICE.deleteQuestion(selectedQuestion.value.id);
+    selectedQuestion = ref();
+    questions.value = await APP_SERVICE.getQuestions();
 }
 
 </script>
