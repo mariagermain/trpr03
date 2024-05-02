@@ -1,5 +1,5 @@
 import HomeView from '../views/HomeView.vue'
-import ProfileView from '../views/ProfileView.vue'
+import TeacherView from '../views/TeacherView.vue'
 import LoginView from '../views/LoginView.vue'
 import StudentView from '@/views/StudentView.vue'
 
@@ -15,11 +15,12 @@ const routes = [
     component: () => import('../views/AboutView.vue')
   },
   {
-    path: '/profile',
-    name: 'Profile',
-    component: ProfileView,
+    path: '/teacher',
+    name: 'Teacher',
+    component: TeacherView,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      requiresTeacher: true
     }
   },
   {
@@ -30,6 +31,11 @@ const routes = [
       requiresAuth: true,
       requiresStudent: true
     }
+  },
+  {
+    path: '/ask',
+    name: 'AskQuestion',
+    component: () => import('../views/AskQuestionView.vue')
   },
   {
     path: '/login',

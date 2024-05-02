@@ -10,6 +10,7 @@ const router = useRouter()
 
 const isLoggedIn = computed(() => authStore.isLoggedIn)
 const isStudent = computed(() => authStore.role == 2 && isLoggedIn)
+const isTeacher = computed(() => authStore.role == 1 && isLoggedIn)
 
 function logout() {
   authStore.logout()
@@ -42,19 +43,20 @@ function logout() {
 
         <!-- La page Profile n'est accessible que si l'utilisateur est connecté (v-if). Voir la propriété calculée isLoggedIn() qui retourne la valeur de la propriété isLoggedIn du store. -->
         <RouterLink
+        v-if="isTeacher"
           class="nav-link"
-          :class="{ active: $route.name == 'Profile' }"
-          v-if="isLoggedIn"
-          :to="{ name: 'Profile' }"
+          :class="{ active: $route.name == 'Teacher' }"
+          :to="{ name: 'Teacher' }"
         >
-          Profile
+          Zone prof
         </RouterLink>
         <RouterLink 
           v-if="isStudent"
           class="nav-link"
-          :to="{name:'Student'}"
+          :class="{ active: $route.name == 'Student' }"
+          :to="{name: 'Student' }"
           >
-            Étudiant
+            Zone étudiant
           </RouterLink>
       </div>
       <div class="d-flex">

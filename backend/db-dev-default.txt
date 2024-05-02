@@ -1,12 +1,29 @@
-{
+/*{
   "users": [
     {
       "email": "test@test.com",
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Emmett Brown",
-      "id": 1
+      "role": 1,
+      "id": 1,
+      "students":[
+        2
+      ]
     }
   ],
+
+  "categories": [
+    {
+      "value":"Exercice"
+    },
+    {
+      "value":"Travail pratique"
+    },
+    {
+      "value":"Atelier"
+    }
+  ],
+
   "comments": [
     {
       "userId": 1,
@@ -14,4 +31,4 @@
       "id": 1
     }
   ]
-}
+}*/
