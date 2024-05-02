@@ -18,9 +18,9 @@ function writeQuestion() : void{
 <template>
     <div class="container border border-dark border-1 rounded w-60">
         <span class="col w-100">
-            <button type="button" class="btn btn-primary m-3 mx-auto w-100" id="" @click="raiseHand()">Lever la main</button>
-            <button type="button" class="btn btn-primary m-3 mx-auto w-100" id="" @click="dropHand()">Baisser la main</button>
-            <button type="button" class="btn btn-primary m-3 mx-auto w-100" id="" @click="writeQuestion()">Écrire une question</button>
+            <button type="button" class="btn btn-primary m-3 mx-auto w-100" id="raise-hand" @click="raiseHand()">Lever la main</button>
+            <button type="button" class="btn btn-primary m-3 mx-auto w-100" id="drop-hand" @click="dropHand()">Baisser la main</button>
+            <button type="button" class="btn btn-primary m-3 mx-auto w-100" id="write-question" @click="writeQuestion()">Écrire une question</button>
         </span>
     </div>
 </template>

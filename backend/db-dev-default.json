@@ -1,0 +1,73 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "test@test.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Emmett Brown",
+      "role": 1,
+      "students":[
+        2
+      ]
+    },
+    {
+      "id": 2,
+      "email": "student@student.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Théo Hautois",
+      "role": 2,
+      "students":[]
+    }
+  ],
+
+  "cours": [
+    {
+      "id":1,
+      "titre":"Programmation Web",
+      "description":""
+    },
+    {
+      "id":2,
+      "titre":"Base de données I",
+      "description":""
+    },
+    {
+      "id":3,
+      "titre":"Programmation orientée objets II",
+      "description":""
+    },
+    {
+      "id":4,
+      "titre":"Algorithmique avancée",
+      "description":""
+    },
+    {
+      "id":4,
+      "titre":"Développement de services web",
+      "description":""
+    }
+  ],
+
+  "categories": [
+    {
+      "id":1,
+      "value":"Exercice"
+    },
+    {
+      "id":2,
+      "value":"Travail pratique"
+    },
+    {
+      "id":3,
+      "value":"Atelier"
+    }
+  ],
+
+  "comments": [
+    {
+      "userId": 1,
+      "comment": "J'ai inventé la machine à voyager dans le temps.",
+      "id": 1
+    }
+  ]
+}
