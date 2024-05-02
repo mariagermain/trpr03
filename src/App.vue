@@ -7,7 +7,7 @@ import NavigationBar from './components/NavigationBar.vue'
   <header>
     <div>
       <!-- Le composant NavigationBar est affiché sur toutes les pages de l'application. Il contient des liens de navigation. Voir son contenu dans le fichier src/components/NavigationBar.vue -->
-      <NavigationBar />
+      <Suspense><NavigationBar /></Suspense>
     </div>
   </header>
   <main>

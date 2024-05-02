@@ -10,7 +10,6 @@ interface DecodedToken {
 
 export const useAuthStore = defineStore('authStoreId', () => {
   const token = ref('')
-  const role:Ref<number> = ref(0)
   const authServiceError = ref('')
 
   const isLoggedIn = computed(() => !!token.value)
@@ -34,7 +33,6 @@ export const useAuthStore = defineStore('authStoreId', () => {
 
   function logout() {
     token.value = ''
-    role.value = 0
     localStorage.removeItem('token')
   }
 
@@ -46,11 +44,10 @@ export const useAuthStore = defineStore('authStoreId', () => {
   async function login(credential: { email: string; password: string }) {
     try {
       clearError()
-      const loginInfos = await authService.getToken(credential)
-      if (loginInfos) {
-        token.value = loginInfos.token
-        role.value = loginInfos.user.role
-        localStorage.setItem('token', token.value)
+      const authToken = await authService.getToken(credential)
+      if (authToken) {
+        token.value = authToken
+        localStorage.setItem('token', authToken)
       }
     } catch (error: any) {
       authServiceError.value = error.message || 'Unknown error'
@@ -63,7 +60,6 @@ export const useAuthStore = defineStore('authStoreId', () => {
 
   return { 
     token,
-    role,
     authServiceError,
     isLoggedIn,
     getUserId,
