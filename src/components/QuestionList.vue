@@ -13,6 +13,10 @@ function selectQuestion(question : Question){
     selectedQuestion.value = question;
 }
 
+function deleteSelectedQuestion(){
+    APP_SERVICE.deleteQuestion(selectedQuestion.value.id);
+}
+
 </script>
 
 <template>
@@ -28,6 +32,11 @@ function selectQuestion(question : Question){
             <div>
                 Question: {{ selectedQuestion.value }}
             </div>
+            <div>
+                Étudiant: {{ selectedQuestion.studentName }}
+            </div>
+
+            <button type="button" class="btn btn-outline-danger m-1" @click="deleteSelectedQuestion()" >Supprimer cette question</button>
         </span>
     </div>
 

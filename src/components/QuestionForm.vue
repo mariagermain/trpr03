@@ -9,6 +9,7 @@ const emit = defineEmits(['loading-error', 'submit-question'])
 const APP_SERVICE : AppService = new AppService();
 
 // Formulaire
+let studentName : string = "";
 let question : string = "";
 let category : Category;
 let priority : string;
@@ -24,12 +25,15 @@ let errorList : Ref<string[]> = ref([]);
 
 function submitQuestion() : void{
     if (validateForm()) 
-        emit('submit-question', question, category.value, priority);
+        emit('submit-question', studentName, question, category.value, priority);
 }
 
 
 function validateForm() {
     errorList.value = [];
+    if (studentName.trim().length <= 0)
+        errorList.value.push("Le nom ne peut pas être vide") ;
+    
     if (question.trim().length <= 0)
         errorList.value.push("La question ne peut pas être vide") ;
     
@@ -46,6 +50,9 @@ function validateForm() {
 <template>
     <form class="form-outline w-50 mx-auto border border-secondary rounded p-3">
         <ErrorList title="Impossible de poser une question." :errors="errorList"></ErrorList>
+        <div class="form-group pb-3">
+            <input type="text" v-model="studentName" class="form-control" placeholder="Ton nom"></input>
+        </div>
         <div class="form-group pb-3">
             <textarea v-model="question" cols="50" rows="6" class="form-control" placeholder="Question"></textarea>
         </div>

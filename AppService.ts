@@ -24,6 +24,14 @@ export default class AppService {
         return data;
     }
 
+    async createQuestion (id : number) : Promise<void> {
+
+    }
+
+    async deleteQuestion (id : number) : Promise<void> {
+        await axios.delete(this.API_URL + QUESTIONS_PATH + "/" + String(id));
+    }
+
     async getUsers () : Promise<User[]> {
         const { data } : AxiosResponse<User[], User[]> = await axios.get(this.API_URL + USERS_PATH);
         return data;
