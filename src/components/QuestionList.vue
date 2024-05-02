@@ -46,7 +46,7 @@ async function deleteSelectedQuestion(){
         <span class="col w-100">
             <h2>Liste des questions</h2>
             <ul id="questionList" class="d-grid">
-                <li class="btn btn-outline-primary m-1" v-for="question in questions" :key="question.id" @click="selectQuestion(question)">
+                <li :class="question.priority"  class="btn btn-outline-primary m-1" v-for="question in questions" :key="question.id" @click="selectQuestion(question)">
                      {{ question.priority }} - {{ question.category }}
                 </li>
             </ul>
@@ -54,4 +54,30 @@ async function deleteSelectedQuestion(){
     </div>
 </template>
 
-<style scoped></style> 
+<style scoped>
+.P1{
+    border: solid 2px red;
+    background-color: rgb(255, 0, 0,.1);
+}
+
+.P2{
+    border: solid 2px orange;
+    background-color: rgb(255, 165, 0,.1);
+}
+
+.P3{
+    border: solid 2px yellow;
+    background-color: rgb(255, 255, 0,.1);
+}
+
+.P4{
+    border: solid 2px greenyellow;
+    background-color: rgb(173, 255, 47,.1);
+}
+
+.P5{
+    border: solid 2px green;
+    background-color: rgb(0, 255,0,.1);
+}
+
+</style> 

@@ -5,11 +5,11 @@ import { flushPromises, mount } from "@vue/test-utils";
 
 import { setupServer } from "msw/node"
 import { getCategories, networkError } from "../../../tests/mocks/AppServiceMock";
-import { categories } from "tests/data/categories";
+import { categories } from "../../../tests/data/categories";
 
 const testComponent = defineComponent({
     components: { QuestionForm },
-    template : '<Suspense><AccueilForm/></Suspense>'
+    template : '<Suspense><QuestionForm/></Suspense>'
 })
 
 const apiServer = setupServer(...getCategories);
@@ -36,10 +36,10 @@ describe('QuestionForm', () => {
         await flushPromises();
 
         // Assert
-        expect(wrapper.findAll('option').length).toBe(categories.length);
-        expect(wrapper.text()).toContain(categories[0].name);
-        expect(wrapper.text()).toContain(categories[1].name);
-        expect(wrapper.text()).toContain(categories[2].name);
+        expect(wrapper.find('#select-category').findAll('option').length).toBe(categories.length);
+        expect(wrapper.text()).toContain(categories[0].value);
+        expect(wrapper.text()).toContain(categories[1].value);
+        expect(wrapper.text()).toContain(categories[2].value);
     })
 
     it('Doit emit submit-question si le formulaire de question est bien rempli.', async () => {
@@ -64,7 +64,8 @@ describe('QuestionForm', () => {
       const ANY_CATEGORY = categories[0];
       const wrapper = mount(testComponent)
       await flushPromises();
-      wrapper.find('select').setValue(ANY_CATEGORY) // on force une valeur de ship au select
+
+      await wrapper.find('#select-category').setValue(ANY_CATEGORY) // on force une valeur de ship au select
       const button = wrapper.findComponent(QuestionForm).find('button[type="button"]');
       // Act
       await button.trigger('click')
