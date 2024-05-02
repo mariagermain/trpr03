@@ -63,6 +63,27 @@
     }
   ],
 
+  "questions": [
+    {
+      "id":1,
+      "value":"Question 1",
+      "priority" : "P1",
+      "category" : "Travail pratique"
+    },
+    {
+      "id":2,
+      "value":"Question 2",
+      "priority" : "P4",
+      "category" : "Exercice"
+    },
+    {
+      "id":3,
+      "value":"Question 3",
+      "priority" : "P2",
+      "category" : "Atelier"
+    }
+  ],
+
   "comments": [
     {
       "userId": 1,

@@ -1,9 +1,10 @@
 import axios, { type AxiosResponse } from 'axios';
-import { type Category, type User } from "./src/scripts/Types"
+import { type Category, type User, type Question } from "./src/scripts/Types"
 import { ref, type Ref } from 'vue';
 
 
 const CATEGORIES_PATH : string = "/categories"
+const QUESTIONS_PATH : string = "/questions"
 const USERS_PATH : string = "/users"
 
 export default class AppService {
@@ -18,6 +19,11 @@ export default class AppService {
         return data;
     }
 
+    async getQuestions () : Promise<Question[]> {
+        const { data } : AxiosResponse<Question[], Question[]> = await axios.get(this.API_URL + QUESTIONS_PATH);
+        return data;
+    }
+
     async getUsers () : Promise<User[]> {
         const { data } : AxiosResponse<User[], User[]> = await axios.get(this.API_URL + USERS_PATH);
         return data;
@@ -25,11 +31,11 @@ export default class AppService {
 
     async getStudents () : Promise<User[]> {
         const { data } : AxiosResponse<User[], User[]> = await axios.get(this.API_URL + USERS_PATH);
-        return data.filter((u : User ) => u.role == 2);
+        return data.filter((u : User) => u.role == 2);
     }
 
     async getTeachers () : Promise<User[]> {
         const { data } : AxiosResponse<User[], User[]> = await axios.get(this.API_URL + USERS_PATH);
-        return data.filter((u : User ) => u.role == 1);
+        return data.filter((u : User) => u.role == 1);
     }
 }
