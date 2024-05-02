@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import CategoryForm from '../components/QuestionForm.vue'
+import { useRouter } from 'vue-router';
+import AppService from '../../AppService';
+import CategoryForm from '../components/CategoryForm.vue'
 
+const APP_SERVICE : AppService = new AppService();
+const router = useRouter();
 
 function submitCategory(categoryName : string) : void {
-console.log(categoryName)
-
-// pas encore implémenté
+    APP_SERVICE.createCategory(categoryName);
+    router.push({ name : "Teacher"})
 }
 </script>
 
 <template>
   <div class="home">
-    <h1>Écrire une question</h1>
+    <h1>Créer une catégorie</h1>
     <Suspense>
         <CategoryForm @submit-category="submitCategory"/>
     </Suspense>

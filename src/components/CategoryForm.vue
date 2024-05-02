@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import type { Category, Ship } from "../scripts/Types.ts";
+import type { Category } from "../scripts/Types.ts";
 import AppService from "../../AppService"
-import { useRouter, type Router } from "vue-router";
 import { ref, type Ref } from "vue";
 import ErrorList from '../components/ErrorList.vue'
 
@@ -35,9 +34,9 @@ function validateForm() {
 
 <template>
     <form class="form-outline w-50 mx-auto border border-secondary rounded p-3">
-        <ErrorList title="Impossible de poser une question." :errors="errorList"></ErrorList>
+        <ErrorList title="Impossible de créer une catégorie." :errors="errorList"></ErrorList>
         <div class="form-group pb-3">
-            <input type="text" v-model="categoryName" class="form-control" placeholder="Nouvlle catégorie"></input>
+            <input type="text" v-model="categoryName" class="form-control" placeholder="Nouvelle catégorie"></input>
         </div>
         <div class="">
             <button type="button" @click="submitCategory()" class="btn btn-primary w-100">Créer une nouvelle catégorie</button>

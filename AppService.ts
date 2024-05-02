@@ -19,6 +19,16 @@ export default class AppService {
         return data;
     }
 
+    async getIdForCategory() : Promise<number>{
+        const { data } : AxiosResponse<Category[], Category[]> = await axios.get(this.API_URL + CATEGORIES_PATH);
+        return data.length + 1;
+    }
+
+    async createCategory (category : string) : Promise<void> {
+        const id = await this.getIdForCategory();
+        await axios.post(this.API_URL + CATEGORIES_PATH, {id : id, value: category});
+    }
+
     async getQuestions () : Promise<Question[]> {
         const { data } : AxiosResponse<Question[], Question[]> = await axios.get(this.API_URL + QUESTIONS_PATH);
         return data;
