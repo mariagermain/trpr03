@@ -6,7 +6,7 @@ import { useAuthStore } from './authStore'
 export const useProfileStore = defineStore('profileStoreId', () => {
   const email:Ref<string> = ref('')
   const name:Ref<string> = ref('')
-  const role:Ref<number> = ref(1)
+  const role:Ref<number> = ref(0)
   const students:Ref<number[]> = ref([])
   const onError:Ref<boolean> = ref(false)
 

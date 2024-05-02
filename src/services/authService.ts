@@ -11,7 +11,7 @@ async function getToken (credential) {
     console.log(response.data)
     const token = response.data.accessToken
     const user = response.data.user
-    return {token:token, user:user}
+    return token;
   } catch (error) {
     // Voir la fonction parseAxiosError dans le fichier src/shared/parseAxiosError.js.
     throw parseAxiosError(error)

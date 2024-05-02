@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '../stores/authStore'
 import routes from './routes'
+import { useProfileStore } from '@/stores/profileStore'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,9 +9,12 @@ const router = createRouter({
 })
 
 // Vérifie si l'utilisateur est connecter + bon rôle avant de changer de page.
-router.beforeEach((to) => {
+router.beforeEach(async (to) => {
   const authStore = useAuthStore()
+  const profileStore = useProfileStore()
+
   authStore.loadPersistedToken()
+  await profileStore.getProfile()
 
   // requiresAuth
   if (to.meta.requiresAuth && !authStore.isLoggedIn) {
@@ -27,7 +31,7 @@ router.beforeEach((to) => {
   } 
   
   // requiresStudent
-  if (to.meta.requiresStudent && (authStore.role != 2 || !authStore.isLoggedIn)){
+  if (to.meta.requiresStudent && (profileStore.role != 2 || !authStore.isLoggedIn)){
     return {
       name : 'Home'
     }

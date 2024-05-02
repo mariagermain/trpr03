@@ -6,11 +6,14 @@ import { useProfileStore } from '@/stores/profileStore';
 
 
 const authStore = useAuthStore()
+const profileStore = useProfileStore()
 const router = useRouter()
 
+await profileStore.getProfile()
+
 const isLoggedIn = computed(() => authStore.isLoggedIn)
-const isStudent = computed(() => authStore.role == 2 && isLoggedIn)
-const isTeacher = computed(() => authStore.role == 1 && isLoggedIn)
+const isStudent = computed(() => {return profileStore.role == 2 && authStore.isLoggedIn})
+const isTeacher = computed(() => {return profileStore.role == 1 && authStore.isLoggedIn})
 
 function logout() {
   authStore.logout()
