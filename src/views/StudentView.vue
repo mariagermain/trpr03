@@ -10,7 +10,6 @@ const profileStore = useProfileStore()
 const name = computed(() => profileStore.name)
 const email = computed(() => profileStore.email)
 const role = computed(() => profileStore.role)
-const students = computed(() => profileStore.students)
 const onError = computed(() => profileStore.onError)
 
 onMounted(async () => {

@@ -40,8 +40,7 @@ function logout() {
         >
           À propos
         </RouterLink>
-
-        <!-- La page Profile n'est accessible que si l'utilisateur est connecté (v-if). Voir la propriété calculée isLoggedIn() qui retourne la valeur de la propriété isLoggedIn du store. -->
+        
         <RouterLink
         v-if="isTeacher"
           class="nav-link"
