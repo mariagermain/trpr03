@@ -1,7 +1,11 @@
 import { defineComponent } from "vue";
 import QuestionForm from '../QuestionForm.vue'
-import { describe, expect, it } from "vitest";
+import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest";
 import { flushPromises, mount } from "@vue/test-utils";
+
+import { setupServer } from "msw/node"
+import { getCategories, networkError } from "../../../tests/mocks/AppServiceMock";
+import { categories } from "tests/data/categories";
 
 const testComponent = defineComponent({
     components: { QuestionForm },
