@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue'
 import { useProfileStore } from '../stores/profileStore'
+import TeacherActions from '../components/TeacherActions.vue'
+import { useRouter } from 'vue-router';
 
 const profileStore = useProfileStore()
 
@@ -9,6 +11,8 @@ const email = computed(() => profileStore.email)
 const role = computed(() => profileStore.role)
 const students = computed(() => profileStore.students)
 const onError = computed(() => profileStore.onError)
+
+const router = useRouter();
 
 onMounted(async () => {
   try {
@@ -21,6 +25,20 @@ onMounted(async () => {
     confirm("Erreur critique lors de l'accès au store.")
   }
 })
+
+
+function addStudent() : void {
+
+}
+
+function deleteStudent() : void {
+
+}
+
+function seeQuestions() : void {
+  router.push({ name: 'SeeQuestions' })
+}
+
 </script>
 
 <template>
@@ -36,6 +54,7 @@ onMounted(async () => {
         </ul>
     </div>
   </div>
+  <TeacherActions @add-student="addStudent" @delete-student="deleteStudent" @see-questions="seeQuestions"/>
 </template>
 
 <style scoped></style>

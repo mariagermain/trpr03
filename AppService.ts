@@ -1,9 +1,10 @@
 import axios, { type AxiosResponse } from 'axios';
-import { type Category, type User } from "./src/scripts/Types"
+import { type Category, type User, type Question } from "./src/scripts/Types"
 import { ref, type Ref } from 'vue';
 
 
 const CATEGORIES_PATH : string = "/categories"
+const QUESTIONS_PATH : string = "/questions"
 const USERS_PATH : string = "/users"
 
 export default class AppService {
@@ -15,6 +16,11 @@ export default class AppService {
 
     async getCategories () : Promise<Category[]> {
         const { data } : AxiosResponse<Category[], Category[]> = await axios.get(this.API_URL + CATEGORIES_PATH);
+        return data;
+    }
+
+    async getQuestions () : Promise<Question[]> {
+        const { data } : AxiosResponse<Question[], Question[]> = await axios.get(this.API_URL + QUESTIONS_PATH);
         return data;
     }
 

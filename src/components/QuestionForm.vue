@@ -11,18 +11,20 @@ const APP_SERVICE = new AppService();
 // Formulaire
 let question : string = "";
 let category : Category;
+let priority : string;
 
 let categories : Category[] = await APP_SERVICE.getCategories().catch(() => {
     emit('loading-error');
 }).then(it => it || []);
 
+const priorities : string[] = ['P1', 'P2', 'P3', 'P4', 'P5'];
 
 // Erreurs
 let errorList : Ref<string[]> = ref([]);
 
 function submitQuestion() : void{
     if (validateForm()) 
-        emit('submit-question', question, category.value);
+        emit('submit-question', question, category.value, priority);
 }
 
 
@@ -33,6 +35,9 @@ function validateForm() {
     
     if (category == undefined || category == null) 
         errorList.value.push("Veuillez choisir une catégorie.");
+
+    if (priority == undefined || priority == null) 
+        errorList.value.push("Veuillez choisir une priorité.");
     
     return errorList.value.length == 0;
 }
@@ -48,6 +53,12 @@ function validateForm() {
             <label for="select-category">Catégorie:</label>
             <select class="form-select" id="select-category" v-model="category">
                 <option v-for="c in categories" :key="c.id" v-bind:value="{id : c.id, value : c.value}">{{ c.value }}</option>
+            </select>
+        </div>
+        <div class="form-group pb-3">
+            <label for="select-category">Priorité:</label>
+            <select class="form-select" id="select-priority" v-model="priority">
+                <option v-for="p in priorities" :key="p" v-bind:value="p">{{ p }}</option>
             </select>
         </div>
         <div class="">

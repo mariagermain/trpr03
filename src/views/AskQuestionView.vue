@@ -2,9 +2,11 @@
 import QuestionForm from '../components/QuestionForm.vue'
 
 
-function submitQuestion(question : string, category : string) : void {
+function submitQuestion(question : string, category : string, priority : string) : void {
 console.log(question)
 console.log(category)
+console.log(priority)
+// pas encore implémenté
 }
 </script>
 
