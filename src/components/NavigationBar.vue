@@ -9,7 +9,7 @@ const authStore = useAuthStore()
 const profileStore = useProfileStore()
 const router = useRouter()
 
-await profileStore.getProfile()
+if (!profileStore.profileLoaded) await profileStore.getProfile()
 
 const isLoggedIn = computed(() => authStore.isLoggedIn)
 const isStudent = computed(() => {return profileStore.role == 2 && authStore.isLoggedIn})

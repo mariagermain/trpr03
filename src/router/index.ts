@@ -14,7 +14,8 @@ router.beforeEach(async (to) => {
   const profileStore = useProfileStore()
 
   authStore.loadPersistedToken()
-  await profileStore.getProfile()
+  
+  if (!profileStore.profileLoaded) await profileStore.getProfile()
 
   // requiresAuth
   if (to.meta.requiresAuth && !authStore.isLoggedIn) {

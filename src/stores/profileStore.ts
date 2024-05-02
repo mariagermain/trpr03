@@ -4,6 +4,7 @@ import { userService } from '../services/userService'
 import { useAuthStore } from './authStore'
 
 export const useProfileStore = defineStore('profileStoreId', () => {
+  const profileLoaded:Ref<boolean> = ref(false)
   const email:Ref<string> = ref('')
   const name:Ref<string> = ref('')
   const role:Ref<number> = ref(0)
@@ -16,10 +17,21 @@ export const useProfileStore = defineStore('profileStoreId', () => {
     role.value = profile.role
     students.value = profile.students
     onError.value = false
+    profileLoaded.value = true
+  }
+
+  function unloadProfile (){
+    email.value = ''
+    name.value = ''
+    role.value = 0
+    students.value = []
+    onError.value = false
+    profileLoaded.value = false
   }
 
   async function getProfile() {
     try {
+      profileLoaded.value = false
       onError.value = false
       const authStore = useAuthStore()
       const userId = authStore.getUserId // Assuming getUserId is a computed or a ref inside authStore
@@ -31,11 +43,13 @@ export const useProfileStore = defineStore('profileStoreId', () => {
   }
 
   return { 
+    profileLoaded,
     email, 
     name, 
     role,
     students,
     onError, 
-    getProfile 
+    getProfile ,
+    unloadProfile
   }
 })

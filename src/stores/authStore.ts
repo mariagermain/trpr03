@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, computed, type Ref } from 'vue'
 import { authService } from '../services/authService'
 import jwtDecode from 'jwt-decode'
+import { useProfileStore } from './profileStore'
 
 interface DecodedToken {
   sub: string
@@ -34,6 +35,10 @@ export const useAuthStore = defineStore('authStoreId', () => {
   function logout() {
     token.value = ''
     localStorage.removeItem('token')
+
+    // Comme on est déconnecter, on supprime le profil chargé
+    const profileStore = useProfileStore()
+    profileStore.unloadProfile()
   }
 
   function loadPersistedToken() {
