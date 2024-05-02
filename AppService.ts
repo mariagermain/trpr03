@@ -25,11 +25,11 @@ export default class AppService {
 
     async getStudents () : Promise<User[]> {
         const { data } : AxiosResponse<User[], User[]> = await axios.get(this.API_URL + USERS_PATH);
-        return data.filter((u : User ) => u.role == 2);
+        return data.filter((u : User) => u.role == 2);
     }
 
     async getTeachers () : Promise<User[]> {
         const { data } : AxiosResponse<User[], User[]> = await axios.get(this.API_URL + USERS_PATH);
-        return data.filter((u : User ) => u.role == 1);
+        return data.filter((u : User) => u.role == 1);
     }
 }
