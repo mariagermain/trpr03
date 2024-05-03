@@ -76,13 +76,6 @@
       "category": "Exercice"
     },
     {
-      "id": 3,
-      "studentName": "coquille",
-      "value": "Question 3",
-      "priority": "P2",
-      "category": "Atelier"
-    },
-    {
       "id": 4,
       "studentName": "coquille",
       "value": "Question 4",
@@ -95,6 +88,13 @@
       "value": "Question 5",
       "priority": "P5",
       "category": "Atelier"
+    },
+    {
+      "studentName": "gr",
+      "value": "gr",
+      "category": "Travail pratique",
+      "priority": "P1",
+      "id": 6
     }
   ],
   "comments": [
