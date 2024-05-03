@@ -4,13 +4,18 @@ import AppService from '../../AppService';
 import type { Question } from '@/scripts/Types';
 import QuestionDetails from './QuestionDetails.vue'
 
+const emit = defineEmits(['loading-error'])
+
 const APP_SERVICE : AppService = new AppService();
 
-let questions : Ref<Question[]> = ref(await APP_SERVICE.getQuestions());
+let questions : Ref<Question[]> = ref(await APP_SERVICE.getQuestions().catch(() => {
+    emit('loading-error');
+}).then(it => it || []));
 
 let selectedQuestion = ref();
 
 let isLoading : Ref<boolean> = ref(false);
+
 
 function selectQuestion(question : Question){
     selectedQuestion.value = question;

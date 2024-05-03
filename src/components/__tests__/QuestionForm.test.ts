@@ -153,7 +153,7 @@ describe('QuestionForm', () => {
         expect(wrapper.text()).toContain('Veuillez choisir une priorité.');
       })
 
-    it('Doit afficher les erreurs si aucune question est entré et aucune catégorie est selectionnée lors du click sur le bouton.', async() => {
+    it('Doit afficher tous les erreurs lors du click sur le bouton.', async() => {
         // Arrange
         const wrapper = mount(testComponent)
         await flushPromises();

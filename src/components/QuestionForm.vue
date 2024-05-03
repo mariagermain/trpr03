@@ -8,10 +8,9 @@ import ErrorList from '../components/ErrorList.vue'
 defineProps({
     isLoading : Boolean
 })
-
 const emit = defineEmits(['loading-error', 'submit-question'])
-const APP_SERVICE : AppService = new AppService();
 
+const APP_SERVICE : AppService = new AppService();
 
 // Formulaire
 let studentName : string = "";
