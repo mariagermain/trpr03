@@ -8,8 +8,8 @@ export type Question = {
     id : number,
     studentName : string,
     value : string,
-    priority : string,
-    category : string
+    category : string,
+    priority : string
 }
 
 export type User = {

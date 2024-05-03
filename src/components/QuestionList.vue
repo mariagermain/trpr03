@@ -9,14 +9,17 @@ let questions : Ref<Question[]> = ref(await APP_SERVICE.getQuestions());
 
 let selectedQuestion = ref();
 
+let isLoading : Ref<boolean> = ref(false);
 function selectQuestion(question : Question){
     selectedQuestion.value = question;
 }
 
 async function deleteSelectedQuestion(){
-    APP_SERVICE.deleteQuestion(selectedQuestion.value.id);
+    isLoading.value = true;
+    await APP_SERVICE.deleteQuestion(selectedQuestion.value.id);
     selectedQuestion = ref();
     questions.value = await APP_SERVICE.getQuestions();
+    isLoading.value = false;
 }
 
 </script>
@@ -37,8 +40,8 @@ async function deleteSelectedQuestion(){
             <div>
                 Étudiant: {{ selectedQuestion.studentName }}
             </div>
-
-            <button type="button" class="btn btn-outline-danger m-1" @click="deleteSelectedQuestion()" >Supprimer cette question</button>
+            <div v-if="isLoading" class="loader m-1"></div>
+            <button v-if="!isLoading" type="button" class="btn btn-outline-danger m-1" @click="deleteSelectedQuestion()" >Supprimer cette question</button>
         </span>
     </div>
 
@@ -46,8 +49,9 @@ async function deleteSelectedQuestion(){
         <span class="col w-100">
             <h2>Liste des questions</h2>
             <ul id="questionList" class="d-grid">
-                <li :class="question.priority"  class="btn btn-outline-primary m-1" v-for="question in questions" :key="question.id" @click="selectQuestion(question)">
-                     {{ question.priority }} - {{ question.category }}
+                <li class="btn btn-outline-primary m-1" v-for="question in questions" :key="question.id" @click="selectQuestion(question)">
+                    <span class="rounded" :class="question.priority"></span> 
+                    {{ question.priority }} - {{ question.category }}
                 </li>
             </ul>
         </span>
@@ -55,29 +59,57 @@ async function deleteSelectedQuestion(){
 </template>
 
 <style scoped>
+
+/*Nous avons trouvé le CSS sur internet*/
+/*https://www.w3schools.com/howto/howto_css_loader.asp*/
+.loader {
+    border: 2px solid #f3f3f3; /* Light grey */
+    border-top: 2px solid blue; /* Blue */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .P1{
-    border: solid 2px red;
-    background-color: rgb(255, 0, 0,.1);
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: red;
 }
-
 .P2{
-    border: solid 2px orange;
-    background-color: rgb(255, 165, 0,.1);
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: orange;
 }
-
 .P3{
-    border: solid 2px yellow;
-    background-color: rgb(255, 255, 0,.1);
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: yellow;
 }
-
 .P4{
-    border: solid 2px greenyellow;
-    background-color: rgb(173, 255, 47,.1);
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: greenyellow;
+}
+.P5{
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: green;
 }
 
-.P5{
-    border: solid 2px green;
-    background-color: rgb(0, 255,0,.1);
-}
 
 </style> 

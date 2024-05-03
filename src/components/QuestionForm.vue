@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import type { Category, Ship } from "../scripts/Types.ts";
+import type { Category } from "../scripts/Types.ts";
 import AppService from "../../AppService"
 import { useRouter, type Router } from "vue-router";
 import { ref, type Ref } from "vue";
 import ErrorList from '../components/ErrorList.vue'
 
+defineProps({
+    isLoading : Boolean
+})
+
 const emit = defineEmits(['loading-error', 'submit-question'])
 const APP_SERVICE : AppService = new AppService();
+
 
 // Formulaire
 let studentName : string = "";
@@ -68,11 +73,26 @@ function validateForm() {
                 <option v-for="p in priorities" :key="p" v-bind:value="p">{{ p }}</option>
             </select>
         </div>
-        <div class="">
-            <button type="button" @click="submitQuestion()" class="btn btn-primary w-100">Poser une question</button>
-        </div>
+        <div v-if="isLoading" class="loader m-1 mx-auto"></div>
+        <button v-if="!isLoading"type="button" @click="submitQuestion()" class="btn btn-primary w-100">Poser une question</button>
     </form>
 </template>
 
 <style scoped>
+
+/*Nous avons trouvé le CSS sur internet*/
+/*https://www.w3schools.com/howto/howto_css_loader.asp*/
+.loader {
+    border: 2px solid #f3f3f3; /* Light grey */
+    border-top: 2px solid blue; /* Blue */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 </style>
