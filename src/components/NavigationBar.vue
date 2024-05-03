@@ -52,7 +52,7 @@ function logout() {
           :class="{ active: $route.name == 'Teacher' }"
           :to="{ name: 'Teacher' }"
         >
-          Zone prof
+          Espace prof
         </RouterLink>
         <RouterLink 
           v-if="isStudent"
@@ -60,7 +60,7 @@ function logout() {
           :class="{ active: $route.name == 'Student' }"
           :to="{name: 'Student' }"
           >
-            Zone étudiant
+            Espace étudiant
           </RouterLink>
       </div>
       <div class="d-flex">

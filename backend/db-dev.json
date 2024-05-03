@@ -88,13 +88,6 @@
       "value": "Question 5",
       "priority": "P5",
       "category": "Atelier"
-    },
-    {
-      "studentName": "gr",
-      "value": "gr",
-      "category": "Travail pratique",
-      "priority": "P1",
-      "id": 6
     }
   ],
   "comments": [
