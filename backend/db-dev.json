@@ -62,13 +62,6 @@
   ],
   "questions": [
     {
-      "id": 1,
-      "studentName": "coquille",
-      "value": "Question 1",
-      "priority": "P1",
-      "category": "Travail pratique"
-    },
-    {
       "id": 3,
       "studentName": "coquille",
       "value": "Question 3",

@@ -21,6 +21,7 @@ function deleteSelectedQuestion() {
         <span class="col w-100">
             <h2>Détail: </h2>
             <div>
+                <span class="rounded" :class="props.priority"></span> 
                 Priorité: {{ props.priority }}
             </div>
             <div>
@@ -55,4 +56,39 @@ function deleteSelectedQuestion() {
   100% { transform: rotate(360deg); }
 }
 
+.P1{
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: red;
+}
+.P2{
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: orange;
+}
+.P3{
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: yellow;
+}
+.P4{
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: greenyellow;
+}
+.P5{
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: green;
+}
 </style>
