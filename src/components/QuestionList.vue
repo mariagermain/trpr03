@@ -24,6 +24,15 @@ async function deleteSelectedQuestion(){
     isLoading.value = false;
 }
 
+function sortQuestionsByPriority(q1 : Question, q2 : Question){
+    if (q1.priority > q2.priority) {
+        return 1;
+    }
+    if (q1.priority < q2.priority) {
+        return -1;
+    }
+    return 0;
+}
 </script>
 
 <template>
@@ -35,7 +44,7 @@ async function deleteSelectedQuestion(){
         <span class="col w-100">
             <h2>Liste des questions</h2>
             <ul id="questionList" class="d-grid">
-                <li class="btn btn-outline-primary m-1" v-for="question in questions" :key="question.id" @click="selectQuestion(question)">
+                <li class="btn btn-outline-primary m-1" v-for="question in questions.sort((q1, q2) => sortQuestionsByPriority(q1, q2))" :key="question.id" @click="selectQuestion(question)">
                     <span class="rounded" :class="question.priority"></span> 
                     {{ question.priority }} - {{ question.category }}
                 </li>

@@ -33,7 +33,7 @@ function deleteSelectedQuestion() {
                 Étudiant: {{ props.student }}
             </div>
             <div v-if="isLoading" class="loader m-1"></div>
-            <button v-if="!isLoading" type="button" class="btn btn-outline-danger m-1" @click="deleteSelectedQuestion()" >Supprimer cette question</button>
+            <button v-if="!isLoading" type="button" id="delete-question" class="btn btn-outline-danger m-1" @click="deleteSelectedQuestion()" >Supprimer cette question</button>
         </span>
     </div>
 </template>

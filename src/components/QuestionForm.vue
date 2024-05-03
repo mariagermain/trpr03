@@ -37,10 +37,10 @@ function submitQuestion() : void{
 function validateForm() {
     errorList.value = [];
     if (studentName.trim().length <= 0)
-        errorList.value.push("Le nom ne peut pas être vide") ;
+        errorList.value.push("Le nom ne peut pas être vide.") ;
     
     if (question.trim().length <= 0)
-        errorList.value.push("La question ne peut pas être vide") ;
+        errorList.value.push("La question ne peut pas être vide.") ;
     
     if (category == undefined || category == null) 
         errorList.value.push("Veuillez choisir une catégorie.");
@@ -68,7 +68,7 @@ function validateForm() {
             </select>
         </div>
         <div class="form-group pb-3">
-            <label for="select-category">Priorité:</label>
+            <label for="select-priority">Priorité:</label>
             <select class="form-select" id="select-priority" v-model="priority">
                 <option v-for="p in priorities" :key="p" v-bind:value="p">{{ p }}</option>
             </select>
