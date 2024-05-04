@@ -18,9 +18,13 @@ function loadingError(){
 }
 
 async function submitQuestion(studentName : string, question : string, category : string, priority : string) {
+    showLoadingError.value = false;
     isLoading.value = true;
-    await APP_SERVICE.createQuestion(studentName, question, category, priority);
-    router.push({ name : "Student"})
+    await APP_SERVICE.createQuestion(studentName, question, category, priority).catch(() => loadingError());
+
+    if( showLoadingError.value == false){
+        router.push({ name : "Student"})
+    }
     isLoading.value = false;
 }
 

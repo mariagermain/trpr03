@@ -8,15 +8,11 @@ defineProps({
     isLoading : Boolean
 })
 
-const emit = defineEmits(['loading-error', 'submit-category'])
-const APP_SERVICE : AppService = new AppService();
+const emit = defineEmits(['submit-category'])
 
 // Formulaire
 let categoryName : string = "";
 
-let categories : Category[] = await APP_SERVICE.getCategories().catch(() => {
-    emit('loading-error');
-}).then(it => it || []);
 
 // Erreurs
 let errorList : Ref<string[]> = ref([]);
