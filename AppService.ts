@@ -19,14 +19,28 @@ export default class AppService {
         return data;
     }
 
+    /*async getIdForCategory() : Promise<number>{
+        const { data } : AxiosResponse<Category[], Category[]> = await axios.get(this.API_URL + CATEGORIES_PATH);
+        return data.length + 1;
+    }*/
+
+    async createCategory (category : string) : Promise<void> {
+        await axios.post(this.API_URL + CATEGORIES_PATH, {value: category});
+    }
+
     async getQuestions () : Promise<Question[]> {
         const { data } : AxiosResponse<Question[], Question[]> = await axios.get(this.API_URL + QUESTIONS_PATH);
         return data;
     }
 
-    async createQuestion (id : number) : Promise<void> {
-
+    async createQuestion (studentName : string, value : string, category : string, priority : string) : Promise<void> {
+        await axios.post(this.API_URL + QUESTIONS_PATH, {studentName : studentName, value: value, category:category, priority: priority});
     }
+
+    /*async getIdForQuestion() : Promise<number>{
+        const { data } : AxiosResponse<Question[], Question[]> = await axios.get(this.API_URL + QUESTIONS_PATH);
+        return data.length + 1;
+    }*/
 
     async deleteQuestion (id : number) : Promise<void> {
         await axios.delete(this.API_URL + QUESTIONS_PATH + "/" + String(id));

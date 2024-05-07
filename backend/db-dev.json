@@ -58,9 +58,20 @@
     {
       "id": 3,
       "value": "Atelier"
+    },
+    {
+      "value": "g",
+      "id": 4
     }
   ],
   "questions": [
+    {
+      "id": 1,
+      "studentName": "coquille",
+      "value": "Question 1",
+      "priority": "P1",
+      "category": "Travail pratique"
+    },
     {
       "id": 2,
       "studentName": "coquille",
@@ -73,6 +84,13 @@
       "studentName": "coquille",
       "value": "Question 3",
       "priority": "P2",
+      "category": "Atelier"
+    },
+    {
+      "id": 4,
+      "studentName": "coquille",
+      "value": "Question 4",
+      "priority": "P3",
       "category": "Atelier"
     },
     {

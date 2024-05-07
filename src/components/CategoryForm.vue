@@ -1,19 +1,18 @@
 <script setup lang="ts">
-import type { Category, Ship } from "../scripts/Types.ts";
+import type { Category } from "../scripts/Types.ts";
 import AppService from "../../AppService"
-import { useRouter, type Router } from "vue-router";
 import { ref, type Ref } from "vue";
 import ErrorList from '../components/ErrorList.vue'
 
-const emit = defineEmits(['loading-error', 'submit-category'])
-const APP_SERVICE : AppService = new AppService();
+defineProps({
+    isLoading : Boolean
+})
+
+const emit = defineEmits(['submit-category'])
 
 // Formulaire
 let categoryName : string = "";
 
-let categories : Category[] = await APP_SERVICE.getCategories().catch(() => {
-    emit('loading-error');
-}).then(it => it || []);
 
 // Erreurs
 let errorList : Ref<string[]> = ref([]);
@@ -35,15 +34,29 @@ function validateForm() {
 
 <template>
     <form class="form-outline w-50 mx-auto border border-secondary rounded p-3">
-        <ErrorList title="Impossible de poser une question." :errors="errorList"></ErrorList>
+        <ErrorList title="Impossible de créer une catégorie." :errors="errorList"></ErrorList>
         <div class="form-group pb-3">
-            <input type="text" v-model="categoryName" class="form-control" placeholder="Nouvlle catégorie"></input>
+            <input type="text" v-model="categoryName" class="form-control" placeholder="Nouvelle catégorie"></input>
         </div>
-        <div class="">
-            <button type="button" @click="submitCategory()" class="btn btn-primary w-100">Créer une nouvelle catégorie</button>
-        </div>
+        <div v-if="isLoading" class="loader m-1 mx-auto"></div>
+        <button v-if="!isLoading" type="button" @click="submitCategory()" class="btn btn-primary w-100">Créer une nouvelle catégorie</button>
     </form>
 </template>
 
 <style scoped>
+
+/*Nous avons trouvé le CSS sur internet*/
+/*https://www.w3schools.com/howto/howto_css_loader.asp*/
+.loader {
+    border: 2px solid #f3f3f3; /* Light grey */
+    border-top: 2px solid blue; /* Blue */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 </style>

@@ -40,7 +40,7 @@ function seeQuestions() : void {
 }
 
 function createQuestioncategory() : void {
-  router.push({ name: 'createCategory' })
+  router.push({ name: 'CreateCategory' })
 }
 
 </script>
@@ -58,7 +58,7 @@ function createQuestioncategory() : void {
         </ul>
     </div>
   </div>
-  <TeacherActions @add-student="addStudent" @delete-student="deleteStudent" @see-questions="seeQuestions" @create-question-category="createQuestionCategory"/>
+  <TeacherActions @add-student="addStudent" @delete-student="deleteStudent" @see-questions="seeQuestions" @create-question-category="createQuestioncategory"/>
 </template>
 
 <style scoped></style>
