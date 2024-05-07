@@ -3,14 +3,19 @@ import { onMounted, computed } from 'vue'
 import { useProfileStore } from '../stores/profileStore'
 import StudentActions from '../components/StudentActions.vue'
 import { useRouter } from 'vue-router';
+import AppService from '../../AppService';
 
+const APP_SERVICE : AppService = new AppService();
 const router = useRouter();
 const profileStore = useProfileStore()
 
+const id = computed(() => profileStore.id)
 const name = computed(() => profileStore.name)
 const email = computed(() => profileStore.email)
 const role = computed(() => profileStore.role)
+const isHandRaised = computed(() => profileStore.isHandRaised)
 const onError = computed(() => profileStore.onError)
+
 
 onMounted(async () => {
   try {
@@ -25,11 +30,11 @@ onMounted(async () => {
 })
 
 function raiseHand() : void{
-
+  APP_SERVICE.raiseHand(id.value);
 }
 
 function dropHand() : void{
-
+  APP_SERVICE.dropHand(profileStore.id);
 }
 
 function writeQuestion() : void{

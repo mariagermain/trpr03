@@ -9,7 +9,6 @@ const profileStore = useProfileStore()
 const name = computed(() => profileStore.name)
 const email = computed(() => profileStore.email)
 const role = computed(() => profileStore.role)
-const students = computed(() => profileStore.students)
 const onError = computed(() => profileStore.onError)
 
 const router = useRouter();
@@ -27,12 +26,8 @@ onMounted(async () => {
 })
 
 
-function addStudent() : void {
-
-}
-
-function deleteStudent() : void {
-
+function seeStudents() : void {
+  router.push({ name: 'SeeStudents' })
 }
 
 function seeQuestions() : void {
@@ -51,14 +46,8 @@ function createQuestioncategory() : void {
     <div>Nom: {{ name }}</div>
     <div>Courriel: {{ email }}</div>
     <div>Role: {{ role }}</div>
-    <div>
-      <h2>Liste des étudiants :</h2>
-        <ul>
-          <li v-for="student of students">{{ student }}</li>
-        </ul>
-    </div>
   </div>
-  <TeacherActions @add-student="addStudent" @delete-student="deleteStudent" @see-questions="seeQuestions" @create-question-category="createQuestioncategory"/>
+  <TeacherActions @see-students="seeStudents" @see-questions="seeQuestions" @create-question-category="createQuestioncategory"/>
 </template>
 
 <style scoped></style>

@@ -5,10 +5,7 @@
       "email": "test@test.com",
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Emmett Brown",
-      "role": 1,
-      "students":[
-        2
-      ]
+      "role": 1
     },
     {
       "id": 2,
@@ -16,7 +13,30 @@
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Théo Hautois",
       "role": 2,
-      "students":[]
+      "isHandRaised": false
+    },
+    {
+      "id": 3,
+      "email": "student2@student.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Coquille C.",
+      "role": 2,
+      "isHandRaised" : true
+    }
+  ],
+
+  "students": [
+    {
+      "id":2,
+      "email":"student@student.com",
+      "name": "Théo Hautois",
+      "isHandRaised": false
+    },
+    {
+      "id": 3,
+      "email": "student2@student.com",
+      "name": "Coquille C.",
+      "isHandRaised" : true
     }
   ],
 

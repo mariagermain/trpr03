@@ -3,28 +3,30 @@ import { ref, type Ref } from 'vue'
 import { userService } from '../services/userService'
 import { useAuthStore } from './authStore'
 
+
 export const useProfileStore = defineStore('profileStoreId', () => {
   const profileLoaded:Ref<boolean> = ref(false)
+  const id : Ref<number> = ref(0)
   const email:Ref<string> = ref('')
   const name:Ref<string> = ref('')
   const role:Ref<number> = ref(0)
-  const students:Ref<number[]> = ref([])
+  const isHandRaised:Ref<boolean> = ref(false)
   const onError:Ref<boolean> = ref(false)
 
-  function _initializeProfile(profile: { email: string; name: string; role:number; students:number[] }) {
+  function _initializeProfile(this: any, profile: { id : number, email: string; name: string; role:number }) {
+    id.value = profile.id;
     email.value = profile.email
     name.value = profile.name
     role.value = profile.role
-    students.value = profile.students
     onError.value = false
     profileLoaded.value = true
   }
 
   function unloadProfile (){
+    id.value = 0
     email.value = ''
     name.value = ''
     role.value = 0
-    students.value = []
     onError.value = false
     profileLoaded.value = false
   }
@@ -44,10 +46,11 @@ export const useProfileStore = defineStore('profileStoreId', () => {
 
   return { 
     profileLoaded,
+    id,
     email, 
     name, 
     role,
-    students,
+    isHandRaised,
     onError, 
     getProfile ,
     unloadProfile

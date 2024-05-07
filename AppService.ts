@@ -1,11 +1,13 @@
 import axios, { type AxiosResponse } from 'axios';
-import { type Category, type User, type Question } from "./src/scripts/Types"
+import { type Category, type User, type Question, type Student } from "./src/scripts/Types"
 import { ref, type Ref } from 'vue';
+import { userService } from './src/services/userService'
 
 
 const CATEGORIES_PATH : string = "/categories"
 const QUESTIONS_PATH : string = "/questions"
 const USERS_PATH : string = "/users"
+const STUDENTS_PATH : string = "/students"
 
 export default class AppService {
     API_URL : string
@@ -18,11 +20,6 @@ export default class AppService {
         const { data } : AxiosResponse<Category[], Category[]> = await axios.get(this.API_URL + CATEGORIES_PATH);
         return data;
     }
-
-    /*async getIdForCategory() : Promise<number>{
-        const { data } : AxiosResponse<Category[], Category[]> = await axios.get(this.API_URL + CATEGORIES_PATH);
-        return data.length + 1;
-    }*/
 
     async createCategory (category : string) : Promise<void> {
         await axios.post(this.API_URL + CATEGORIES_PATH, {value: category});
@@ -37,11 +34,6 @@ export default class AppService {
         await axios.post(this.API_URL + QUESTIONS_PATH, {studentName : studentName, value: value, category:category, priority: priority});
     }
 
-    /*async getIdForQuestion() : Promise<number>{
-        const { data } : AxiosResponse<Question[], Question[]> = await axios.get(this.API_URL + QUESTIONS_PATH);
-        return data.length + 1;
-    }*/
-
     async deleteQuestion (id : number) : Promise<void> {
         await axios.delete(this.API_URL + QUESTIONS_PATH + "/" + String(id));
     }
@@ -51,9 +43,23 @@ export default class AppService {
         return data;
     }
 
-    async getStudents () : Promise<User[]> {
-        const { data } : AxiosResponse<User[], User[]> = await axios.get(this.API_URL + USERS_PATH);
-        return data.filter((u : User) => u.role == 2);
+    async raiseHand (id : number) : Promise<void> {
+        const user : User = await userService.getUserById(id);
+        await axios.put(this.API_URL + STUDENTS_PATH + "/" + String(id), {id: user.id, email: user.email, name: user.name, isHandRaised : true});
+    }
+
+    async dropHand (id : number) : Promise<void> {
+        const user : User = await userService.getUserById(id);
+        await axios.put(this.API_URL + STUDENTS_PATH + "/" + String(id), {id: user.id, email: user.email, name: user.name, isHandRaised : false});
+    }
+
+    async getStudents () : Promise<Student[]> {
+        const { data } : AxiosResponse<Student[], Student[]> = await axios.get(this.API_URL + STUDENTS_PATH);
+        return data;
+    }
+    async getStudent (id : string) : Promise<Student> {
+        const { data } : AxiosResponse<Student, Student> = await axios.get(this.API_URL + STUDENTS_PATH + "/" + id);
+        return data;
     }
 
     async getTeachers () : Promise<User[]> {
