@@ -18,5 +18,12 @@ export type User = {
     password: string,
     name: string,
     role: number,
-    students: number[]
+    isHandRaised : boolean
+}
+
+export type Student = {
+    id : number,
+    email: string,
+    name: string,
+    isHandRaised : boolean
 }
