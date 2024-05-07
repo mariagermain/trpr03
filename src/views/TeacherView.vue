@@ -2,7 +2,7 @@
 import { onMounted, computed } from 'vue'
 import { useProfileStore } from '../stores/profileStore'
 import TeacherActions from '../components/TeacherActions.vue'
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 
 const profileStore = useProfileStore()
 
