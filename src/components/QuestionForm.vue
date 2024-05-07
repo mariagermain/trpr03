@@ -31,7 +31,7 @@ let errorList : Ref<string[]> = ref([]);
 
 function submitQuestion() : void{
     if (validateForm()) 
-        emit('submit-question', studentName, question, category.value, priority);
+        emit('submit-question',studentId, studentName, question, category.value, priority);
 }
 
 

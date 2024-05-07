@@ -9,16 +9,20 @@ const emit = defineEmits(['loading-error'])
 
 const APP_SERVICE : AppService = new AppService();
 
-let students : Ref<Student[]> = ref(await APP_SERVICE.getStudents().catch(() => {
+const raisedHands = ref(await APP_SERVICE.getRaisedHands().catch(() => {
     emit('loading-error');
 }).then(it => it || []));
 
-let selectedStudent : Ref<Student | undefined> = ref<Student>();
+let students : Ref<User[]> = ref(await APP_SERVICE.getStudents().catch(() => {
+    emit('loading-error');
+}).then(it => it || []));
+
+let selectedStudent : Ref<User | undefined> = ref<User>();
 
 let isLoading : Ref<boolean> = ref(false);
 
 
-function selectStudent(student : Student){
+function selectStudent(student : User){
     selectedStudent.value = student;
     console.log(selectedStudent)
 }
@@ -45,7 +49,7 @@ async function deleteSelectedStudent(){
             <ul id="studentList" class="d-grid">
                 <li class="btn btn-outline-primary m-1" v-for="student in students" :key="student.id" @click="selectStudent(student)">
                     <span class="p-3">Nom : {{ student.name }}</span>
-                    <img v-if="student.isHandRaised" class="logo" src="../../public/raised-hand.png" alt="main levée">
+                    <img v-if="raisedHands.includes(student.id)" class="logo" src="../../public/raised-hand.png" alt="main levée">
                 </li>
             </ul>
         </span>

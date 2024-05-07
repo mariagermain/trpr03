@@ -7,7 +7,8 @@ import { userService } from './src/services/userService'
 const CATEGORIES_PATH : string = "/categories"
 const QUESTIONS_PATH : string = "/questions"
 const USERS_PATH : string = "/users"
-const STUDENTS_PATH : string = "/students"
+const RAISED_HANDS_PATH : string = "/raisedhands"
+
 
 export default class AppService {
     API_URL : string
@@ -30,8 +31,8 @@ export default class AppService {
         return data;
     }
 
-    async createQuestion (studentName : string, value : string, category : string, priority : string) : Promise<void> {
-        await axios.post(this.API_URL + QUESTIONS_PATH, {studentName : studentName, value: value, category:category, priority: priority});
+    async createQuestion (studentId : number, studentName : string, value : string, category : string, priority : string) : Promise<void> {
+        await axios.post(this.API_URL + QUESTIONS_PATH, {studentId: studentId, studentName: studentName, value: value, category: category, priority: priority});
     }
 
     async deleteQuestion (id : number) : Promise<void> {
@@ -44,27 +45,26 @@ export default class AppService {
     }
 
     async raiseHand (id : number) : Promise<void> {
-        const user : User = await userService.getUserById(id);
-        await axios.put(this.API_URL + STUDENTS_PATH + "/" + String(id), {id: user.id, email: user.email, name: user.name, isHandRaised : true});
+        await axios.post(this.API_URL + RAISED_HANDS_PATH , {id: id});
     }
 
     async dropHand (id : number) : Promise<void> {
-        const user : User = await userService.getUserById(id);
-        await axios.put(this.API_URL + STUDENTS_PATH + "/" + String(id), {id: user.id, email: user.email, name: user.name, isHandRaised : false});
+        await axios.delete(this.API_URL + RAISED_HANDS_PATH + "/" + String(id));
     }
 
-    async getStudents () : Promise<Student[]> {
-        const { data } : AxiosResponse<Student[], Student[]> = await axios.get(this.API_URL + STUDENTS_PATH);
-        return data;
-    }
-    async getStudent (id : string) : Promise<Student> {
-        const { data } : AxiosResponse<Student, Student> = await axios.get(this.API_URL + STUDENTS_PATH + "/" + id);
+    /*async getRaisedHands () : Promise<number[]> {
+        const { data } : AxiosResponse<number[], number[]> = await axios.get(this.API_URL + RAISED_HANDS_PATH);
         return data;
     }
 
-    async getTeachers () : Promise<User[]> {
+    async isHandRaised(id : number) : Promise<boolean>{
+        const { data } : AxiosResponse<any[], any[]> = await axios.get(this.API_URL + RAISED_HANDS_PATH);
+        return data.includes(id);
+    }*/
+
+    async getStudents () : Promise<User[]> {
         const { data } : AxiosResponse<User[], User[]> = await axios.get(this.API_URL + USERS_PATH);
-        return data.filter((u : User) => u.role == 1);
+        return data.filter((u : User) => u.role == 2);
     }
 
     async updateprofile (newName:string, newPassword:string){

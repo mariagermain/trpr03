@@ -12,30 +12,19 @@
       "email": "student@student.com",
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Théo Hautois",
-      "role": 2,
-      "isHandRaised": false
+      "role": 2
     },
     {
       "id": 3,
       "email": "student2@student.com",
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Coquille C.",
-      "role": 2,
-      "isHandRaised": true
+      "role": 2
     }
   ],
-  "students": [
+  "raisedhands": [
     {
-      "id": 2,
-      "email": "student@student.com",
-      "name": "Théo Hautois",
-      "isHandRaised": false
-    },
-    {
-      "id": 3,
-      "email": "student2@student.com",
-      "name": "Coquille C.",
-      "isHandRaised": true
+      "id": 2
     }
   ],
   "cours": [
@@ -81,14 +70,8 @@
   ],
   "questions": [
     {
-      "id": 1,
-      "studentName": "coquille",
-      "value": "Question 1",
-      "priority": "P1",
-      "category": "Travail pratique"
-    },
-    {
       "id": 2,
+      "studentId": 2,
       "studentName": "coquille",
       "value": "Question 2",
       "priority": "P4",
@@ -96,6 +79,7 @@
     },
     {
       "id": 3,
+      "studentId": 2,
       "studentName": "coquille",
       "value": "Question 3",
       "priority": "P2",
@@ -103,6 +87,7 @@
     },
     {
       "id": 4,
+      "studentId": 2,
       "studentName": "coquille",
       "value": "Question 4",
       "priority": "P3",
@@ -110,6 +95,7 @@
     },
     {
       "id": 5,
+      "studentId": 2,
       "studentName": "coquille",
       "value": "Question 5",
       "priority": "P5",
@@ -117,6 +103,7 @@
     },
     {
       "studentName": "Théo Hautois",
+      "studentId": 2,
       "value": "est ce que ça fonctionne ?",
       "category": "Travail pratique",
       "priority": "P1",

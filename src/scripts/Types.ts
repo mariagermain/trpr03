@@ -6,6 +6,7 @@ export type Category = {
 
 export type Question = {
     id : number,
+    studentId : number,
     studentName : string,
     value : string,
     category : string,

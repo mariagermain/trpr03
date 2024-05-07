@@ -33,7 +33,7 @@ function raiseHand() : void{
 }
 
 function dropHand() : void{
-  APP_SERVICE.dropHand(profileStore.id);
+  APP_SERVICE.dropHand(id.value);
 }
 
 function writeQuestion() : void{
