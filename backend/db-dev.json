@@ -58,10 +58,6 @@
     {
       "id": 3,
       "value": "Atelier"
-    },
-    {
-      "value": "g",
-      "id": 4
     }
   ],
   "questions": [
@@ -87,18 +83,11 @@
       "category": "Atelier"
     },
     {
-      "id": 4,
-      "studentName": "coquille",
-      "value": "Question 4",
-      "priority": "P3",
-      "category": "Atelier"
-    },
-    {
-      "id": 5,
-      "studentName": "coquille",
-      "value": "Question 5",
+      "studentName": "Théo",
+      "value": "Est ce que les questions fonctionnent ?",
+      "category": "Travail pratique",
       "priority": "P5",
-      "category": "Atelier"
+      "id": 4
     }
   ],
   "comments": [
