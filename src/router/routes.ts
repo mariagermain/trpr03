@@ -2,6 +2,7 @@ import HomeView from '../views/HomeView.vue'
 import TeacherView from '../views/TeacherView.vue'
 import LoginView from '../views/LoginView.vue'
 import StudentView from '@/views/StudentView.vue'
+import AccountInfo from '@/views/AccountInfo.vue'
 
 const routes = [
   {
@@ -30,6 +31,14 @@ const routes = [
     meta: {
       requiresAuth: true,
       requiresStudent: true
+    }
+  },
+  {
+    path:'/settings',
+    name:'Settings',
+    component: AccountInfo,
+    meta: {
+      requiresAuth: true
     }
   },
   {

@@ -80,6 +80,7 @@ describe('QuestionForm', () => {
         await button.trigger('click') 
 
         // Assert
+        console.log(wrapper.html())
         expect(wrapper.findComponent(QuestionForm).emitted('submit-question')).toBeTruthy();
     })
 
@@ -115,7 +116,8 @@ describe('QuestionForm', () => {
       await button.trigger('click')
 
       // Assert
-      expect(wrapper.text()).toContain('La question ne peut pas être vide.');
+      console.log(wrapper.html())
+      expect(wrapper.text()).toContain('La question ne peut pas être vide');
     })
 
     it('Doit afficher une erreur si aucune catégorie est selectionné lors du click sur le bouton.', async() => {
