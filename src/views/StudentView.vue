@@ -13,7 +13,6 @@ const id = computed(() => profileStore.id)
 const name = computed(() => profileStore.name)
 const email = computed(() => profileStore.email)
 const role = computed(() => profileStore.role)
-const isHandRaised = computed(() => profileStore.isHandRaised)
 const onError = computed(() => profileStore.onError)
 
 
