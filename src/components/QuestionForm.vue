@@ -4,6 +4,7 @@ import AppService from "../../AppService"
 import { useRouter, type Router } from "vue-router";
 import { ref, type Ref } from "vue";
 import ErrorList from '../components/ErrorList.vue'
+import { useProfileStore } from "@/stores/profileStore.js";
 
 defineProps({
     isLoading : Boolean
@@ -11,9 +12,10 @@ defineProps({
 const emit = defineEmits(['loading-error', 'submit-question'])
 
 const APP_SERVICE : AppService = new AppService();
+const PROFILE_STORE = useProfileStore();
 
 // Formulaire
-let studentName : string = "";
+let studentName : string = PROFILE_STORE.name;
 let question : string = "";
 let category : Category;
 let priority : string;
@@ -54,9 +56,6 @@ function validateForm() {
 <template>
     <form class="form-outline w-50 mx-auto border border-secondary rounded p-3">
         <ErrorList title="Impossible de poser une question." :errors="errorList"></ErrorList>
-        <div class="form-group pb-3">
-            <input type="text" v-model="studentName" class="form-control" placeholder="Ton nom"></input>
-        </div>
         <div class="form-group pb-3">
             <textarea v-model="question" cols="50" rows="6" class="form-control" placeholder="Question"></textarea>
         </div>
