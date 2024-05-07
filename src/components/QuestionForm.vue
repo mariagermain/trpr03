@@ -15,7 +15,9 @@ const APP_SERVICE : AppService = new AppService();
 const PROFILE_STORE = useProfileStore();
 
 // Formulaire
+let studentId : number = PROFILE_STORE.id;
 let studentName : string = PROFILE_STORE.name;
+
 let question : string = "";
 let category : Category;
 let priority : string;
@@ -31,14 +33,12 @@ let errorList : Ref<string[]> = ref([]);
 
 function submitQuestion() : void{
     if (validateForm()) 
-        emit('submit-question',studentId, studentName, question, category.value, priority);
+        emit('submit-question', studentId, studentName, question, category.value, priority);
 }
 
 
 function validateForm() {
     errorList.value = [];
-    if (studentName.trim().length <= 0)
-        errorList.value.push("Le nom ne peut pas être vide.") ;
     
     if (question.trim().length <= 0)
         errorList.value.push("La question ne peut pas être vide.") ;

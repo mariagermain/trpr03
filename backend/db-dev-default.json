@@ -24,40 +24,6 @@
   ],
 
 
-  "raisedhands": [
-    {
-      "id": 2
-    }
-  ],
-
-  "cours": [
-    {
-      "id":1,
-      "titre":"Programmation Web",
-      "description":""
-    },
-    {
-      "id":2,
-      "titre":"Base de données I",
-      "description":""
-    },
-    {
-      "id":3,
-      "titre":"Programmation orientée objets II",
-      "description":""
-    },
-    {
-      "id":4,
-      "titre":"Algorithmique avancée",
-      "description":""
-    },
-    {
-      "id":4,
-      "titre":"Développement de services web",
-      "description":""
-    }
-  ],
-
   "categories": [
     {
       "id":1,
@@ -76,21 +42,24 @@
   "questions": [
     {
       "id":1,
-      "studentName" : "coquille",
+      "studentId":3,
+      "studentName" : "Coquille C.",
       "value": "Question 1",
       "priority" : "P1",
       "category" : "Travail pratique"
     },
     {
       "id":2,
-      "studentName" : "coquille",
+      "studentId":3,
+      "studentName" : "Coquille C.",
       "value":"Question 2",
       "priority" : "P4",
       "category" : "Exercice"
     },
     {
       "id":3,
-      "studentName" : "coquille",
+      "studentId":3,
+      "studentName" : "Coquille C.",
       "value":"Question 3",
       "priority" : "P2",
       "category" : "Atelier"
@@ -98,7 +67,8 @@
 
     {
       "id":4,
-      "studentName" : "coquille",
+      "studentId":3,
+      "studentName" : "Coquille C.",
       "value":"Question 4",
       "priority" : "P3",
       "category" : "Atelier"
@@ -106,18 +76,12 @@
 
     {
       "id":5,
-      "studentName" : "coquille",
+      "studentId":3,
+      "studentName" : "Coquille C.",
       "value":"Question 5",
       "priority" : "P5",
       "category" : "Atelier"
     }
-  ],
-
-  "comments": [
-    {
-      "userId": 1,
-      "comment": "J'ai inventé la machine à voyager dans le temps.",
-      "id": 1
-    }
   ]
+
 }

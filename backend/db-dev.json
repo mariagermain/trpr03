@@ -13,57 +13,6 @@
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Théo Hautois",
       "role": 2
-    },
-    {
-      "id": 3,
-      "email": "student2@student.com",
-      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
-      "name": "Coquille C.",
-      "role": 2
-    }
-  ],
-  "raisedhands": [
-    {
-      "id": 2
-    }
-  ],
-  "students": [
-    {
-      "id": 2,
-      "email": "student@student.com",
-      "name": "Théo Hautois"
-    },
-    {
-      "id": 3,
-      "email": "student2@student.com",
-      "name": "Coquille C."
-    }
-  ],
-  "cours": [
-    {
-      "id": 1,
-      "titre": "Programmation Web",
-      "description": ""
-    },
-    {
-      "id": 2,
-      "titre": "Base de données I",
-      "description": ""
-    },
-    {
-      "id": 3,
-      "titre": "Programmation orientée objets II",
-      "description": ""
-    },
-    {
-      "id": 4,
-      "titre": "Algorithmique avancée",
-      "description": ""
-    },
-    {
-      "id": 4,
-      "titre": "Développement de services web",
-      "description": ""
     }
   ],
   "categories": [
@@ -80,51 +29,5 @@
       "value": "Atelier"
     }
   ],
-  "questions": [
-    {
-      "id": 1,
-      "studentName": "coquille",
-      "value": "Question 1",
-      "priority": "P1",
-      "category": "Travail pratique"
-    },
-    {
-      "id": 3,
-      "studentName": "coquille",
-      "value": "Question 3",
-      "priority": "P2",
-      "category": "Atelier"
-    },
-    {
-      "id": 4,
-      "studentId": 2,
-      "studentName": "coquille",
-      "value": "Question 4",
-      "priority": "P3",
-      "category": "Atelier"
-    },
-    {
-      "id": 5,
-      "studentId": 2,
-      "studentName": "coquille",
-      "value": "Question 5",
-      "priority": "P5",
-      "category": "Atelier"
-    },
-    {
-      "studentId": 2,
-      "studentName": "Théo Hautois",
-      "value": "est ce que ça fonctionne ?",
-      "category": "Travail pratique",
-      "priority": "P1",
-      "id": 6
-    }
-  ],
-  "comments": [
-    {
-      "userId": 1,
-      "comment": "J'ai inventé la machine à voyager dans le temps.",
-      "id": 1
-    }
-  ]
+  "questions": []
 }

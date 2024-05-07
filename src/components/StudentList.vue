@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { type Ref, ref } from 'vue';
 import AppService from '../../AppService';
-import type { Student, User } from '@/scripts/Types';
+import type { User } from '@/scripts/Types';
 import StudentDetails from './StudentDetails.vue'
-import { userService } from '../services/userService'
 
-const emit = defineEmits(['loading-error'])
+const emit = defineEmits(['loading-error', 'add-student'])
 
 const APP_SERVICE : AppService = new AppService();
 
@@ -17,7 +16,7 @@ let students : Ref<User[]> = ref(await APP_SERVICE.getStudents().catch(() => {
     emit('loading-error');
 }).then(it => it || []));
 
-let selectedStudent : Ref<User | undefined> = ref<User>();
+let selectedStudent = ref();
 
 let isLoading : Ref<boolean> = ref(false);
 
@@ -29,18 +28,20 @@ function selectStudent(student : User){
 
 async function deleteSelectedStudent(){
     isLoading.value = true;
-    //supprimer l'étudiant
+    await APP_SERVICE.deleteStudent(selectedStudent.value.id);
     selectedStudent = ref();
     students.value = await APP_SERVICE.getStudents();
     isLoading.value = false;
 }
 
-
+function addStudent(){
+    emit('add-student')
+}
 
 </script>
 
 <template>
-    <StudentDetails v-if="selectedStudent != undefined" @delete-student="deleteSelectedStudent" :isLoading="isLoading"
+    <StudentDetails v-if="selectedStudent != undefined" @delete-student="deleteSelectedStudent()" :isLoading="isLoading"
         :name="selectedStudent.name" :email="selectedStudent.email"/>
     
     <div class="container border border-dark border-1 rounded w-60 mt-2">
@@ -53,7 +54,10 @@ async function deleteSelectedStudent(){
                 </li>
             </ul>
         </span>
+        <button type="button" class=" btn btn-primary m-3 mx-auto w-100" id="add-student" @click="addStudent()">Ajouter un étudiant</button>
     </div>
+
+
 </template>
 <style>
 

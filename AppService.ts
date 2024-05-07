@@ -7,8 +7,6 @@ import { userService } from './src/services/userService'
 const CATEGORIES_PATH : string = "/categories"
 const QUESTIONS_PATH : string = "/questions"
 const USERS_PATH : string = "/users"
-const RAISED_HANDS_PATH : string = "/raisedhands"
-
 
 export default class AppService {
     API_URL : string
@@ -44,30 +42,36 @@ export default class AppService {
         return data;
     }
 
-    async raiseHand (id : number) : Promise<void> {
-        await axios.post(this.API_URL + RAISED_HANDS_PATH , {id: id});
+    async registerStudent (name : string, email : string) : Promise<void> {
+        await axios.post(this.API_URL + USERS_PATH, {name: name, email: email, role: 2, password: 'test'});
     }
 
-    async dropHand (id : number) : Promise<void> {
-        await axios.delete(this.API_URL + RAISED_HANDS_PATH + "/" + String(id));
+    async getRaisedHands () : Promise<number[]> {
+        const raisedHands : number[]= [];
+        const { data } : AxiosResponse<Question[], Question[]> = await axios.get(this.API_URL + QUESTIONS_PATH);
+        data.forEach((q : Question) => { raisedHands.push(q.studentId) });
+        return raisedHands;
     }
-
-    /*async getRaisedHands () : Promise<number[]> {
-        const { data } : AxiosResponse<number[], number[]> = await axios.get(this.API_URL + RAISED_HANDS_PATH);
-        return data;
-    }
-
-    async isHandRaised(id : number) : Promise<boolean>{
-        const { data } : AxiosResponse<any[], any[]> = await axios.get(this.API_URL + RAISED_HANDS_PATH);
-        return data.includes(id);
-    }*/
 
     async getStudents () : Promise<User[]> {
         const { data } : AxiosResponse<User[], User[]> = await axios.get(this.API_URL + USERS_PATH);
         return data.filter((u : User) => u.role == 2);
     }
 
+    async deleteStudent (id : number) : Promise<void> {
+        // On supprime les questions de l'étudiant 
+        const questions = await this.getQuestions()
+        questions.filter((q : Question) => q.studentId == id);
+        for (const q of questions) {
+            await this.deleteQuestion(q.id);
+        }
+        // On supprime l'étudiant
+        await axios.delete(this.API_URL + USERS_PATH + "/" + String(id));
+    }
+
     async updateprofile (newName:string, newPassword:string){
         const { data } = await axios.put(this.API_URL + USERS_PATH, {name:newName, password:newPassword})
     }
 }
+
+

@@ -23,13 +23,6 @@ afterEach(() => {
 
 describe('QuestionForm', () => {
 
-    it('Doit afficher un input text pour le nom de létudiant.', () => {
-        // Arrange - Act
-        const wrapper = mount(QuestionForm);
-        // Assert
-        expect(wrapper.find('input[type="text"]')).toBeTruthy();
-    })
-
     it('Doit afficher une zone de texte (textarea) pour la question.', () => {
         // Arrange - Act
         const wrapper = mount(QuestionForm);
@@ -69,7 +62,6 @@ describe('QuestionForm', () => {
         const wrapper = mount(testComponent)
         await flushPromises();
 
-        await wrapper.find('input[type="text"]').setValue("name") 
         await wrapper.find('textarea').setValue("question") 
         await wrapper.findComponent(QuestionForm).find('#select-category').setValue(ANY_CATEGORY) 
         await wrapper.findComponent(QuestionForm).find('#select-priority').setValue('P1') 
@@ -84,23 +76,6 @@ describe('QuestionForm', () => {
         expect(wrapper.findComponent(QuestionForm).emitted('submit-question')).toBeTruthy();
     })
 
-    it('Doit afficher une erreur si le champ de nom de létudiant est vide lors du click sur le bouton.', async() => {
-        // Arrange
-        const ANY_CATEGORY = categories[0];
-        const wrapper = mount(testComponent)
-        await flushPromises();
-  
-        await wrapper.find('textarea').setValue("question") 
-        await wrapper.findComponent(QuestionForm).find('#select-category').setValue(ANY_CATEGORY) 
-        await wrapper.findComponent(QuestionForm).find('#select-priority').setValue('P1') 
-        const button = wrapper.findComponent(QuestionForm).find('button[type="button"]');
-        // Act
-        await button.trigger('click')
-  
-        // Assert
-        expect(wrapper.text()).toContain('Le nom ne peut pas être vide.');
-      })
-
       
     it('Doit afficher une erreur si le champ de question est vide lors du click sur le bouton.', async() => {
       // Arrange
@@ -108,7 +83,6 @@ describe('QuestionForm', () => {
       const wrapper = mount(testComponent)
       await flushPromises();
 
-      await wrapper.find('input[type="text"]').setValue("name") 
       await wrapper.findComponent(QuestionForm).find('#select-category').setValue(ANY_CATEGORY) 
       await wrapper.findComponent(QuestionForm).find('#select-priority').setValue('P1') 
       const button = wrapper.findComponent(QuestionForm).find('button[type="button"]');
@@ -125,7 +99,6 @@ describe('QuestionForm', () => {
         const wrapper = mount(testComponent)
         await flushPromises();
 
-        await wrapper.find('input[type="text"]').setValue("name") 
         await wrapper.find('textarea').setValue("question") 
         await wrapper.findComponent(QuestionForm).find('#select-priority').setValue('P1') 
         const button = wrapper.findComponent(QuestionForm).find('button[type="button"]');
@@ -143,7 +116,6 @@ describe('QuestionForm', () => {
         const wrapper = mount(testComponent)
         await flushPromises();
   
-        await wrapper.find('input[type="text"]').setValue("name") 
         await wrapper.find('textarea').setValue("question") 
         await wrapper.findComponent(QuestionForm).find('#select-category').setValue(ANY_CATEGORY) 
         const button = wrapper.findComponent(QuestionForm).find('button[type="button"]');
@@ -165,7 +137,6 @@ describe('QuestionForm', () => {
         await button.trigger('click')
   
         // Assert
-        expect(wrapper.text()).toContain('Le nom ne peut pas être vide.');
         expect(wrapper.text()).toContain('La question ne peut pas être vide.');
         expect(wrapper.text()).toContain('Veuillez choisir une catégorie.');
         expect(wrapper.text()).toContain('Veuillez choisir une priorité.');
