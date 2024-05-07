@@ -27,6 +27,18 @@
       "id": 2
     }
   ],
+  "students": [
+    {
+      "id": 2,
+      "email": "student@student.com",
+      "name": "Théo Hautois"
+    },
+    {
+      "id": 3,
+      "email": "student2@student.com",
+      "name": "Coquille C."
+    }
+  ],
   "cours": [
     {
       "id": 1,
@@ -70,16 +82,14 @@
   ],
   "questions": [
     {
-      "id": 2,
-      "studentId": 2,
+      "id": 1,
       "studentName": "coquille",
-      "value": "Question 2",
-      "priority": "P4",
-      "category": "Exercice"
+      "value": "Question 1",
+      "priority": "P1",
+      "category": "Travail pratique"
     },
     {
       "id": 3,
-      "studentId": 2,
       "studentName": "coquille",
       "value": "Question 3",
       "priority": "P2",
@@ -102,8 +112,8 @@
       "category": "Atelier"
     },
     {
-      "studentName": "Théo Hautois",
       "studentId": 2,
+      "studentName": "Théo Hautois",
       "value": "est ce que ça fonctionne ?",
       "category": "Travail pratique",
       "priority": "P1",

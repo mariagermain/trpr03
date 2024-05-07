@@ -62,6 +62,14 @@ function logout() {
           >
             Espace étudiant
           </RouterLink>
+          <RouterLink
+          v-if="isLoggedIn"
+            class="nav-link"
+            :class="{active: $route.name == 'Settings'}"
+            :to="{name: 'Settings'}"
+          >
+            Paramètre du compte
+          </RouterLink>
       </div>
       <div class="d-flex">
         <div class="navbar-nav ml-auto">
