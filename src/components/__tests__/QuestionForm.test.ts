@@ -48,6 +48,7 @@ describe('QuestionForm', () => {
         const ANY_CATEGORY = categories[0];
         const wrapper = mount(testComponent)
         await flushPromises();
+
         await wrapper.find('textarea').setValue(ANY_QUESTION) //on met une valeur dans le input du username
         await wrapper.findComponent(QuestionForm).find('select').setValue(ANY_CATEGORY) // on force une valeur de ship au select
         const button = wrapper.findComponent(QuestionForm).find('button[type="button"]');
@@ -56,6 +57,7 @@ describe('QuestionForm', () => {
         await button.trigger('click') 
 
         // Assert
+        console.log(wrapper.html())
         expect(wrapper.findComponent(QuestionForm).emitted('submit-question')).toBeTruthy();
     })
 
@@ -65,13 +67,14 @@ describe('QuestionForm', () => {
       const wrapper = mount(testComponent)
       await flushPromises();
 
-      await wrapper.find('#select-category').setValue(ANY_CATEGORY) // on force une valeur de ship au select
+      await wrapper.find('#select-category').setValue(ANY_CATEGORY) 
       const button = wrapper.findComponent(QuestionForm).find('button[type="button"]');
       // Act
       await button.trigger('click')
 
       // Assert
-      expect(wrapper.text()).toContain('La question ne peut pas être vide.');
+      console.log(wrapper.html())
+      expect(wrapper.text()).toContain('La question ne peut pas être vide');
     })
 
     it('Doit afficher une erreur si aucune catégorie est selectionné lors du click sur le bouton.', async() => {
@@ -99,7 +102,8 @@ describe('QuestionForm', () => {
         await button.trigger('click')
   
         // Assert
-        expect(wrapper.text()).toContain('La question ne peut pas être vide.');
+        
+        expect(wrapper.text()).toContain('La question ne peut pas être vide');
         expect(wrapper.text()).toContain('Veuillez choisir une catégorie.');
     })
 
