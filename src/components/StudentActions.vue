@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { useProfileStore } from '@/stores/profileStore';
 
-const profileStore = useProfileStore();
-
-
 const emit = defineEmits(['raise-hand', 'drop-hand', 'write-question'])
 
 function raiseHand() : void{
