@@ -57,7 +57,7 @@ function validateForm() {
     <form class="form-outline w-50 mx-auto border border-secondary rounded p-3">
         <ErrorList title="Impossible de poser une question." :errors="errorList"></ErrorList>
         <div class="form-group pb-3">
-            <textarea v-model="question" cols="50" rows="6" class="form-control" placeholder="Question"></textarea>
+            <input type="text" v-model="question" class="form-control" placeholder="Description courte"></input>
         </div>
         <div class="form-group pb-3">
             <label for="select-category">Catégorie:</label>

@@ -1,8 +1,5 @@
 import axios, { type AxiosResponse } from 'axios';
-import { type Category, type User, type Question, type Student } from "./src/scripts/Types"
-import { ref, type Ref } from 'vue';
-import { userService } from './src/services/userService'
-
+import { type Category, type User, type Question, type UserData } from "./src/scripts/Types"
 
 const CATEGORIES_PATH : string = "/categories"
 const QUESTIONS_PATH : string = "/questions"
@@ -10,9 +7,6 @@ const USERS_PATH : string = "/users"
 const DATA_PATH : string = "/usersStats"
 
 export default class AppService {
-    addLifeToStudent(id: any, life: any) {
-        throw new Error('Method not implemented.');
-    }
     API_URL : string
 
     constructor () {
@@ -58,8 +52,8 @@ export default class AppService {
         return raisedHands;
     }
 
-    async getStudents () : Promise<Student[]> {
-        let students : Student[] = [];
+    async getStudents () : Promise<UserData[]> {
+        let students : UserData[] = [];
         const { data } : AxiosResponse<User[], User[]> = await axios.get(this.API_URL + USERS_PATH);
         const studentUsers : User[] = data.filter((u : User) => u.role == 2);
 
@@ -76,7 +70,7 @@ export default class AppService {
         return students;
     }
 
-    async getStudent (id : number) : Promise<Student> {
+    async getStudent (id : number) : Promise<UserData> {
         const { data } : AxiosResponse<User, User> = await axios.get(this.API_URL + USERS_PATH + "/" + String(id));
         const life = await this.getUserLife(id)
         return {
@@ -112,6 +106,18 @@ export default class AppService {
 
     async addLifeToUser (id : number, life: number) : Promise<void> {
         await axios.put(this.API_URL + DATA_PATH + "/" + String(id), { id: id, life: life});
+    }
+
+    async getTeacher() : Promise<UserData> {
+        const { data } : AxiosResponse<User[], User[]> = await axios.get(this.API_URL + USERS_PATH);
+        const teacher : User = data.filter((u : User) => u.role == 1)[0];
+        const life = await this.getUserLife(teacher.id)
+        return {
+            id: teacher.id,
+            email: teacher.email,
+            name: teacher.name,
+            life: life
+        }
     }
 }
 

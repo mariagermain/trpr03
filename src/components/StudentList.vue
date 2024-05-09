@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type Ref, ref } from 'vue';
 import AppService from '../../AppService';
-import type { Student } from '@/scripts/Types';
+import type { UserData } from '@/scripts/Types';
 import StudentDetails from './StudentDetails.vue'
 
 const emit = defineEmits(['loading-error', 'add-student'])
@@ -12,7 +12,7 @@ const raisedHands = ref(await APP_SERVICE.getRaisedHands().catch(() => {
     emit('loading-error');
 }).then(it => it || []));
 
-let students : Ref<Student[]> = ref(await APP_SERVICE.getStudents().catch(() => {
+let students : Ref<UserData[]> = ref(await APP_SERVICE.getStudents().catch(() => {
     emit('loading-error');
 }).then(it => it || []));
 
@@ -22,7 +22,7 @@ let deleteIsLoading : Ref<boolean> = ref(false);
 let manageLifeIsLoading : Ref<boolean> = ref(false);
 
 
-function selectStudent(student : Student){
+function selectStudent(student : UserData){
     selectedStudent.value = student;
 }
 

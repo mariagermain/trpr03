@@ -21,11 +21,10 @@ export type User = {
     role: number
 }
 
-export type Student = {
+export type UserData = {
     id : number,
     email: string,
-    password: string,
     name: string,
-    role: number,
     life: number
 }
+
