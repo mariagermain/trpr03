@@ -8,11 +8,11 @@
       "role": 1
     },
     {
-      "id": 2,
-      "email": "student@student.com",
-      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
-      "name": "Théo Hautois",
-      "role": 2
+      "email": "maria@student.com",
+      "password": "$2a$10$I7WWKM7J4PjjjyTL0CLJeO0zwMUtMfmbCg67UYZYNGOzZSHCs8KaC",
+      "name": "maria",
+      "role": 2,
+      "id": 4
     }
   ],
   "categories": [
@@ -29,5 +29,14 @@
       "value": "Atelier"
     }
   ],
-  "questions": []
+  "questions": [
+    {
+      "studentId": 4,
+      "studentName": "maria",
+      "value": "4tt4r",
+      "category": "Travail pratique",
+      "priority": "P1",
+      "id": 6
+    }
+  ]
 }

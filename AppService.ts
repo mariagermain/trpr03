@@ -60,8 +60,8 @@ export default class AppService {
 
     async deleteStudent (id : number) : Promise<void> {
         // On supprime les questions de l'étudiant 
-        const questions = await this.getQuestions()
-        questions.filter((q : Question) => q.studentId == id);
+        let questions = await this.getQuestions()
+        questions = questions.filter((q : Question) => q.studentId == id);
         for (const q of questions) {
             await this.deleteQuestion(q.id);
         }
