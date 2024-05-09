@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { useProfileStore } from '@/stores/profileStore';
 import ChangeAccountInfosForm from '@/components/ChangeAccountInfosForm.vue';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const PROFILE_STORE = useProfileStore()
 
 const changeAccountInfosForm = ref()
 
-let name = PROFILE_STORE.name
-let email = PROFILE_STORE.email
+let name = computed(() => PROFILE_STORE.name)
+let email = computed(() => PROFILE_STORE.email)
 
 function onClickChangeName(){
     changeAccountInfosForm.value.show()

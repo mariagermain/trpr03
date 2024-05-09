@@ -4,6 +4,7 @@ import {userService} from '../services/userService';
 import { Field, Form, ErrorMessage, defineRule, validate } from 'vee-validate'
 import { useProfileStore } from '@/stores/profileStore';
 
+
 const PROFILE_STORE = useProfileStore()
 
 let name:string = ""
@@ -78,13 +79,13 @@ const samePassword = value => {
             </div>
 
             <div class="mb-3">
-                <label for="confirm-password">Mot de passe</label>
+                <label for="confirm-password">Confirmer le mot de passe</label>
                 <Field
                 class="form-control"
                 id="password"
                 name="confirm-password"
                 type="confirm-password"
-                placeholder="Mot de passe"
+                placeholder="Confirmer le mot de passe"
                 :rules="samePassword"
                 v-model="confirmPassword"
                 />
