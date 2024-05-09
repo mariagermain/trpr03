@@ -1,11 +1,12 @@
 import { defineComponent } from "vue";
 import QuestionForm from '../QuestionForm.vue'
-import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest";
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { flushPromises, mount } from "@vue/test-utils";
 
 import { setupServer } from "msw/node"
 import { getCategories, networkError } from "../../../tests/mocks/AppServiceMock";
 import { categories } from "../../../tests/data/categories";
+import { createPinia, setActivePinia } from "pinia";
 
 const testComponent = defineComponent({
     components: { QuestionForm },
@@ -15,6 +16,7 @@ const testComponent = defineComponent({
 const apiServer = setupServer(...getCategories);
 
 beforeAll(() => apiServer.listen({onUnhandledRequest: 'error'}));
+beforeEach(() => {setActivePinia(createPinia())}) // Comme notre composant utilise un store, on doit l'initialiser ici. (equivalent de ce qui se trouve dans main.ts)
 afterAll(() => apiServer.close());
 afterEach(() => {
     apiServer.resetHandlers();
@@ -32,6 +34,9 @@ describe('QuestionForm', () => {
 
     it('Doit afficher la liste des catégories disponibles.', async() => {
         // Arrange - Act
+        apiServer.use(getCategories[0])
+
+        // Act
         const wrapper = mount(testComponent)
         await flushPromises();
 
