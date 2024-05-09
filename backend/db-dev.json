@@ -2,16 +2,16 @@
   "users": [
     {
       "id": 1,
-      "name": "bob",
+      "name": "Bob",
       "email": "test@test.com",
-      "password": "$2a$10$u/XEkh/GZACxvHZmvI4GRuVaqAtIHad5zw4jQcO.0d/lCOtHm80qe",
+      "password": "$2a$10$r51/GbOekDa9TaH1iMT7u.QrBmNGDjzTQ6Y8P0QLR1UeMCVT0NNDm",
       "role": 1
     },
     {
       "id": 2,
       "name": "Théo Hautois",
       "email": "student@student.com",
-      "password": "$2a$10$ks0buPdsH2RUTYCml/tXYuU.CQp6D9A/RbJrl4f/0MVhx74uTYp7u",
+      "password": "$2a$10$wJSgsAT2VCNFvmvy/dfUF.H174GWZWBL8QbuAVk7OTTYu0RHz2uD6",
       "role": 2
     },
     {
@@ -20,6 +20,13 @@
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Coquille C.",
       "role": 2
+    },
+    {
+      "email": "student2@gmail.com",
+      "password": "$2a$10$BqXu/m8CWrjK99TeFhnqg.oVmMhToPVvCPAAd.T9tAXaxZmuXT34.",
+      "name": "mathieu",
+      "role": 2,
+      "id": 4
     }
   ],
   "categories": [
@@ -34,6 +41,10 @@
     {
       "id": 3,
       "value": "Atelier"
+    },
+    {
+      "value": "TP2",
+      "id": 4
     }
   ],
   "questions": [
