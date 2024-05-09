@@ -44,7 +44,17 @@ export const useProfileStore = defineStore('profileStoreId', () => {
     }
   }
 
+  async function updateProfile(newName:string, newPassword:string){
+    try{
+      await userService.updateUserNameAndPassword(newName, newPassword)
+      name.value = newName
+    }catch(error){
+      onError.value = true
+    }
+  }
+
   return { 
+    updateProfile,
     profileLoaded,
     id,
     email, 

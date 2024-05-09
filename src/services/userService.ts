@@ -4,7 +4,7 @@ import { useProfileStore } from '../stores/profileStore'
 
 
 
-async function updateUserName(newName:string,newPassword:string){
+async function updateUserNameAndPassword(newName:string,newPassword:string){
   const PROFILE_STORE = useProfileStore()
   try{
     const response = await axiosAuth.put('http://127.0.0.1:3000/users/' + PROFILE_STORE.id, {id:PROFILE_STORE.id,name:newName, email:PROFILE_STORE.email,password:newPassword, role:PROFILE_STORE.role})
@@ -31,5 +31,5 @@ async function getUserById (userId) {
 
 export const userService = {
   getUserById,
-  updateUserName
+  updateUserNameAndPassword
 }

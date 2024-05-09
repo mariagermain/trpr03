@@ -13,6 +13,13 @@
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Théo Hautois",
       "role": 2
+    },
+    {
+      "id": 3,
+      "email": "student2@student.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Coquille C.",
+      "role": 2
     }
   ],
   "usersStats": [
@@ -22,7 +29,11 @@
     },
     {
       "id": 2,
-      "life": 5
+      "life": 4
+    },
+    {
+      "id": 3,
+      "life": 1
     }
   ],
   "categories": [
@@ -39,5 +50,46 @@
       "value": "Atelier"
     }
   ],
-  "questions": []
+  "questions": [
+    {
+      "id": 1,
+      "studentId": 3,
+      "studentName": "Coquille C.",
+      "value": "Question 1",
+      "priority": "P1",
+      "category": "Travail pratique"
+    },
+    {
+      "id": 2,
+      "studentId": 3,
+      "studentName": "Coquille C.",
+      "value": "Question 2",
+      "priority": "P4",
+      "category": "Exercice"
+    },
+    {
+      "id": 3,
+      "studentId": 3,
+      "studentName": "Coquille C.",
+      "value": "Question 3",
+      "priority": "P2",
+      "category": "Atelier"
+    },
+    {
+      "id": 4,
+      "studentId": 3,
+      "studentName": "Coquille C.",
+      "value": "Question 4",
+      "priority": "P3",
+      "category": "Atelier"
+    },
+    {
+      "id": 5,
+      "studentId": 3,
+      "studentName": "Coquille C.",
+      "value": "Question 5",
+      "priority": "P5",
+      "category": "Atelier"
+    }
+  ]
 }

@@ -38,8 +38,7 @@ async function onValid(){
     if (PROFILE_STORE.role != 1) name = PROFILE_STORE.name
 
     isLoading.value = true;
-    await userService.updateUserName(name,password)
-    PROFILE_STORE.name = name
+    await PROFILE_STORE.updateProfile(name,password)
     visible.value = false
 }
 

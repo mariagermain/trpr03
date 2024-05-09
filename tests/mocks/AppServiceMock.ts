@@ -7,6 +7,7 @@ const API_URL : string = 'http://localhost:3000';
 
 export const getCategories = [
     rest.get(API_URL + '/categories', (req, res, ctx) => {
+      console.log("[API] > GET /categories")
         return res(ctx.status(200), ctx.json(categories));
     }),
 ]
