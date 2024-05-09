@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
 import AppService from '../../AppService'
-import QuestionForm from '../components/QuestionForm.vue'
+import AddStudentForm from '../components/AddStudentForm.vue'
 import { useRouter } from 'vue-router';
 import ErrorMsg from '../components/ErrorMsg.vue'
-
 
 const APP_SERVICE : AppService = new AppService();
 const router = useRouter();
@@ -17,13 +16,13 @@ function loadingError(){
     showLoadingError.value = true;
 }
 
-async function submitQuestion(studentId : number, studentName : string, question : string, category : string, priority : string) {
+async function registerStudent(name : string, email : string) {
     showLoadingError.value = false;
     isLoading.value = true;
-    await APP_SERVICE.createQuestion(studentId, studentName, question, category, priority).catch(() => loadingError());
+    await APP_SERVICE.registerStudent(name, email).catch(() => loadingError());
 
     if( showLoadingError.value == false){
-        router.push({ name : "Student"})
+        router.push({ name : "SeeStudents"})
     }
     isLoading.value = false;
 }
@@ -33,10 +32,10 @@ async function submitQuestion(studentId : number, studentName : string, question
 
 <template>
   <div class="home">
-    <h1>Écrire une question</h1>
-    <ErrorMsg :show="showLoadingError" message="Impossible de contacter l'API et de créer une question."></ErrorMsg>
+    <h1>Ajouter un étudiant à la classe</h1>
+    <ErrorMsg :show="showLoadingError" message="Impossible de contacter l'API et d'ajouter un étudiant."></ErrorMsg>
     <Suspense>
-        <QuestionForm v-if="!showLoadingError" @loading-error="loadingError" :isLoading="isLoading" @submit-question="submitQuestion"/>
+        <AddStudentForm v-if="!showLoadingError" @loading-error="loadingError" :isLoading="isLoading" @register-student="registerStudent"/>
     </Suspense>
   </div>
 </template>

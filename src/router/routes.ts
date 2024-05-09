@@ -62,6 +62,11 @@ const routes = [
     component: () => import('../views/CreateCategoryView.vue')
   },
   {
+    path: '/registerstudent',
+    name: 'AddStudent',
+    component: () => import('../views/AddStudentView.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: LoginView

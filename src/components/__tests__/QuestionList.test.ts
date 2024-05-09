@@ -12,7 +12,7 @@ const testComponent = defineComponent({
 
 describe('QuestionList', () => {
 
-    it('Doit afficher la liste que questions (en ordre de priorité).', () => {
+    it('Doit afficher la liste que questions.', () => {
 
     })
 

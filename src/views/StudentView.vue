@@ -28,17 +28,10 @@ onMounted(async () => {
   }
 })
 
-function raiseHand() : void{
-  APP_SERVICE.raiseHand(id.value);
-}
-
-function dropHand() : void{
-  APP_SERVICE.dropHand(profileStore.id);
-}
-
 function writeQuestion() : void{
   router.push({ name : 'AskQuestion' })
 }
+
 </script>
 
 <template>
@@ -48,7 +41,7 @@ function writeQuestion() : void{
     <div>Courriel: {{ email }}</div>
     <div>Role: {{ role }}</div>
     <div>
-        <StudentActions @raise-hand="raiseHand" @drop-hand="dropHand" @write-question="writeQuestion"/>
+        <StudentActions @write-question="writeQuestion"/>
     </div>
   </div>
 </template>

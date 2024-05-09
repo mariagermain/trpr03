@@ -12,61 +12,17 @@
       "email": "student@student.com",
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Théo Hautois",
-      "role": 2,
-      "isHandRaised": false
+      "role": 2
     },
     {
       "id": 3,
       "email": "student2@student.com",
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Coquille C.",
-      "role": 2,
-      "isHandRaised" : true
+      "role": 2
     }
   ],
 
-  "students": [
-    {
-      "id":2,
-      "email":"student@student.com",
-      "name": "Théo Hautois",
-      "isHandRaised": false
-    },
-    {
-      "id": 3,
-      "email": "student2@student.com",
-      "name": "Coquille C.",
-      "isHandRaised" : true
-    }
-  ],
-
-  "cours": [
-    {
-      "id":1,
-      "titre":"Programmation Web",
-      "description":""
-    },
-    {
-      "id":2,
-      "titre":"Base de données I",
-      "description":""
-    },
-    {
-      "id":3,
-      "titre":"Programmation orientée objets II",
-      "description":""
-    },
-    {
-      "id":4,
-      "titre":"Algorithmique avancée",
-      "description":""
-    },
-    {
-      "id":4,
-      "titre":"Développement de services web",
-      "description":""
-    }
-  ],
 
   "categories": [
     {
@@ -86,21 +42,24 @@
   "questions": [
     {
       "id":1,
-      "studentName" : "coquille",
+      "studentId":3,
+      "studentName" : "Coquille C.",
       "value": "Question 1",
       "priority" : "P1",
       "category" : "Travail pratique"
     },
     {
       "id":2,
-      "studentName" : "coquille",
+      "studentId":3,
+      "studentName" : "Coquille C.",
       "value":"Question 2",
       "priority" : "P4",
       "category" : "Exercice"
     },
     {
       "id":3,
-      "studentName" : "coquille",
+      "studentId":3,
+      "studentName" : "Coquille C.",
       "value":"Question 3",
       "priority" : "P2",
       "category" : "Atelier"
@@ -108,7 +67,8 @@
 
     {
       "id":4,
-      "studentName" : "coquille",
+      "studentId":3,
+      "studentName" : "Coquille C.",
       "value":"Question 4",
       "priority" : "P3",
       "category" : "Atelier"
@@ -116,18 +76,12 @@
 
     {
       "id":5,
-      "studentName" : "coquille",
+      "studentId":3,
+      "studentName" : "Coquille C.",
       "value":"Question 5",
       "priority" : "P5",
       "category" : "Atelier"
     }
-  ],
-
-  "comments": [
-    {
-      "userId": 1,
-      "comment": "J'ai inventé la machine à voyager dans le temps.",
-      "id": 1
-    }
   ]
+
 }

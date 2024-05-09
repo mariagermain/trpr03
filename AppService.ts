@@ -7,7 +7,6 @@ import { userService } from './src/services/userService'
 const CATEGORIES_PATH : string = "/categories"
 const QUESTIONS_PATH : string = "/questions"
 const USERS_PATH : string = "/users"
-const STUDENTS_PATH : string = "/students"
 
 export default class AppService {
     API_URL : string
@@ -30,8 +29,8 @@ export default class AppService {
         return data;
     }
 
-    async createQuestion (studentName : string, value : string, category : string, priority : string) : Promise<void> {
-        await axios.post(this.API_URL + QUESTIONS_PATH, {studentName : studentName, value: value, category:category, priority: priority});
+    async createQuestion (studentId : number, studentName : string, value : string, category : string, priority : string) : Promise<void> {
+        await axios.post(this.API_URL + QUESTIONS_PATH, {studentId: studentId, studentName: studentName, value: value, category: category, priority: priority});
     }
 
     async deleteQuestion (id : number) : Promise<void> {
@@ -43,31 +42,36 @@ export default class AppService {
         return data;
     }
 
-    async raiseHand (id : number) : Promise<void> {
-        const user : User = await userService.getUserById(id);
-        await axios.put(this.API_URL + STUDENTS_PATH + "/" + String(id), {id: user.id, email: user.email, name: user.name, isHandRaised : true});
+    async registerStudent (name : string, email : string) : Promise<void> {
+        await axios.post(this.API_URL + USERS_PATH, {name: name, email: email, role: 2, password: 'test'});
     }
 
-    async dropHand (id : number) : Promise<void> {
-        const user : User = await userService.getUserById(id);
-        await axios.put(this.API_URL + STUDENTS_PATH + "/" + String(id), {id: user.id, email: user.email, name: user.name, isHandRaised : false});
+    async getRaisedHands () : Promise<number[]> {
+        const raisedHands : number[]= [];
+        const { data } : AxiosResponse<Question[], Question[]> = await axios.get(this.API_URL + QUESTIONS_PATH);
+        data.forEach((q : Question) => { raisedHands.push(q.studentId) });
+        return raisedHands;
     }
 
-    async getStudents () : Promise<Student[]> {
-        const { data } : AxiosResponse<Student[], Student[]> = await axios.get(this.API_URL + STUDENTS_PATH);
-        return data;
-    }
-    async getStudent (id : string) : Promise<Student> {
-        const { data } : AxiosResponse<Student, Student> = await axios.get(this.API_URL + STUDENTS_PATH + "/" + id);
-        return data;
-    }
-
-    async getTeachers () : Promise<User[]> {
+    async getStudents () : Promise<User[]> {
         const { data } : AxiosResponse<User[], User[]> = await axios.get(this.API_URL + USERS_PATH);
-        return data.filter((u : User) => u.role == 1);
+        return data.filter((u : User) => u.role == 2);
+    }
+
+    async deleteStudent (id : number) : Promise<void> {
+        // On supprime les questions de l'étudiant 
+        let questions = await this.getQuestions()
+        questions = questions.filter((q : Question) => q.studentId == id);
+        for (const q of questions) {
+            await this.deleteQuestion(q.id);
+        }
+        // On supprime l'étudiant
+        await axios.delete(this.API_URL + USERS_PATH + "/" + String(id));
     }
 
     async updateName (newName:string){
         const { data } = await axios.put(this.API_URL + USERS_PATH, {name:newName})
     }
 }
+
+
