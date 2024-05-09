@@ -9,9 +9,9 @@
     },
     {
       "id": 2,
-      "email": "student@student.com",
-      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Théo Hautois",
+      "email": "student@student.com",
+      "password": "$2a$10$ks0buPdsH2RUTYCml/tXYuU.CQp6D9A/RbJrl4f/0MVhx74uTYp7u",
       "role": 2
     },
     {

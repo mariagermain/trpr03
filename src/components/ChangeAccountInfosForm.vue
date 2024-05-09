@@ -10,6 +10,8 @@ const PROFILE_STORE = useProfileStore()
 let name:string = ""
 let password:string=""
 let confirmPassword:string=""
+let isLoading:Ref<boolean> = ref(false)
+
 defineExpose({
     show
 })
@@ -18,6 +20,11 @@ let visible:Ref<boolean> = ref(false)
 
 function show(){
     visible.value = true
+    isLoading.value = false
+    name = ""
+    password=""
+    confirmPassword = ""
+
 }
 
 function onCancel(){
@@ -28,6 +35,9 @@ async function onValid(){
     const result = await validate({})
     if (!result.valid) return;
 
+    if (PROFILE_STORE.role != 1) name = PROFILE_STORE.name
+
+    isLoading.value = true;
     await userService.updateUserName(name,password)
     PROFILE_STORE.name = name
     visible.value = false
@@ -50,16 +60,17 @@ const samePassword = value => {
     <div class="window">
         <Form @submit="onValid">
 
-            <div class="mb-3">
+            <!-- Seul le professeur peut modifier le nom. -->
+            <div class="mb-3" v-if="PROFILE_STORE.role == 1">
                 <label for="name">Nom d'utilisateur</label>
                 <Field
-                class="form-control"
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Nom d'utilisateur"
-                :rules="isRequired"
-                v-model="name"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Nom d'utilisateur"
+                    :rules="isRequired"
+                    v-model="name"
                 />
                 <ErrorMessage class="text-danger" name="name" />
             </div>
@@ -67,13 +78,13 @@ const samePassword = value => {
             <div class="mb-3">
                 <label for="password">Mot de passe</label>
                 <Field
-                class="form-control"
-                id="password"
-                name="password"
-                type="password"
-                placeholder="Mot de passe"
-                :rules="passwordLength"
-                v-model="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Mot de passe"
+                    :rules="passwordLength"
+                    v-model="password"
                 />
                 <ErrorMessage class="text-danger" name="password" />
             </div>
@@ -81,22 +92,22 @@ const samePassword = value => {
             <div class="mb-3">
                 <label for="confirm-password">Confirmer le mot de passe</label>
                 <Field
-                class="form-control"
-                id="password"
-                name="confirm-password"
-                type="confirm-password"
-                placeholder="Confirmer le mot de passe"
-                :rules="samePassword"
-                v-model="confirmPassword"
+                    class="form-control"
+                    id="password"
+                    name="confirm-password"
+                    type="confirm-password"
+                    placeholder="Confirmer le mot de passe"
+                    :rules="samePassword"
+                    v-model="confirmPassword"
                 />
                 <ErrorMessage class="text-danger" name="confirm-password" />
             </div>
 
-            <div>
+            <div v-if="!isLoading">
                 <button type="submit" class="btn btn-primary">Modifier les informations</button>
                 <input type="button" value="Annuler" class="btn btn-danger" @click="onCancel()">
             </div>
-            
+            <div v-if="isLoading" class="loader m-1"></div>
         </Form>
     </div>
 </div>
@@ -128,4 +139,18 @@ const samePassword = value => {
         margin:10px;
     }
 
+    /*Nous avons trouvé le CSS sur internet*/
+    /*https://www.w3schools.com/howto/howto_css_loader.asp*/
+    .loader {
+        border: 2px solid #f3f3f3; /* Light grey */
+        border-top: 2px solid blue; /* Blue */
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+    }
 </style>
