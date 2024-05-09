@@ -23,6 +23,22 @@
     }
   ],
 
+  "usersStats": [
+    {
+      "id": 1,
+      "life":2
+    },
+    {
+      "id": 2,
+      "life":5
+    },
+
+    {
+      "id": 3,
+      "life":1
+    }
+  ],
+
   "categories": [
     {
       "id":1,

@@ -18,13 +18,14 @@ export type User = {
     email: string,
     password: string,
     name: string,
-    role: number,
-    isHandRaised : boolean
+    role: number
 }
 
 export type Student = {
     id : number,
     email: string,
+    password: string,
     name: string,
-    isHandRaised : boolean
+    role: number,
+    life: number
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type Ref, ref } from 'vue';
 import AppService from '../../AppService';
-import type { User } from '@/scripts/Types';
+import type { Student } from '@/scripts/Types';
 import StudentDetails from './StudentDetails.vue'
 
 const emit = defineEmits(['loading-error', 'add-student'])
@@ -12,26 +12,34 @@ const raisedHands = ref(await APP_SERVICE.getRaisedHands().catch(() => {
     emit('loading-error');
 }).then(it => it || []));
 
-let students : Ref<User[]> = ref(await APP_SERVICE.getStudents().catch(() => {
+let students : Ref<Student[]> = ref(await APP_SERVICE.getStudents().catch(() => {
     emit('loading-error');
 }).then(it => it || []));
 
 let selectedStudent = ref();
 
-let isLoading : Ref<boolean> = ref(false);
+let deleteIsLoading : Ref<boolean> = ref(false);
+let manageLifeIsLoading : Ref<boolean> = ref(false);
 
 
-function selectStudent(student : User){
+function selectStudent(student : Student){
     selectedStudent.value = student;
-    console.log(selectedStudent)
 }
 
 async function deleteSelectedStudent(){
-    isLoading.value = true;
+    deleteIsLoading.value = true;
     await APP_SERVICE.deleteStudent(selectedStudent.value.id);
     selectedStudent = ref();
     students.value = await APP_SERVICE.getStudents();
-    isLoading.value = false;
+    deleteIsLoading.value = false;
+}
+
+async function manageLifeToSelectedStudent(life : number){
+    manageLifeIsLoading.value = true;
+    await APP_SERVICE.addLifeToUser(selectedStudent.value.id, selectedStudent.value.life + life)
+    students.value = await APP_SERVICE.getStudents();
+    selectedStudent.value = await APP_SERVICE.getStudent(selectedStudent.value.id);
+    manageLifeIsLoading.value = false;
 }
 
 function addStudent(){
@@ -41,8 +49,10 @@ function addStudent(){
 </script>
 
 <template>
-    <StudentDetails v-if="selectedStudent != undefined" @delete-student="deleteSelectedStudent()" :isLoading="isLoading"
-        :name="selectedStudent.name" :email="selectedStudent.email"/>
+    <StudentDetails v-if="selectedStudent != undefined" @delete-student="deleteSelectedStudent()" 
+    @add-life="manageLifeToSelectedStudent(1)" @supp-life="manageLifeToSelectedStudent(-1)"
+    :deleteIsLoading="deleteIsLoading" :manageLifeIsLoading="manageLifeIsLoading"
+        :name="selectedStudent.name" :email="selectedStudent.email" :life="selectedStudent.life"/>
     
     <div class="container border border-dark border-1 rounded w-60 mt-2">
         <span class="col w-100">

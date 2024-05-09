@@ -1,15 +1,25 @@
 <script setup lang="ts">
 
-const emit = defineEmits(['delete-student'])
+const emit = defineEmits(['delete-student', 'add-life', 'supp-life'])
 
 const props = defineProps<{
-    isLoading : boolean,
+    deleteIsLoading : boolean,
     name : string,
-    email : string
+    email : string,
+    life : number,
+    manageLifeIsLoading : boolean
 }>()
 
-function deleteSelectedStudent() {
+function deleteSelectedStudent() : void{
     emit('delete-student')
+}
+
+function addLifeToSelectedStudent(): void {
+    emit('add-life')
+}
+
+function suppLifeToSelectedStudent() : void {
+    emit('supp-life')
 }
 
 </script>
@@ -24,8 +34,22 @@ function deleteSelectedStudent() {
             <div>
                 Courriel: {{ props.email }}
             </div>
-            <div v-if="isLoading" class="loader m-1"></div>
-            <button v-if="!isLoading" type="button" id="delete-student" class="btn btn-outline-danger m-1" @click="deleteSelectedStudent()"> Supprimer cet étudiant</button>
+            <div>
+                Vie: <img v-for="i in $props.life"class="logo" src="../../public/life.png" alt="pt vie">
+            </div>
+
+            <div>
+                <button v-if="!manageLifeIsLoading && $props.life < 10" type="button" id="add-life" class="btn btn-outline-success m-1" @click="addLifeToSelectedStudent()">
+                    + <img class="logo" src="../../public/life.png" alt="pt vie">
+                </button>
+
+                <button v-if="!manageLifeIsLoading && $props.life > 0" type="button" id="supp-life" class="btn btn-outline-danger m-1" @click="suppLifeToSelectedStudent()">
+                    - <img class="logo" src="../../public/life.png" alt="pt vie">
+                </button>
+            </div>
+
+            <div v-if="deleteIsLoading || manageLifeIsLoading" class="loader m-1"></div>
+            <button v-if="!deleteIsLoading" type="button" id="delete-student" class="btn btn-outline-danger m-1" @click="deleteSelectedStudent()"> Supprimer cet étudiant</button>
         </span>
     </div>
 </template>
@@ -46,5 +70,11 @@ function deleteSelectedStudent() {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.logo{
+    width: 20px;
+    height: 20px;
+}
+
 
 </style>
