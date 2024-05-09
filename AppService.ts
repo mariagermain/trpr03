@@ -67,7 +67,7 @@ export default class AppService {
         return data.filter((u : User) => u.role == 1);
     }
 
-    async updateprofile (newName:string, newPassword:string){
-        const { data } = await axios.put(this.API_URL + USERS_PATH, {name:newName, password:newPassword})
+    async updateName (newName:string){
+        const { data } = await axios.put(this.API_URL + USERS_PATH, {name:newName})
     }
 }
