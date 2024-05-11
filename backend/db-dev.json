@@ -25,15 +25,15 @@
   "usersStats": [
     {
       "id": 1,
-      "life": 2
+      "life": 3
     },
     {
       "id": 2,
-      "life": 4
+      "life": 3
     },
     {
       "id": 3,
-      "life": 1
+      "life": 3
     }
   ],
   "categories": [
@@ -51,22 +51,6 @@
     }
   ],
   "questions": [
-    {
-      "id": 1,
-      "studentId": 3,
-      "studentName": "Coquille C.",
-      "value": "Question 1",
-      "priority": "P1",
-      "category": "Travail pratique"
-    },
-    {
-      "id": 2,
-      "studentId": 3,
-      "studentName": "Coquille C.",
-      "value": "Question 2",
-      "priority": "P4",
-      "category": "Exercice"
-    },
     {
       "id": 3,
       "studentId": 3,
@@ -90,6 +74,22 @@
       "value": "Question 5",
       "priority": "P5",
       "category": "Atelier"
+    },
+    {
+      "studentId": 2,
+      "studentName": "Théo Hautois",
+      "value": "grg",
+      "category": "Atelier",
+      "priority": "P1",
+      "id": 6
+    },
+    {
+      "studentId": 2,
+      "studentName": "Théo Hautois",
+      "value": "ggg",
+      "category": "Atelier",
+      "priority": "P2",
+      "id": 7
     }
   ]
 }

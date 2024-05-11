@@ -1,18 +1,29 @@
 <script setup lang="ts">
-import { useProfileStore } from '@/stores/profileStore';
+import type { Question } from '@/scripts/Types';
+import AppService from '../../AppService';
+import { ref, type Ref } from 'vue';
 
-const emit = defineEmits(['raise-hand', 'drop-hand', 'write-question'])
 
-function raiseHand() : void{
-    emit('raise-hand')
-}
+const emit = defineEmits(['write-question', 'see-questions', 'loading-error'])
 
-function dropHand() : void{
-    emit('drop-hand')
-}
+const APP_SERVICE : AppService = new AppService();
 
-function writeQuestion() : void{
+let questions : Ref<Question[]> = ref(await APP_SERVICE.getQuestions().catch(() => {
+    emit('loading-error');
+}).then(it => it || []));
+
+
+let isLoading : Ref<boolean> = ref(false);
+
+    function writeQuestion() : void{
     emit('write-question')
+}
+
+async function deleteQuestion(question : Question){
+    isLoading.value = true;
+    await APP_SERVICE.deleteQuestion(question.id);
+    questions.value = await APP_SERVICE.getQuestions();
+    isLoading.value = false;
 }
 
 </script>
@@ -20,11 +31,71 @@ function writeQuestion() : void{
 <template>
     <div class="container border border-dark border-1 rounded w-60">
         <span class="col w-100">
-            <h2>Actions</h2>
-            <!---<button v-if="!profileStore.isHandRaised" type="button" class="btn btn-primary m-3 mx-auto w-100" id="raise-hand" @click="raiseHand()">Lever la main</button>
-            <button type="button" class="btn btn-primary m-3 mx-auto w-100" id="drop-hand" @click="dropHand()">Baisser la main</button>-->
+            <h2>Questions en cours</h2>
+            <div id="questionList" class="d-grid list-group m-2 mx-auto">
+                <div class="outline-primary m-1 border border-primary rounded mx-auto w-100" v-for="question in questions" :key="question.id">
+                    <span class="container row p-1">
+                        <div class="col">
+                            <span class="rounded " :class="question.priority"></span> 
+                            {{ question.priority }} - {{ question.category }}
+                            <div>{{ question.value }}</div>
+                        </div>
+                        <button class="btn btn-outline-danger col-1" @class="" @click="deleteQuestion(question)">
+                            <!-- trouvé sur internet-->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                            </svg>
+                        </button>
+                    </span>
+                </div>
+            </div>
             <button type="button" class="btn btn-primary m-3 mx-auto w-100" id="write-question" @click="writeQuestion()">Écrire une question</button>
         </span>
     </div>
 </template>
+
+<style scoped>
+
+.P1{
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: red;
+}
+.P2{
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: orange;
+}
+.P3{
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: yellow;
+}
+.P4{
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: greenyellow;
+}
+.P5{
+    height: 10px;
+    width:10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: green;
+}
+
+
+</style> 
+
+
+
 

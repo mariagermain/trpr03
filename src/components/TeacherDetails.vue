@@ -16,7 +16,6 @@ async function manageLifeToTeacher(life : number) {
     manageLifeIsLoading.value = false;
 }
 
-
 </script>
 
 <template>
