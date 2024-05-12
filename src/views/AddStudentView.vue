@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
-import AppService from '../../AppService'
+import AppService from '../services/AppService'
 import AddStudentForm from '../components/AddStudentForm.vue'
 import { useRouter } from 'vue-router';
 import ErrorMsg from '../components/ErrorMsg.vue'

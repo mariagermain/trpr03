@@ -39,16 +39,16 @@ function suppLifeToSelectedStudent() : void {
             </div>
 
             <div>
-                <button v-if="!manageLifeIsLoading && $props.life < 10" type="button" id="add-life" class="btn btn-outline-success m-1" @click="addLifeToSelectedStudent()">
-                    + <img class="logo" src="../../public/life.png" alt="pt vie">
-                </button>
-
                 <button v-if="!manageLifeIsLoading && $props.life > 0" type="button" id="supp-life" class="btn btn-outline-danger m-1" @click="suppLifeToSelectedStudent()">
                     - <img class="logo" src="../../public/life.png" alt="pt vie">
                 </button>
+                
+                <button v-if="!manageLifeIsLoading && $props.life < 10" type="button" id="add-life" class="btn btn-outline-success m-1" @click="addLifeToSelectedStudent()">
+                    + <img class="logo" src="../../public/life.png" alt="pt vie">
+                </button>
             </div>
 
-            <div v-if="deleteIsLoading || manageLifeIsLoading" class="loader m-1"></div>
+            <div v-if="deleteIsLoading || manageLifeIsLoading" class="loader"></div>
             <button v-if="!deleteIsLoading" type="button" id="delete-student" class="btn btn-outline-danger m-1" @click="deleteSelectedStudent()"> 
                 <!-- trouvé sur internet-->
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -66,12 +66,13 @@ function suppLifeToSelectedStudent() : void {
 /*Nous avons trouvé le CSS sur internet*/
 /*https://www.w3schools.com/howto/howto_css_loader.asp*/
 .loader {
-    border: 2px solid #f3f3f3; /* Light grey */
-    border-top: 2px solid blue; /* Blue */
+    border: 3px solid #f3f3f3; /* Light grey */
+    border-top: 3px solid blue; /* Blue */
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     animation: spin 2s linear infinite;
+    margin: 9px;
 }
 @keyframes spin {
   0% { transform: rotate(0deg); }

@@ -33,7 +33,7 @@ function deleteSelectedQuestion() {
             <div>
                 Étudiant: {{ props.student }}
             </div>
-            <div v-if="isLoading" class="loader m-1"></div>
+            <div v-if="isLoading" class="loader"></div>
             <button v-if="!isLoading" type="button" id="delete-question" class="btn btn-outline-danger m-1" @click="deleteSelectedQuestion()">
                 <!--trouvé sur internet-->
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -51,13 +51,15 @@ function deleteSelectedQuestion() {
 /*Nous avons trouvé le CSS sur internet*/
 /*https://www.w3schools.com/howto/howto_css_loader.asp*/
 .loader {
-    border: 2px solid #f3f3f3; /* Light grey */
-    border-top: 2px solid blue; /* Blue */
+    border: 3px solid #f3f3f3; /* Light grey */
+    border-top: 3px solid blue; /* Blue */
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     animation: spin 2s linear infinite;
+    margin: 9px;
 }
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

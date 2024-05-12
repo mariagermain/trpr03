@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Category } from "../scripts/Types.ts";
-import AppService from "../../AppService"
-import { useRouter, type Router } from "vue-router";
+import AppService from "../services/AppService.js"
 import { ref, type Ref } from "vue";
 import ErrorList from '../components/ErrorList.vue'
 import { useProfileStore } from "@/stores/profileStore.js";

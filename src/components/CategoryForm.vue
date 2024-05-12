@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { Category } from "../scripts/Types.ts";
-import AppService from "../../AppService"
 import { ref, type Ref } from "vue";
 import ErrorList from '../components/ErrorList.vue'
 
@@ -38,7 +36,7 @@ function validateForm() {
         <div class="form-group pb-3">
             <input type="text" v-model="categoryName" class="form-control" placeholder="Nouvelle catégorie"></input>
         </div>
-        <div v-if="isLoading" class="loader m-1 mx-auto"></div>
+        <div v-if="isLoading" class="loader mx-auto"></div>
         <button v-if="!isLoading" type="button" @click="submitCategory()" class="btn btn-primary w-100">Créer une nouvelle catégorie</button>
     </form>
 </template>
@@ -55,6 +53,7 @@ function validateForm() {
     height: 20px;
     animation: spin 2s linear infinite;
 }
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

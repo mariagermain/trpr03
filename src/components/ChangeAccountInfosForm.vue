@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
-import {userService} from '../services/userService';
-import { Field, Form, ErrorMessage, defineRule, validate } from 'vee-validate'
+import { Field, Form, ErrorMessage, validate } from 'vee-validate'
 import { useProfileStore } from '@/stores/profileStore';
 
 

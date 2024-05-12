@@ -3,7 +3,7 @@ import { onMounted, computed } from 'vue'
 import { useProfileStore } from '../stores/profileStore'
 import StudentActions from '../components/StudentActions.vue'
 import { useRouter } from 'vue-router';
-import AppService from '../../AppService';
+import AppService from '../services/AppService';
 import TeacherDetails from '../components/TeacherDetails.vue'
 
 

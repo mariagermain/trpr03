@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
-import AppService from '../../AppService'
+import AppService from '../services/AppService'
 import type { UserData } from '@/scripts/Types';
 
 const APP_SERVICE = new AppService()
@@ -33,15 +33,15 @@ async function manageLifeToTeacher(life : number) {
             </div>
 
             <div>
-                <button v-if="!manageLifeIsLoading && teacher.life < 10" type="button" id="add-life" class="btn btn-outline-success m-1" @click="manageLifeToTeacher(1)">
-                    + <img class="logo" src="../../public/life.png" alt="pt vie">
-                </button>
-
                 <button v-if="!manageLifeIsLoading && teacher.life > 0" type="button" id="supp-life" class="btn btn-outline-danger m-1" @click="manageLifeToTeacher(-1)">
                     - <img class="logo" src="../../public/life.png" alt="pt vie">
                 </button>
+
+                <button v-if="!manageLifeIsLoading && teacher.life < 10" type="button" id="add-life" class="btn btn-outline-success m-1" @click="manageLifeToTeacher(1)">
+                    + <img class="logo" src="../../public/life.png" alt="pt vie">
+                </button>
+                <div v-if="manageLifeIsLoading" class="loader"></div>
             </div>
-            <div v-if="manageLifeIsLoading" class="loader m-1"></div>
         </span>
     </div>
 </template>
@@ -51,12 +51,13 @@ async function manageLifeToTeacher(life : number) {
 /*Nous avons trouvé le CSS sur internet*/
 /*https://www.w3schools.com/howto/howto_css_loader.asp*/
 .loader {
-    border: 2px solid #f3f3f3; /* Light grey */
-    border-top: 2px solid blue; /* Blue */
+    border: 3px solid #f3f3f3; /* Light grey */
+    border-top: 3px solid blue; /* Blue */
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     animation: spin 2s linear infinite;
+    margin: 9px;
 }
 @keyframes spin {
   0% { transform: rotate(0deg); }

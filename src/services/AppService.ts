@@ -1,5 +1,5 @@
 import axios, { type AxiosResponse } from 'axios';
-import { type Category, type User, type Question, type UserData } from "./src/scripts/Types"
+import { type Category, type User, type Question, type UserData } from "../scripts/Types"
 
 const CATEGORIES_PATH : string = "/categories"
 const QUESTIONS_PATH : string = "/questions"
@@ -25,6 +25,11 @@ export default class AppService {
     async getQuestions () : Promise<Question[]> {
         const { data } : AxiosResponse<Question[], Question[]> = await axios.get(this.API_URL + QUESTIONS_PATH);
         return data;
+    }
+
+    async getQuestionsOfStudent (id : number) : Promise<Question[]> {
+        const { data } : AxiosResponse<Question[], Question[]> = await axios.get(this.API_URL + QUESTIONS_PATH);
+        return data.filter((q : Question) => q.studentId == id);
     }
 
     async createQuestion (studentId : number, studentName : string, value : string, category : string, priority : string) : Promise<void> {

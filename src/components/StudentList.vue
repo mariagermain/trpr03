@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type Ref, ref } from 'vue';
-import AppService from '../../AppService';
+import AppService from '../services/AppService';
 import type { UserData } from '@/scripts/Types';
 import StudentDetails from './StudentDetails.vue'
 
