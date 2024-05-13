@@ -2,9 +2,15 @@
   "users": [
     {
       "id": 1,
+<<<<<<< HEAD
       "name": "Théo",
       "email": "test@test.com",
       "password": "$2a$10$Yq1quHxhkzQlWJI102M.Gu8s99yDTr1k2MGlREHJzSXPIWdf0S/7y",
+=======
+      "email": "test@test.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Emmett Brown",
+>>>>>>> 52c966b3b2a0184a760effabd908176ec065d8b4
       "role": 1
     },
     {
@@ -20,6 +26,34 @@
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Coquille C.",
       "role": 2
+<<<<<<< HEAD
+=======
+    },
+    {
+      "email": "rrrr@r.ca",
+      "password": "$2a$10$.HOnMDCtXox0OvEtFA3FreZ3DlFWYw4PfcghROldkBFSQLcQfpD4C",
+      "name": "revr",
+      "role": 2,
+      "id": 5
+    }
+  ],
+  "usersStats": [
+    {
+      "id": 1,
+      "life": 6
+    },
+    {
+      "id": 2,
+      "life": 4
+    },
+    {
+      "id": 3,
+      "life": 1
+    },
+    {
+      "life": 0,
+      "id": 5
+>>>>>>> 52c966b3b2a0184a760effabd908176ec065d8b4
     }
   ],
   "categories": [
@@ -34,48 +68,63 @@
     {
       "id": 3,
       "value": "Atelier"
+<<<<<<< HEAD
+=======
+    },
+    {
+      "value": "gr",
+      "id": 4
+    },
+    {
+      "value": "w",
+      "id": 5
+    },
+    {
+      "value": "rtb",
+      "id": 6
+    },
+    {
+      "value": "f",
+      "id": 7
+    },
+    {
+      "value": "c",
+      "id": 8
+    },
+    {
+      "value": "c",
+      "id": 9
+    },
+    {
+      "value": "ty",
+      "id": 10
+    },
+    {
+      "value": "f",
+      "id": 11
+    },
+    {
+      "value": "d",
+      "id": 12
+    },
+    {
+      "value": "h",
+      "id": 13
+    },
+    {
+      "value": "vvvvv",
+      "id": 14
+>>>>>>> 52c966b3b2a0184a760effabd908176ec065d8b4
     }
   ],
   "questions": [
     {
-      "id": 1,
-      "studentId": 3,
-      "studentName": "Coquille C.",
-      "value": "Question 1",
-      "priority": "P1",
-      "category": "Travail pratique"
-    },
-    {
-      "id": 2,
-      "studentId": 3,
-      "studentName": "Coquille C.",
-      "value": "Question 2",
-      "priority": "P4",
-      "category": "Exercice"
-    },
-    {
-      "id": 3,
-      "studentId": 3,
-      "studentName": "Coquille C.",
-      "value": "Question 3",
+      "studentId": 2,
+      "studentName": "Théo Hautois",
+      "value": "g",
+      "category": "Atelier",
       "priority": "P2",
-      "category": "Atelier"
-    },
-    {
-      "id": 4,
-      "studentId": 3,
-      "studentName": "Coquille C.",
-      "value": "Question 4",
-      "priority": "P3",
-      "category": "Atelier"
-    },
-    {
-      "id": 5,
-      "studentId": 3,
-      "studentName": "Coquille C.",
-      "value": "Question 5",
-      "priority": "P5",
-      "category": "Atelier"
+      "id": 6
     }
   ]
 }

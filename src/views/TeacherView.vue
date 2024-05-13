@@ -8,7 +8,6 @@ const profileStore = useProfileStore()
 
 const name = computed(() => profileStore.name)
 const email = computed(() => profileStore.email)
-const role = computed(() => profileStore.role)
 const onError = computed(() => profileStore.onError)
 
 const router = useRouter();
@@ -45,7 +44,6 @@ function createQuestioncategory() : void {
     <h1>Espace Prof</h1>
     <div>Nom: {{ name }}</div>
     <div>Courriel: {{ email }}</div>
-    <div>Role: {{ role }}</div>
   </div>
   <TeacherActions @see-students="seeStudents" @see-questions="seeQuestions" @create-question-category="createQuestioncategory"/>
 </template>

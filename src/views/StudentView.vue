@@ -3,16 +3,16 @@ import { onMounted, computed } from 'vue'
 import { useProfileStore } from '../stores/profileStore'
 import StudentActions from '../components/StudentActions.vue'
 import { useRouter } from 'vue-router';
-import AppService from '../../AppService';
+import AppService from '../services/AppService';
+import TeacherDetails from '../components/TeacherDetails.vue'
+
 
 const APP_SERVICE : AppService = new AppService();
 const router = useRouter();
 const profileStore = useProfileStore()
 
-const id = computed(() => profileStore.id)
 const name = computed(() => profileStore.name)
 const email = computed(() => profileStore.email)
-const role = computed(() => profileStore.role)
 const onError = computed(() => profileStore.onError)
 
 
@@ -39,7 +39,7 @@ function writeQuestion() : void{
     <h1>Espace étudiant</h1>
     <div>Nom: {{ name }}</div>
     <div>Courriel: {{ email }}</div>
-    <div>Role: {{ role }}</div>
+    <TeacherDetails/>
     <div>
         <StudentActions @write-question="writeQuestion"/>
     </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import AppService from '../../AppService';
+import AppService from '../services/AppService';
 import CategoryForm from '../components/CategoryForm.vue'
 import { ref, type Ref } from 'vue';
 import ErrorMsg from '../components/ErrorMsg.vue'

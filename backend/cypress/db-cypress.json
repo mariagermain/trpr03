@@ -1,11 +1,11 @@
 {
   "users": [
     {
+      "id": 1,
+      "name": "newName",
       "email": "mon@courriel.com",
-      "password": "$2a$10$3Hyb5xFbavC2p/1/9aVguuDa83fywNWnWeU4AZGfhpniJt.rjyl3G",
-      "name": "Bruce Lee",
-      "role": 1,
-      "id": 1
+      "password": "$2a$10$37ywheAf/fED2q5BDzUbp.nYGg6z2xMIXsoomewgXJJ0gWcEZf9Py",
+      "role": 1
     }
   ],
   "comments": [],

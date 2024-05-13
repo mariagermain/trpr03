@@ -1,17 +1,11 @@
 <script setup lang="ts">
-import type { Category } from "../scripts/Types.ts";
-import AppService from "../../AppService"
-import { useRouter, type Router } from "vue-router";
 import { ref, type Ref } from "vue";
 import ErrorList from '../components/ErrorList.vue'
-import { useProfileStore } from "@/stores/profileStore.js";
 
 defineProps({
     isLoading : Boolean
 })
 const emit = defineEmits(['loading-error', 'register-student'])
-
-const APP_SERVICE : AppService = new AppService();
 
 // Formulaire
 let name : string = "";
@@ -32,7 +26,8 @@ function validateForm() {
     
     if (name.trim().length <= 0)
         errorList.value.push("Le nom ne peut pas être vide.") ;
-    if (name.trim().length <= 0)
+
+    if (email.trim().length <= 0)
         errorList.value.push("Le courriel ne peut pas être vide.") ;
     
     return errorList.value.length == 0;
