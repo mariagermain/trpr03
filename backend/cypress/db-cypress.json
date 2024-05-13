@@ -2,10 +2,29 @@
   "users": [
     {
       "email": "mon@courriel.com",
-      "password": "$2a$10$4wN4K3/b/cg4PbRltiRmyOndFg8TNZdZBmanCgVNppWW/s/McQbDi",
+      "password": "$2a$10$3Hyb5xFbavC2p/1/9aVguuDa83fywNWnWeU4AZGfhpniJt.rjyl3G",
       "name": "Bruce Lee",
+      "role": 1,
       "id": 1
     }
   ],
-  "comments": []
+  "comments": [],
+  "questions": [
+    {
+      "id": 1,
+      "studentId": 1,
+      "studentName": "Coquille C.",
+      "value": "Question 1",
+      "priority": "P1",
+      "category": "Travail pratique"
+    },
+    {
+      "id": 2,
+      "studentId": 2,
+      "studentName": "Bob",
+      "value": "Question 2",
+      "priority": "P2",
+      "category": "Travail pratique"
+    }
+  ]
 }
