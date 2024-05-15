@@ -5,12 +5,12 @@ import StudentActions from '../StudentActions.vue'
 
 describe ('StudentActions', () => {
 
-    it('Doit avoir un bouton disponnible.', () => {
+    it('Doit afficher les questions des étudiants dans la classe.', () => {
         // Arrange - Act
         const wrapper = mount(StudentActions);
 
         // Assert
-        expect(wrapper.findAll('button').length).toBe(1);
+        expect(wrapper.findAll('li').length).toBe(2);
     })
 
     it('Doit emit write-question lorsque le bouton est clické', () => {

@@ -20,19 +20,12 @@
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Coquille C.",
       "role": 2
-    },
-    {
-      "email": "rrrr@r.ca",
-      "password": "$2a$10$.HOnMDCtXox0OvEtFA3FreZ3DlFWYw4PfcghROldkBFSQLcQfpD4C",
-      "name": "revr",
-      "role": 2,
-      "id": 5
     }
   ],
   "usersStats": [
     {
       "id": 1,
-      "life": 6
+      "life": 2
     },
     {
       "id": 2,
@@ -41,10 +34,6 @@
     {
       "id": 3,
       "life": 1
-    },
-    {
-      "life": 0,
-      "id": 5
     }
   ],
   "categories": [
@@ -59,60 +48,48 @@
     {
       "id": 3,
       "value": "Atelier"
-    },
-    {
-      "value": "gr",
-      "id": 4
-    },
-    {
-      "value": "w",
-      "id": 5
-    },
-    {
-      "value": "rtb",
-      "id": 6
-    },
-    {
-      "value": "f",
-      "id": 7
-    },
-    {
-      "value": "c",
-      "id": 8
-    },
-    {
-      "value": "c",
-      "id": 9
-    },
-    {
-      "value": "ty",
-      "id": 10
-    },
-    {
-      "value": "f",
-      "id": 11
-    },
-    {
-      "value": "d",
-      "id": 12
-    },
-    {
-      "value": "h",
-      "id": 13
-    },
-    {
-      "value": "vvvvv",
-      "id": 14
     }
   ],
   "questions": [
     {
-      "studentId": 2,
-      "studentName": "Théo Hautois",
-      "value": "g",
-      "category": "Atelier",
+      "id": 1,
+      "studentId": 3,
+      "studentName": "Coquille C.",
+      "value": "Question 1",
+      "priority": "P1",
+      "category": "Travail pratique"
+    },
+    {
+      "id": 2,
+      "studentId": 3,
+      "studentName": "Coquille C.",
+      "value": "Question 2",
+      "priority": "P4",
+      "category": "Exercice"
+    },
+    {
+      "id": 3,
+      "studentId": 3,
+      "studentName": "Coquille C.",
+      "value": "Question 3",
       "priority": "P2",
-      "id": 6
+      "category": "Atelier"
+    },
+    {
+      "id": 4,
+      "studentId": 3,
+      "studentName": "Coquille C.",
+      "value": "Question 4",
+      "priority": "P3",
+      "category": "Atelier"
+    },
+    {
+      "id": 5,
+      "studentId": 3,
+      "studentName": "Coquille C.",
+      "value": "Question 5",
+      "priority": "P5",
+      "category": "Atelier"
     }
   ]
 }

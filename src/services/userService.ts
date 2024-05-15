@@ -3,7 +3,6 @@ import axiosAuth from '../shared/axiosAuth'
 import { useProfileStore } from '../stores/profileStore'
 
 
-
 async function updateUserNameAndPassword(newName:string,newPassword:string){
   const PROFILE_STORE = useProfileStore()
   try{

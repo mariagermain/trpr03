@@ -25,11 +25,12 @@ afterEach(() => {
 
 describe('QuestionForm', () => {
 
-    it('Doit afficher une zone de texte (textarea) pour la question.', () => {
+    it('Doit afficher une zone de texte pour la question.', async () => {
         // Arrange - Act
-        const wrapper = mount(QuestionForm);
+        const wrapper = mount(testComponent);
+        await flushPromises();
         // Assert
-        expect(wrapper.find('textarea')).toBeTruthy();
+        expect(wrapper.find('input[type=text]')).toBeTruthy();
     })
 
     it('Doit afficher la liste des catégories disponibles.', async() => {
@@ -67,7 +68,7 @@ describe('QuestionForm', () => {
         const wrapper = mount(testComponent)
         await flushPromises();
 
-        await wrapper.find('textarea').setValue("question") 
+        await wrapper.find('input[type=text]').setValue("question") 
         await wrapper.findComponent(QuestionForm).find('#select-category').setValue(ANY_CATEGORY) 
         await wrapper.findComponent(QuestionForm).find('#select-priority').setValue('P1') 
 
@@ -104,7 +105,7 @@ describe('QuestionForm', () => {
         const wrapper = mount(testComponent)
         await flushPromises();
 
-        await wrapper.find('textarea').setValue("question") 
+        await wrapper.find('input[type=text]').setValue("question") 
         await wrapper.findComponent(QuestionForm).find('#select-priority').setValue('P1') 
         const button = wrapper.findComponent(QuestionForm).find('button[type="button"]');
 
@@ -121,7 +122,7 @@ describe('QuestionForm', () => {
         const wrapper = mount(testComponent)
         await flushPromises();
   
-        await wrapper.find('textarea').setValue("question") 
+        await wrapper.find('input[type=text]').setValue("question") 
         await wrapper.findComponent(QuestionForm).find('#select-category').setValue(ANY_CATEGORY) 
         const button = wrapper.findComponent(QuestionForm).find('button[type="button"]');
   

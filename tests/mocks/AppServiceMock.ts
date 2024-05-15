@@ -1,13 +1,14 @@
 import { rest } from 'msw'
 import { categories } from '../data/categories'
 import { users } from '../data/users';
+import { questions } from '../data/questions';
+import { teacher } from '../data/teacher';
 
 // ATTENTION : UTILISER "localhost" ET NON "127.0.0.1"
 const API_URL : string = 'http://localhost:3000';
 
 export const getCategories = [
     rest.get(API_URL + '/categories', (req, res, ctx) => {
-      console.log("[API] > GET /categories")
         return res(ctx.status(200), ctx.json(categories));
     }),
 ]
@@ -24,14 +25,14 @@ export const getUsers = [
   }),
 ]
 
-/*export const getStudents = [
-  rest.get(API_URL + '/users', (req, res, ctx) =>{
-    return res(ctx.status(200), ctx.json(students));
+export const getQuestions = [
+  rest.get(API_URL + '/questions', (req, res, ctx) =>{
+    return res(ctx.status(200), ctx.json(questions));
   }),
 ]
 
-export const getTeachers = [
+export const getTeacher = [
   rest.get(API_URL + '/users', (req, res, ctx) =>{
-    return res(ctx.status(200), ctx.json(teachers));
+    return res(ctx.status(200), ctx.json(users[0]));
   }),
-]*/
+]
