@@ -4,8 +4,9 @@ import AppService from '../services/AppService';
 import CategoryForm from '../components/CategoryForm.vue'
 import { ref, type Ref } from 'vue';
 import ErrorMsg from '../components/ErrorMsg.vue'
+import { useCategoryStore } from '@/stores/CategoryStore';
 
-const APP_SERVICE : AppService = new AppService();
+const CATEGORY_STORE = useCategoryStore()
 const router = useRouter();
 
 let isLoading : Ref<boolean> = ref(false);
@@ -19,15 +20,14 @@ function loadingError(){
 async function submitCategory(categoryName : string) {
     showLoadingError.value = false;
     isLoading.value = true;
-    await APP_SERVICE.createCategory(categoryName).catch(() => loadingError());
+    await CATEGORY_STORE.createCategory(categoryName)
+    if (CATEGORY_STORE.loadError) loadingError()
 
     if(showLoadingError.value == false){
         router.push({ name : "Teacher"})
     }
     isLoading.value = false;
 }
-
-
 </script>
 
 <template>

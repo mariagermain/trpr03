@@ -4,6 +4,7 @@ import { type Category, type User, type Question, type UserData } from "../scrip
 const CATEGORIES_PATH : string = "/categories"
 const QUESTIONS_PATH : string = "/questions"
 const USERS_PATH : string = "/users"
+const REGISTER_PATH: string = "/register"
 const DATA_PATH : string = "/usersStats"
 
 export default class AppService {
@@ -46,7 +47,7 @@ export default class AppService {
     }
 
     async registerStudent (name : string, email : string) : Promise<void> {
-        await axios.post(this.API_URL + USERS_PATH, {name: name, email: email, role: 2, password: 'test'});
+        await axios.post(this.API_URL + REGISTER_PATH, {name: name, email: email, role: 2, password: 'test'}); // mdp par défaut pour les étudiants : test
         await axios.post(this.API_URL + DATA_PATH, { life: 0 });
     }
 

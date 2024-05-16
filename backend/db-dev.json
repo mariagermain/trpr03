@@ -49,8 +49,12 @@
       "value":"Travail pratique"
     },
     {
-      "id":3,
-      "value":"Atelier"
+      "id": 3,
+      "value": "Atelier"
+    },
+    {
+      "value": "testCat",
+      "id": 4
     }
   ],
 

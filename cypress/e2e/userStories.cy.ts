@@ -1,9 +1,29 @@
-describe('Récits utilisateur', () => {
+describe('Récits utilisateur - En tant que professeur', () => {
   // On définit un utilisateur pour les tests. Cet utilisateur sera créé dans la base de données avant chaque test.
   const user = {
     email: 'mon@courriel.com',
     password: 'monmotdepasse',
-    name: 'Bruce Lee'
+    name: 'Bruce Lee',
+    role:1
+  }
+
+  // questions
+  const question1 = {
+    id: 1,
+    studentId: 1,
+    studentName: "Coquille C.",
+    value: "Question 1",
+    priority: "P1",
+    category: "Travail pratique"
+  }
+
+  const question2 = {
+    id: 2,
+    studentId: 2,
+    studentName: "Bob",
+    value: "Question 2",
+    priority: "P2",
+    category: "Travail pratique"
   }
 
   // Exécuté avant chaque test
@@ -16,8 +36,15 @@ describe('Récits utilisateur', () => {
     cy.request('POST', 'http://127.0.0.1:3000/register', {
       email: user.email,
       password: user.password,
-      name: user.name
+      name: user.name,
+      role:user.role
     })
+
+    // on ajoute des questions :
+
+
+    cy.request('POST', 'http://127.0.0.1:3000/questions', question1)
+    cy.request('POST', 'http://127.0.0.1:3000/questions', question2)
   })
 
   // Les tests sont écrits sous forme de récits utilisateur. Voir les notes de cours à ce sujet.
@@ -36,19 +63,8 @@ describe('Récits utilisateur', () => {
     cy.contains('h1', /à propos/i)
   })
 
-  it('je peux me connecter - version 1 ', () => {
-    cy.visit('/login')
 
-    // On utilise .get pour sélectionner dans le DOM un élément input dont l'attribut name est email-input. Ensuite, .type est utilisé pour saisir du texte dans cet élément.
-    cy.get('input[name=email-input]').type(user.email)
-    cy.get('input[name=password-input]').type(user.password)
-    // On utilise .get pour sélectionner dans le DOM un élément bonton dont l'attribut type est submit). Ensuite, .click est utilisé pour cliquer sur cet élément.
-    cy.get('button[type=submit]').click()
-
-    cy.contains(/déconnecter/i)
-  })
-
-  it('je peux me connecter - version 2', () => {
+  it('je peux me connecter', () => {
     // Ici on utilise la commande login qui est définie dans le fichier cypress/support/commands.js. Cette commande est disponible dans tous les tests et évite de répéter le code de connexion. Cette version est plus courte et plus lisible.
     cy.login(user.email, user.password)
   })
@@ -63,8 +79,45 @@ describe('Récits utilisateur', () => {
 
   it('je peux voir mon profil', () => {
     cy.login(user.email, user.password)
-
+    cy.visit('/teacher')
     cy.contains(user.name)
     cy.contains(user.email)
   })
+
+  it('Je peut changer mon nom complet ou mon mot de passe',() => {
+    cy.login(user.email, user.password)
+    cy.visit('/settings')
+    cy.get('input[type=button]').click()
+    cy.get('input[name=name]').type("newName")
+    cy.get('input[name=password').type("test")
+    cy.get('input[name=confirm-password').type("test")
+    cy.get('button[type=submit]').click()
+    cy.contains('newName')
+  })
+
+  it ('Je peut créer un étudiant', ()=>{
+    cy.login(user.email, user.password)
+    cy.visit('/registerstudent')
+    cy.get("input[name=name]").type("student")
+    cy.get("input[name=email]").type("stud@test.com")
+    cy.get("button[type=button]").click()
+    cy.contains("student")
+  })
 })
+
+/*
+Liste des acceptations :
+En tant qu'étudiant, je peux:
+- Me connecter
+- Me déconnecter
+- Changer mon mot de passe
+- Créer une question
+- Supprimer une question
+
+En tant que prof, je peux:
+- Me connecter                                  OK
+- Me déconnecter                                OK
+- Changer mon nom complet ou mon mot de passe   OK
+- Créer un étudiant
+- Supprimer un étudiant
+*/
