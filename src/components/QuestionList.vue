@@ -1,16 +1,22 @@
 <script setup lang="ts">
-import { type Ref, ref } from 'vue';
+import { type Ref, ref, computed } from 'vue';
 import AppService from '../services/AppService';
 import type { Question } from '@/scripts/Types';
 import QuestionDetails from './QuestionDetails.vue'
+import { useQuestionStore } from '@/stores/questionStore';
 
 const emit = defineEmits(['loading-error'])
 
-const APP_SERVICE : AppService = new AppService();
+const QUESTION_STORE = useQuestionStore()
+await loadQuestions()
 
-let questions : Ref<Question[]> = ref(await APP_SERVICE.getQuestions().catch(() => {
-    emit('loading-error');
-}).then(it => it || []));
+
+async function loadQuestions(){
+    await QUESTION_STORE.loadQuestions()
+    if (QUESTION_STORE.loadError) emit('loading-error')
+}
+
+let questions = computed(() => {return QUESTION_STORE.questionsList})
 
 let selectedQuestion = ref();
 
@@ -23,15 +29,13 @@ function selectQuestion(question : Question) {
 
 async function deleteSelectedQuestion(){
     isLoading.value = true;
-    await APP_SERVICE.deleteQuestion(selectedQuestion.value.id);
+    await QUESTION_STORE.deleteQuestion(selectedQuestion.value.id);
     selectedQuestion = ref();
-    questions.value = await APP_SERVICE.getQuestions();
+    await loadQuestions();
     isLoading.value = false;
 }
 
-
 </script>
-
 <template>
     <QuestionDetails v-if="selectedQuestion != undefined" @delete-question="deleteSelectedQuestion" :isLoading="isLoading"
         :student="selectedQuestion.studentName" :question="selectedQuestion.value" 
