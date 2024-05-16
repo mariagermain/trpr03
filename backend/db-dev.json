@@ -22,28 +22,35 @@
       "role": 2
     }
   ],
+
   "usersStats": [
     {
       "id": 1,
+<<<<<<< HEAD
       "life": 10
+=======
+      "life":2
+>>>>>>> d193281ce93a37483743bfa0adae48540e8bba50
     },
     {
       "id": 2,
-      "life": 5
+      "life":5
     },
+
     {
       "id": 3,
-      "life": 1
+      "life":1
     }
   ],
+
   "categories": [
     {
-      "id": 1,
-      "value": "Exercice"
+      "id":1,
+      "value":"Exercice"
     },
     {
-      "id": 2,
-      "value": "Travail pratique"
+      "id":2,
+      "value":"Travail pratique"
     },
     {
       "id": 3,
@@ -58,40 +65,44 @@
       "id": 5
     }
   ],
+
   "questions": [
     {
-      "id": 1,
-      "studentId": 3,
-      "studentName": "Coquille C.",
+      "id":1,
+      "studentId":3,
+      "studentName" : "Coquille C.",
       "value": "Question 1",
-      "priority": "P1",
-      "category": "Travail pratique"
+      "priority" : "P1",
+      "category" : "Travail pratique"
     },
     {
-      "id": 2,
-      "studentId": 3,
-      "studentName": "Coquille C.",
-      "value": "Question 2",
-      "priority": "P4",
-      "category": "Exercice"
+      "id":2,
+      "studentId":3,
+      "studentName" : "Coquille C.",
+      "value":"Question 2",
+      "priority" : "P4",
+      "category" : "Exercice"
     },
     {
-      "id": 3,
-      "studentId": 3,
-      "studentName": "Coquille C.",
-      "value": "Question 3",
-      "priority": "P2",
-      "category": "Atelier"
+      "id":3,
+      "studentId":3,
+      "studentName" : "Coquille C.",
+      "value":"Question 3",
+      "priority" : "P2",
+      "category" : "Atelier"
     },
+
     {
-      "id": 4,
-      "studentId": 3,
-      "studentName": "Coquille C.",
-      "value": "Question 4",
-      "priority": "P3",
-      "category": "Atelier"
+      "id":4,
+      "studentId":3,
+      "studentName" : "Coquille C.",
+      "value":"Question 4",
+      "priority" : "P3",
+      "category" : "Atelier"
     },
+
     {
+<<<<<<< HEAD
       "studentId": 2,
       "studentName": "Théo Hautois",
       "value": "t",
@@ -106,6 +117,15 @@
       "category": "Travail pratique",
       "priority": "P2",
       "id": 6
+=======
+      "id":5,
+      "studentId":3,
+      "studentName" : "Coquille C.",
+      "value":"Question 5",
+      "priority" : "P5",
+      "category" : "Atelier"
+>>>>>>> d193281ce93a37483743bfa0adae48540e8bba50
     }
   ]
+
 }
