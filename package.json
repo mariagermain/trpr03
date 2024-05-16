@@ -16,6 +16,7 @@
     "format": "prettier --write src/",
     "backend": "copy-files-from-to --config ./backend/copy-db-dev.json && json-server-auth --watch ./backend/db-dev.json .js --delay 500 --routes ./backend/routes.json --host 127.0.0.1",
     "backend:cypress": "json-server-auth --watch ./backend/cypress/db-cypress.json .js  --routes ./backend/routes.json --host 127.0.0.1",
+    "backend:cypress:v2": "json-server-auth --watch ./backend/cypress/db-cypress.json .js --delay 500 --routes ./backend/routes.json --host 127.0.0.1",
     "backend:cypress:seed": "copy-files-from-to --config ./backend/cypress/copy-db-cypress.json"
   },
   "dependencies": {

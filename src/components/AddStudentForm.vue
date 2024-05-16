@@ -38,10 +38,10 @@ function validateForm() {
     <form class="form-outline w-50 mx-auto border border-secondary rounded p-3">
         <ErrorList title="Impossible d'ajouer un étudiant." :errors="errorList"></ErrorList>
         <div class="form-group pb-3">
-            <input type="text" v-model="name" class="form-control" placeholder="Nom de l'étudiant"></input>
+            <input type="text" v-model="name" name="name" class="form-control" placeholder="Nom de l'étudiant"></input>
         </div>
         <div class="form-group pb-3">
-            <input type="text" v-model="email" class="form-control" placeholder="Adresse courriel"></input>
+            <input type="text" v-model="email" name="email" class="form-control" placeholder="Adresse courriel"></input>
         </div>
         <div v-if="isLoading" class="loader m-1 mx-auto"></div>
         <button v-if="!isLoading"type="button" @click="registerStudent()" class="btn btn-primary w-100">Ajouter l'étudiant</button>

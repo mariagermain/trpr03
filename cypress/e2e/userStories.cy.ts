@@ -94,6 +94,15 @@ describe('Récits utilisateur - En tant que professeur', () => {
     cy.get('button[type=submit]').click()
     cy.contains('newName')
   })
+
+  it ('Je peut créer un étudiant', ()=>{
+    cy.login(user.email, user.password)
+    cy.visit('/registerstudent')
+    cy.get("input[name=name]").type("student")
+    cy.get("input[name=email]").type("stud@test.com")
+    cy.get("button[type=button]").click()
+    cy.contains("student")
+  })
 })
 
 /*
@@ -104,10 +113,11 @@ En tant qu'étudiant, je peux:
 - Changer mon mot de passe
 - Créer une question
 - Supprimer une question
+
 En tant que prof, je peux:
-- Me connecter
-- Me déconnecter
-- Changer mon nom complet ou mon mot de passe
+- Me connecter                                  OK
+- Me déconnecter                                OK
+- Changer mon nom complet ou mon mot de passe   OK
 - Créer un étudiant
 - Supprimer un étudiant
 */
