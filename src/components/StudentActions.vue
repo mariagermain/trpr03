@@ -35,7 +35,7 @@ async function deleteQuestion(question : Question){
             <h2>Les questions en cours dans la classe</h2>
             <div v-if="isLoading" class="loader mx-auto"></div>
             <div id="questionList" class="d-grid list-group m-2 mx-auto">
-                <div class="outline-primary m-1 border border-primary rounded mx-auto w-100" v-for="question in questions" :key="question.id">
+                <div id="question" class="outline-primary m-1 border border-primary rounded mx-auto w-100" v-for="question in questions" :key="question.id">
                     <span class="container row p-1">
                         <div class="col">
                             <span class="rounded" :class="question.priority"></span> 

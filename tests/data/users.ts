@@ -13,4 +13,4 @@ export const users = [
         name: "Théo Hautois",
         role: 2,
       }
-]
+];

@@ -2,7 +2,7 @@ import { rest } from 'msw'
 import { categories } from '../data/categories'
 import { users } from '../data/users';
 import { questions } from '../data/questions';
-import { teacher } from '../data/teacher';
+import { userDatas } from '../data/userDatas';
 
 // ATTENTION : UTILISER "localhost" ET NON "127.0.0.1"
 const API_URL : string = 'http://localhost:3000';
@@ -34,5 +34,11 @@ export const getQuestions = [
 export const getTeacher = [
   rest.get(API_URL + '/users', (req, res, ctx) =>{
     return res(ctx.status(200), ctx.json(users[0]));
-  }),
+  })
+]
+
+export const getUserLife = [
+  rest.get(API_URL + '/users', (req, res, ctx) =>{
+    return res(ctx.status(200), ctx.json(2));
+  })
 ]

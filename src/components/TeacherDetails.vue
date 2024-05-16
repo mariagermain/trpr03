@@ -16,6 +16,9 @@ async function manageLifeToTeacher(life : number) {
     manageLifeIsLoading.value = false;
 }
 
+defineExpose({
+    teacher
+})
 </script>
 
 <template>
