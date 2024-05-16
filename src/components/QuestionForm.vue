@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import type { Category } from "../scripts/Types.ts";
-import AppService from "../services/AppService.js"
-import { ref, type Ref } from "vue";
+import { computed, ref, type Ref } from "vue";
 import ErrorList from '../components/ErrorList.vue'
 import { useProfileStore } from "@/stores/profileStore.js";
+import { useCategoryStore } from "@/stores/CategoryStore.js";
 
 defineProps({
     isLoading : Boolean
 })
 const emit = defineEmits(['loading-error', 'submit-question'])
 
-const APP_SERVICE : AppService = new AppService();
+const CATEGORY_STORE = useCategoryStore();
+await CATEGORY_STORE.loadCategories()
+if (CATEGORY_STORE.loadError) emit('loading-error')
+
 const PROFILE_STORE = useProfileStore();
 
 // Formulaire
@@ -21,9 +24,7 @@ let question : string = "";
 let category : Category;
 let priority : string;
 
-let categories : Category[] = await APP_SERVICE.getCategories().catch(() => {
-    emit('loading-error');
-}).then(it => it || []);
+let categories = computed(() => {return CATEGORY_STORE.categoriesList})
 
 const priorities : string[] = ['P1', 'P2', 'P3', 'P4', 'P5'];
 

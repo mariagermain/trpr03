@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
-import AppService from '../services/AppService'
 import QuestionForm from '../components/QuestionForm.vue'
 import { useRouter } from 'vue-router';
 import ErrorMsg from '../components/ErrorMsg.vue'
+import { useQuestionStore } from '@/stores/questionStore';
 
 
-const APP_SERVICE : AppService = new AppService();
+const QUESTION_STORE = useQuestionStore()
 const router = useRouter();
 
 let isLoading : Ref<boolean> = ref(false);
@@ -20,7 +20,8 @@ function loadingError(){
 async function submitQuestion(studentId : number, studentName : string, question : string, category : string, priority : string) {
     showLoadingError.value = false;
     isLoading.value = true;
-    await APP_SERVICE.createQuestion(studentId, studentName, question, category, priority).catch(() => loadingError());
+    await QUESTION_STORE.createQuestion(studentId, studentName, question, category, priority)
+    if (QUESTION_STORE.loadError) loadingError()
 
     if( showLoadingError.value == false){
         router.push({ name : "Student"})

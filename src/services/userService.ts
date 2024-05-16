@@ -8,6 +8,8 @@ import { questionService } from './questionService'
 const API_URL = 'http://127.0.0.1:3000'
 const DATA_PATH : string = "/usersStats"
 const USERS_PATH : string = "/users"
+const REGISTER_PATH: string = "/register"
+
 
 async function updateUserNameAndPassword(newName:string,newPassword:string){
   const PROFILE_STORE = useProfileStore()
@@ -83,6 +85,24 @@ async function addLifeToUser (id : number, life: number) : Promise<void> {
   await axios.put(API_URL + DATA_PATH + "/" + String(id), { id: id, life: life});
 }
 
+async function getTeacher() : Promise<UserData> {
+  const { data } : AxiosResponse<User[], User[]> = await axios.get(API_URL + USERS_PATH);
+  const teacher : User = data.filter((u : User) => u.role == 1)[0];
+  const life = await userService.getUserLife(teacher.id)
+  return {
+      id: teacher.id,
+      email: teacher.email,
+      name: teacher.name,
+      life: life
+  }
+}
+
+
+async function registerStudent (name : string, email : string) : Promise<void> {
+  await axios.post(API_URL + REGISTER_PATH, {name: name, email: email, role: 2, password: 'test'}); // mdp par défaut pour les étudiants : test
+  await axios.post(API_URL + DATA_PATH, { life: 0 });
+}
+
 export const userService = {
   getUserById,
   updateUserNameAndPassword,
@@ -90,5 +110,7 @@ export const userService = {
   getAllStudents,
   getRaisedHands,
   deleteStudent,
-  addLifeToUser
+  addLifeToUser,
+  getTeacher,
+  registerStudent
 }

@@ -25,7 +25,7 @@
   "usersStats": [
     {
       "id": 1,
-      "life": 2
+      "life": 10
     },
     {
       "id": 2,
@@ -52,6 +52,10 @@
     {
       "value": "testCat",
       "id": 4
+    },
+    {
+      "value": "test2",
+      "id": 5
     }
   ],
   "questions": [
@@ -88,12 +92,20 @@
       "category": "Atelier"
     },
     {
-      "id": 5,
-      "studentId": 3,
-      "studentName": "Coquille C.",
-      "value": "Question 5",
-      "priority": "P5",
-      "category": "Atelier"
+      "studentId": 2,
+      "studentName": "Théo Hautois",
+      "value": "t",
+      "category": "test2",
+      "priority": "P3",
+      "id": 5
+    },
+    {
+      "studentId": 2,
+      "studentName": "Théo Hautois",
+      "value": "tttt",
+      "category": "Travail pratique",
+      "priority": "P2",
+      "id": 6
     }
   ]
 }

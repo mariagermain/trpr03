@@ -14,7 +14,6 @@ async function createCategory (category : string) : Promise<void> {
     await axios.post(API_URL + CATEGORIES_PATH, {value: category});
 }
 
-
 export const categoryService = {
     getCategories,
     createCategory

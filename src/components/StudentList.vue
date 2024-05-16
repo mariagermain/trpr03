@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { type Ref, ref, computed } from 'vue';
-import AppService from '../services/AppService';
 import type { UserData } from '@/scripts/Types';
 import StudentDetails from './StudentDetails.vue'
-import { useStudentStore } from '@/stores/studentStore';
+import { useUserStore } from '@/stores/userStore';
 
 const emit = defineEmits(['loading-error', 'add-student'])
 
-const STUDENT_STORE = useStudentStore()
-await STUDENT_STORE.loadStudents().catch(() => {emit('loading-error')})
+const USER_STORE = useUserStore()
+await USER_STORE.loadStudents()
+if (USER_STORE.onError) emit('loading-error')
 
-let raisedHands = computed(() => {return STUDENT_STORE.raisedHands});
+let raisedHands = computed(() => {return USER_STORE.raisedHands});
 
-let students = computed(() => {return STUDENT_STORE.studentsList});
+let students = computed(() => {return USER_STORE.studentsList});
 
 let selectedStudent = ref();
 
@@ -26,15 +26,15 @@ function selectStudent(student : UserData){
 
 async function deleteSelectedStudent(){
     deleteIsLoading.value = true;
-    await STUDENT_STORE.deleteStudent(selectedStudent.value.id);
-    await STUDENT_STORE.loadStudents()
+    await USER_STORE.deleteStudent(selectedStudent.value.id);
+    await USER_STORE.loadUsers()
     selectedStudent = ref();
     deleteIsLoading.value = false;
 }
 
 async function manageLifeToSelectedStudent(life : number){
     manageLifeIsLoading.value = true;
-    await STUDENT_STORE.addLifeToStudent(selectedStudent.value.id, selectedStudent.value.life + life)
+    await USER_STORE.addLifeToUser(selectedStudent.value.id, selectedStudent.value.life + life)
     manageLifeIsLoading.value = false;
 }
 

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
-import AppService from '../services/AppService'
 import AddStudentForm from '../components/AddStudentForm.vue'
 import { useRouter } from 'vue-router';
 import ErrorMsg from '../components/ErrorMsg.vue'
+import { useUserStore } from '@/stores/userStore';
 
-const APP_SERVICE : AppService = new AppService();
+const USER_STORE = useUserStore()
 const router = useRouter();
 
 let isLoading : Ref<boolean> = ref(false);
@@ -19,7 +19,8 @@ function loadingError(){
 async function registerStudent(name : string, email : string) {
     showLoadingError.value = false;
     isLoading.value = true;
-    await APP_SERVICE.registerStudent(name, email).catch(() => loadingError());
+    await USER_STORE.registerStudent(name, email)
+    if (USER_STORE.onError) loadingError()
 
     if( showLoadingError.value == false){
         router.push({ name : "SeeStudents"})

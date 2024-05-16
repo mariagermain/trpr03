@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
-import AppService from '../services/AppService'
-import type { UserData } from '@/scripts/Types';
+import { computed, ref, type Ref } from 'vue';
+import { useUserStore } from '@/stores/userStore';
 
-const APP_SERVICE = new AppService()
+const USER_STORE = useUserStore()
+await USER_STORE.loadTeacher()
 
-const teacher : Ref<UserData> = ref(await APP_SERVICE.getTeacher());
+const teacher = computed(() => {return USER_STORE.teacher})
 
 let manageLifeIsLoading : Ref<boolean> = ref(false);
     
 async function manageLifeToTeacher(life : number) {
     manageLifeIsLoading.value = true;
-    await APP_SERVICE.addLifeToUser(teacher.value.id, teacher.value.life + life)
-    teacher.value = await APP_SERVICE.getTeacher();
+    await USER_STORE.addLifeToUser(teacher.value?.id, teacher.value.life + life)
     manageLifeIsLoading.value = false;
 }
 

@@ -13,9 +13,12 @@ async function getAllQuestions(){
     return data;
 }
 
-
+async function createQuestion (studentId : number, studentName : string, value : string, category : string, priority : string) : Promise<void> {
+    await axios.post(API_URL + QUESTIONS_PATH, {studentId: studentId, studentName: studentName, value: value, category: category, priority: priority});
+}
 
 export const questionService = {
     deleteQuestion,
-    getAllQuestions
+    getAllQuestions,
+    createQuestion
 }

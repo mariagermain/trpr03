@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { type Ref, ref, computed } from 'vue';
-import AppService from '../services/AppService';
 import type { Question } from '@/scripts/Types';
 import QuestionDetails from './QuestionDetails.vue'
 import { useQuestionStore } from '@/stores/questionStore';

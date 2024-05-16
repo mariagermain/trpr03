@@ -3,18 +3,19 @@ import { onMounted, computed, type Ref, ref } from 'vue'
 import { useProfileStore } from '../stores/profileStore'
 import StudentActions from '../components/StudentActions.vue'
 import { useRouter } from 'vue-router';
-import AppService from '../services/AppService';
 import TeacherDetails from '../components/TeacherDetails.vue'
-import type { UserData } from '@/scripts/Types';
+import { useUserStore } from '@/stores/userStore';
 
 const router = useRouter();
 const profileStore = useProfileStore()
-const APP_SERVICE = new AppService()
+const USER_STORE = useUserStore()
+await USER_STORE.loadTeacher()
+
 const name = computed(() => profileStore.name)
 const email = computed(() => profileStore.email)
 const onError = computed(() => profileStore.onError)
 
-const teacher : Ref<UserData> = ref(await APP_SERVICE.getTeacher());
+const teacher = computed(() => {return USER_STORE.teacher})
   
 onMounted(async () => {
   try {
@@ -36,8 +37,7 @@ function writeQuestion() : void{
 
 async function manageTeacherLife(life : number){
     manageLifeIsLoading.value = true;
-    await APP_SERVICE.addLifeToUser(teacher.value.id, teacher.value.life + life)
-    teacher.value = await APP_SERVICE.getTeacher();
+    await USER_STORE.addLifeToUser(teacher.value.id, teacher.value.life + life)
     manageLifeIsLoading.value = false;
 }
 

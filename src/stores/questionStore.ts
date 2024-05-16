@@ -27,11 +27,22 @@ export const useQuestionStore = defineStore('questionStoreId', () => {
         }
     }
 
+    async function createQuestion(studentId : number, studentName : string, value : string, category : string, priority : string){
+        loadError.value = false
+        try {
+            await questionService.createQuestion(studentId, studentName,value, category, priority )
+        } catch(error){
+            loadError.value = true
+        }
+    }
+
+
     return {
         questionsList,
         loadError,
 
         loadQuestions,
-        deleteQuestion
+        deleteQuestion,
+        createQuestion
     }
 })

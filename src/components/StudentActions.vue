@@ -1,18 +1,20 @@
 <script setup lang="ts">
 import type { Question } from '@/scripts/Types';
-import AppService from '../services/AppService';
 import { computed, ref, type Ref } from 'vue';
 import { useProfileStore } from '@/stores/profileStore';
+import { useQuestionStore } from '@/stores/questionStore';
 
 
 const emit = defineEmits(['write-question', 'see-questions', 'loading-error'])
 
-const APP_SERVICE : AppService = new AppService();
+// QUESTION STORE
+const QUESTION_STORE = useQuestionStore()
+await QUESTION_STORE.loadQuestions()
+if (QUESTION_STORE.loadError) emit('loading-error')
+
 const profileStore = useProfileStore()
 
-let questions : Ref<Question[]> = ref(await APP_SERVICE.getQuestions().catch(() => {
-    emit('loading-error');
-}).then(it => it || []));
+let questions = computed(() => {return QUESTION_STORE.questionsList})
 
 let isLoading : Ref<boolean> = ref(false);
 
@@ -22,8 +24,8 @@ let isLoading : Ref<boolean> = ref(false);
 
 async function deleteQuestion(question : Question){
     isLoading.value = true;
-    await APP_SERVICE.deleteQuestion(question.id);
-    questions.value = await APP_SERVICE.getQuestionsOfStudent(profileStore.id);
+    await QUESTION_STORE.deleteQuestion(question.id)
+    await QUESTION_STORE.loadQuestions()
     isLoading.value = false;
 }
 
