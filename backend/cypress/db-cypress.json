@@ -1,14 +1,43 @@
 {
   "users": [
-  
+    {
+      "email": "mon@courriel.com",
+      "password": "$2a$10$Nsq04/337eFXb1M.EtY8q.DHX7Yvvkoydy8l1k1pKW1Q8eOdV0lnK",
+      "name": "Bruce Lee",
+      "role": 1,
+      "id": 1
+    },
+    {
+      "email": "stud@test.com",
+      "password": "$2a$10$uYerJD8gtKHc.yVUWvUp/O7mHHKZz9LGakL2jSzoZewYLGPkd4wqu",
+      "name": "student",
+      "role": 2,
+      "id": 2
+    }
   ],
-  "usersStats":[
-
+  "usersStats": [
+    {
+      "life": 0,
+      "id": 1
+    }
   ],
-  "categories":[
-
-  ],
-  "questions":[
-
+  "categories": [],
+  "questions": [
+    {
+      "id": 1,
+      "studentId": 1,
+      "studentName": "Coquille C.",
+      "value": "Question 1",
+      "priority": "P1",
+      "category": "Travail pratique"
+    },
+    {
+      "id": 2,
+      "studentId": 2,
+      "studentName": "Bob",
+      "value": "Question 2",
+      "priority": "P2",
+      "category": "Travail pratique"
+    }
   ]
 }
