@@ -114,8 +114,11 @@ describe('Récits utilisateur - En tant que professeur', () => {
 
   it ('En tant que prof, je peut supprimer un étudiant', ()=>{
     cy.login("test@test.com", "test")
+    
     cy.visit('/students')
     cy.find('li').click()
+    cy.find('#delete-student')
+    cy.contains("student");
   })
 
 
@@ -215,10 +218,9 @@ describe('Récits utilisateur - En tant quétudiant', () => {
 
     cy.get("button[type=button]").click()
 
-    cy.visit('/questions')
-    cy.contains("question")
-    cy.contains("Travail Pratique")
-    cy.contains("P1")
+    cy.visit('/student')
+    cy.get('#question').contains("Travail Pratique")
+    cy.get('#question').contains("P1")
   })
 
 
