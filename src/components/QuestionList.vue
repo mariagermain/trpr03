@@ -91,6 +91,4 @@ async function deleteSelectedQuestion(){
     display: inline-block;
     background-color: green;
 }
-
-
 </style> 
