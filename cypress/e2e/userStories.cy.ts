@@ -116,9 +116,9 @@ describe('Récits utilisateur - En tant que professeur', () => {
     cy.login("test@test.com", "test")
     
     cy.visit('/students')
-    cy.find('li').click()
-    cy.find('#delete-student')
-    cy.contains("student");
+    cy.get('li').contains('Théo Hautois').click()
+    cy.get('button[id=delete-student]').click()
+    cy.get('li').contains('Théo Hautois').should('not.exist')
   })
 
 
