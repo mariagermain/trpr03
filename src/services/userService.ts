@@ -5,9 +5,12 @@ import axios, { type AxiosResponse } from 'axios'
 import type { Question, User, UserData } from '@/scripts/Types'
 import { questionService } from './questionService'
 
+<<<<<<< HEAD
 const API_URL = 'http://127.0.0.1:3000'
 const DATA_PATH : string = "/usersStats"
 const USERS_PATH : string = "/users"
+=======
+>>>>>>> cbc8c0d0446e98e80b2b91c421453b5806fc0df8
 
 async function updateUserNameAndPassword(newName:string,newPassword:string){
   const PROFILE_STORE = useProfileStore()

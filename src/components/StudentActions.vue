@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Question } from '@/scripts/Types';
 import AppService from '../services/AppService';
-import { ref, type Ref } from 'vue';
+import { computed, ref, type Ref } from 'vue';
 import { useProfileStore } from '@/stores/profileStore';
 
 
@@ -10,10 +10,9 @@ const emit = defineEmits(['write-question', 'see-questions', 'loading-error'])
 const APP_SERVICE : AppService = new AppService();
 const profileStore = useProfileStore()
 
-let questions : Ref<Question[]> = ref(await APP_SERVICE.getQuestionsOfStudent(profileStore.id).catch(() => {
+let questions : Ref<Question[]> = ref(await APP_SERVICE.getQuestions().catch(() => {
     emit('loading-error');
 }).then(it => it || []));
-
 
 let isLoading : Ref<boolean> = ref(false);
 
@@ -33,17 +32,17 @@ async function deleteQuestion(question : Question){
 <template>
     <div class="container border border-dark border-1 rounded w-60">
         <span class="col w-100">
-            <h2>Mes questions en cours</h2>
+            <h2>Les questions en cours dans la classe</h2>
             <div v-if="isLoading" class="loader mx-auto"></div>
             <div id="questionList" class="d-grid list-group m-2 mx-auto">
                 <div class="outline-primary m-1 border border-primary rounded mx-auto w-100" v-for="question in questions" :key="question.id">
                     <span class="container row p-1">
                         <div class="col">
                             <span class="rounded" :class="question.priority"></span> 
-                            {{ question.priority }} - {{ question.category }}
+                            {{ question.priority }} - {{ question.category }} - {{ question.studentName }}
                             <div>{{ question.value }}</div>
                         </div>
-                        <button v-if="!isLoading" class="btn btn-outline-danger col-1" @click="deleteQuestion(question)">
+                        <button v-if="!isLoading && question.studentId == profileStore.id" class="btn btn-outline-danger col-1" @click="deleteQuestion(question)">
                             <!-- trouvé sur internet-->
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
@@ -68,6 +67,9 @@ async function deleteQuestion(question : Question){
     animation: spin 2s linear infinite;
 }
 
+.true {
+    border-radius: 3px;
+}
 .P1{
     height: 10px;
     width:10px;

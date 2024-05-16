@@ -17,7 +17,7 @@ let selectedQuestion = ref();
 let isLoading : Ref<boolean> = ref(false);
 
 
-function selectQuestion(question : Question){
+function selectQuestion(question : Question) {
     selectedQuestion.value = question;
 }
 
@@ -28,6 +28,7 @@ async function deleteSelectedQuestion(){
     questions.value = await APP_SERVICE.getQuestions();
     isLoading.value = false;
 }
+
 
 </script>
 
@@ -42,7 +43,7 @@ async function deleteSelectedQuestion(){
             <ul id="questionList" class="d-grid">
                 <li class="btn btn-outline-primary m-1" v-for="question in questions" :key="question.id" @click="selectQuestion(question)">
                     <span class="rounded" :class="question.priority"></span> 
-                    {{ question.priority }} - {{ question.category }}
+                    {{ question.priority }} - {{ question.category }} 
                 </li>
             </ul>
         </span>

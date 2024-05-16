@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { onMounted, computed } from 'vue'
+import { onMounted, computed, type Ref, ref } from 'vue'
 import { useProfileStore } from '../stores/profileStore'
 import StudentActions from '../components/StudentActions.vue'
 import { useRouter } from 'vue-router';
 import AppService from '../services/AppService';
 import TeacherDetails from '../components/TeacherDetails.vue'
+import type { UserData } from '@/scripts/Types';
 
-
-const APP_SERVICE : AppService = new AppService();
 const router = useRouter();
 const profileStore = useProfileStore()
-
+const APP_SERVICE = new AppService()
 const name = computed(() => profileStore.name)
 const email = computed(() => profileStore.email)
 const onError = computed(() => profileStore.onError)
 
-
+const teacher : Ref<UserData> = ref(await APP_SERVICE.getTeacher());
+  
 onMounted(async () => {
   try {
     await profileStore.getProfile()
@@ -28,8 +28,17 @@ onMounted(async () => {
   }
 })
 
+let manageLifeIsLoading : Ref<boolean> = ref(false);
+
 function writeQuestion() : void{
   router.push({ name : 'AskQuestion' })
+}
+
+async function manageTeacherLife(life : number){
+    manageLifeIsLoading.value = true;
+    await APP_SERVICE.addLifeToUser(teacher.value.id, teacher.value.life + life)
+    teacher.value = await APP_SERVICE.getTeacher();
+    manageLifeIsLoading.value = false;
 }
 
 </script>
