@@ -1,11 +1,11 @@
-import { defineComponent, nextTick, ref } from "vue";
+import { createApp, defineComponent, nextTick, ref } from "vue";
 import QuestionList from '../QuestionList.vue'
 import QuestionDetails from '../QuestionDetails.vue'
-import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest";
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import { flushPromises, mount } from "@vue/test-utils";
-import type { Question } from "@/scripts/Types";
 import { getQuestions } from "../../../tests/mocks/AppServiceMock";
 import { setupServer } from "msw/node";
+import { createTestingPinia } from "@pinia/testing"
 
 const testComponent = defineComponent({
     components: { QuestionList },
@@ -24,7 +24,10 @@ describe('QuestionList', () => {
 
     it('Ne doit pas afficher le composant QuestionDetails si aucune question est sélectionnée.', () => {
         // Arrange - Act
-        const wrapper = mount(QuestionList);
+        const wrapper = mount(QuestionList, {
+            global:{
+                plugins:[createTestingPinia({createSpy:vi.fn})] // pour utiliser pinia, il faut ajouter ce plugin !
+            }});
 
         // Assert
         expect(wrapper.findComponent(QuestionDetails).exists()).toBeFalsy();
@@ -32,20 +35,28 @@ describe('QuestionList', () => {
 
     it('Doit afficher la liste de questions.', async () => {
         // Arrange 
-        const wrapper = mount(testComponent);
+        apiServer.use(getQuestions[0])
+        const wrapper = mount(testComponent,{
+            global:{
+                plugins:[createTestingPinia({createSpy:vi.fn,stubActions:false})] // pour utiliser pinia, il faut ajouter ce plugin !
+            }});
+
         await flushPromises();
 
         // Act
-        await flushPromises();
         await nextTick();
 
         // Assert
         expect(wrapper.findComponent(QuestionList).findAll('li').length).toBe(2);
     })
 
-    it('Doit afficher le composant QuestionDetails lorsquune question est sélectionnée.', async () => {
+    it("Doit afficher le composant QuestionDetails lorsqu'une question est sélectionnée.", async () => {
         // Arrange 
-        const wrapper = mount(testComponent);
+        const wrapper = mount(testComponent,{
+            global:{
+                plugins:[createTestingPinia({createSpy:vi.fn,stubActions:false})] // pour utiliser pinia, il faut ajouter ce plugin !
+            }});
+
         await flushPromises();
         let question = wrapper.findComponent(QuestionList).findAll('li')[0]
 

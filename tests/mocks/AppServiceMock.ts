@@ -4,8 +4,8 @@ import { users } from '../data/users';
 import { questions } from '../data/questions';
 import { userDatas } from '../data/userDatas';
 
-// ATTENTION : UTILISER "localhost" ET NON "127.0.0.1"
-const API_URL : string = 'http://localhost:3000';
+// ATTENTION : UTILISER "127.0.0.1" ET NON "localhost", le mock ne fait pas le lien entre les deux.
+const API_URL : string = 'http://127.0.0.1:3000';
 
 export const getCategories = [
     rest.get(API_URL + '/categories', (req, res, ctx) => {
@@ -27,6 +27,7 @@ export const getUsers = [
 
 export const getQuestions = [
   rest.get(API_URL + '/questions', (req, res, ctx) =>{
+    console.log(">API : GET /questions")
     return res(ctx.status(200), ctx.json(questions));
   }),
 ]
@@ -40,5 +41,11 @@ export const getTeacher = [
 export const getUserLife = [
   rest.get(API_URL + '/users', (req, res, ctx) =>{
     return res(ctx.status(200), ctx.json(2));
+  })
+]
+
+export const putUserStats0 = [
+  rest.put(API_URL + "/usersStats/0", (req, res, ctx) =>{
+    return res(ctx.status(200));
   })
 ]
