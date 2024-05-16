@@ -57,17 +57,17 @@ function validateForm() {
     <form class="form-outline w-50 mx-auto border border-secondary rounded p-3">
         <ErrorList title="Impossible de poser une question." :errors="errorList"></ErrorList>
         <div class="form-group pb-3">
-            <input type="text" v-model="question" class="form-control" placeholder="Description courte"></input>
+            <input name="question" type="text" v-model="question" class="form-control" placeholder="Description courte"></input>
         </div>
         <div class="form-group pb-3">
             <label for="select-category">Catégorie:</label>
-            <select class="form-select" id="select-category" v-model="category">
+            <select class="form-select" id="select-category" name="select-category" v-model="category">
                 <option v-for="c in categories" :key="c.id" v-bind:value="{id : c.id, value : c.value}">{{ c.value }}</option>
             </select>
         </div>
         <div class="form-group pb-3">
             <label for="select-priority">Priorité:</label>
-            <select class="form-select" id="select-priority" v-model="priority">
+            <select class="form-select" id="select-priority" name="select-priority" v-model="priority">
                 <option v-for="p in priorities" :key="p" v-bind:value="p">{{ p }}</option>
             </select>
         </div>
