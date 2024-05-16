@@ -28,4 +28,4 @@ coverage
 *.sw?
 
 *.tsbuildinfo
-/backend/db-dev-default.json
+/backend/db-dev.json
