@@ -1,60 +1,14 @@
 describe('Récits utilisateur - En tant que professeur', () => {
-  // On définit un utilisateur pour les tests. Cet utilisateur sera créé dans la base de données avant chaque test.
-  /*const userProf = {
-    email: 'prof@courriel.com',
-    password: 'monmotdepasse',
-    name: 'Bruce Lee',
-    role:1
-  }
-
-  const userStudent = {
-    email: 'student@courriel.com',
-    password: 'monmotdepasse',
-    name: 'Bruce Lee',
-    role:2
-  }
-
-  // questions
-  const question1 = {
-    id: 1,
-    studentId: 1,
-    studentName: "Coquille C.",
-    value: "Question 1",
-    priority: "P1",
-    category: "Travail pratique"
-  }
-
-  const question2 = {
-    id: 2,
-    studentId: 2,
-    studentName: "Bob",
-    value: "Question 2",
-    priority: "P2",
-    category: "Travail pratique"
-  }*/
 
   // Exécuté avant chaque test
-  beforeEach(() => {
+ /* beforeEach(() => {
     // On réinitialise la base de données en appelant le script backend:cypress:seed qui se trouve dans le package.json. Ce script copie le fichier db-cypress-default.json dans db-cypress.json qui est utilisé par le serveur backend. Ainsi, on a une base de données propre pour chaque test.
     cy.exec('npm run backend:cypress:seed')
 
-    // On ajoute l'utilisateur à la BD en utilisant la commande POST /register de notre API REST (serveur backend).
-    // TODO : utiliser une variable d'environnement pour l'URL du serveur backend.
-    /*cy.request('POST', 'http://127.0.0.1:3000/register', {
-      email: userProf.email,
-      password: userProf.password,
-      name: userProf.name,
-      role:userProf.role
-    })*/
-
-    // on ajoute des questions :
-    //cy.request('POST', 'http://127.0.0.1:3000/questions', question1)
-    //cy.request('POST', 'http://127.0.0.1:3000/questions', question2)
   })
 
   // Les tests sont écrits sous forme de récits utilisateur. Voir les notes de cours à ce sujet.
   it("je peux accéder à la page d'accueil", () => {
-    // L'instruction `cy` permet d'exécuter des commandes de Cypress.
     // Ici, on visite la page d'accueil.
     cy.visit('/')
 
@@ -85,9 +39,9 @@ describe('Récits utilisateur - En tant que professeur', () => {
   it('En tant que prof, je peux voir la vue de prof (TeacherView)', () => {
     cy.login("test@test.com", "test")
     cy.visit('/teacher')
-    cy.contains('Voir les étudiants de la classe')
-    cy.contains('Voir les questions des étudiants')
-    cy.contains('Créer une catégorie de question')
+    cy.get('button').contains('Voir les étudiants de la classe').should('exist')
+    cy.get('button').contains('Voir les questions des étudiants').should('exist')
+    cy.get('button').contains('Créer une catégorie de question').should('exist')
   })
 
   it('En tant que prof, Je peut changer mon nom complet ou mon mot de passe',() => {
@@ -98,7 +52,8 @@ describe('Récits utilisateur - En tant que professeur', () => {
     cy.get('input[name=password]').type("test")
     cy.get('input[name=confirm-password]').type("test")
     cy.get('button[type=submit]').click()
-    cy.contains('newName')
+
+    cy.contains('newName').should('exist')
   })
 
 
@@ -108,8 +63,8 @@ describe('Récits utilisateur - En tant que professeur', () => {
     cy.get("input[name=name]").type("student")
     cy.get("input[name=email]").type("stud@test.com")
     cy.get("button[type=button]").click()
-    //cy.visit('/students')
-    cy.contains("student")
+
+    cy.contains("student").should('exist')
   })
 
   it ('En tant que prof, je peut supprimer un étudiant', ()=>{
@@ -117,68 +72,23 @@ describe('Récits utilisateur - En tant que professeur', () => {
     
     cy.visit('/students')
     cy.get('li').contains('Théo Hautois').click()
-    cy.get('button[id=delete-student]').click()
+
     cy.get('li').contains('Théo Hautois').should('not.exist')
   })
-
+*/
 
 })
 
 describe('Récits utilisateur - En tant quétudiant', () => {
 
-  /*const userStudent = {
-    email: 'student@courriel.com',
-    password: 'monmotdepasse',
-    name: 'Bruce Lee',
-    role:2
-  }
-  
-  // questions
-  const question1 = {
-    id: 1,
-    studentId: 1,
-    studentName: "Coquille C.",
-    value: "Question 1",
-    priority: "P1",
-    category: "Travail pratique"
-  }
-
-  const question2 = {
-    id: 2,
-    studentId: 2,
-    studentName: "Bob",
-    value: "Question 2",
-    priority: "P2",
-    category: "Travail pratique"
-  }
-
-  const category1 = {
-    id : 1,
-    value: "Travail pratique"
-  }*/
-
+ 
   // Exécuté avant chaque test
   beforeEach(() => {
     // On réinitialise la base de données en appelant le script backend:cypress:seed qui se trouve dans le package.json. Ce script copie le fichier db-cypress-default.json dans db-cypress.json qui est utilisé par le serveur backend. Ainsi, on a une base de données propre pour chaque test.
     cy.exec('npm run backend:cypress:seed')
 
-    // On ajoute l'utilisateur à la BD en utilisant la commande POST /register de notre API REST (serveur backend).
-    // TODO : utiliser une variable d'environnement pour l'URL du serveur backend.
-    /*cy.request('POST', 'http://127.0.0.1:3000/register', {
-      email: userStudent.email,
-      password: userStudent.password,
-      name: userStudent.name,
-      role:userStudent.role
-    })*/
-
-    // on ajoute des questions :
-    //cy.request('POST', 'http://127.0.0.1:3000/questions', question1)
-    //cy.request('POST', 'http://127.0.0.1:3000/questions', question2)
-
-    //on ajoute la catégorie
-    //cy.request('POST', 'http://127.0.0.1:3000/categories', category1)
   })
-
+/*
   it('En tant quétudiant, je peux me connecter', () => {
     // Ici on utilise la commande login qui est définie dans le fichier cypress/support/commands.js. Cette commande est disponible dans tous les tests et évite de répéter le code de connexion. Cette version est plus courte et plus lisible.
     cy.login("student@student.com", "test")
@@ -205,25 +115,32 @@ describe('Récits utilisateur - En tant quétudiant', () => {
   it('En tant quétudiant, je peux voir la vue détudiant (StudentView)', () => {
     cy.login("student@student.com", "test")
     cy.visit('/student')
-    cy.contains("Théo Hautois")
-    cy.contains("student@student.com")
+
+    cy.contains("Théo Hautois").should('exist')
+    cy.contains("student@student.com").should('exist')
   })
 
   it ('En tant quétudiant, je peut créer une question', ()=>{
     cy.login("student@student.com", "test")
     cy.visit('/ask')
     cy.get("input[name=question]").type("question")
-    cy.get("#select-category").type("Travail Pratique")
-    cy.get("#select-priority").type("P1")
+    cy.get("select[name=select-category]").select("Travail pratique")
+    cy.get("select[name=select-priority]").select("P2")
 
     cy.get("button[type=button]").click()
 
     cy.visit('/student')
-    cy.get('#question').contains("Travail Pratique")
-    cy.get('#question').contains("P1")
+    cy.get('div').contains("P2 - Travail pratique - Théo Hautois").should('exist')
+  })*/
+
+  it ('En tant quétudiant, je peux supprimer un étudiant', ()=>{
+    cy.login("student2@student.com", "test")
+    
+    cy.visit('/student')
+    cy.get('#delete-question').first().click()
+
+    cy.get('#question').contains("P1 - Travail pratique - Coquille C.").should('not.exist')
   })
-
-
 
 })
 

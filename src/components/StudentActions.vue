@@ -39,12 +39,12 @@ async function deleteQuestion(question : Question){
             <div id="questionList" class="d-grid list-group m-2 mx-auto">
                 <div id="question" class="outline-primary m-1 border border-primary rounded mx-auto w-100" v-for="question in questions" :key="question.id">
                     <span class="container row p-1">
-                        <div class="col">
+                        <div class="col" id="desc">
                             <span class="rounded" :class="question.priority"></span> 
                             {{ question.priority }} - {{ question.category }} - {{ question.studentName }}
                             <div>{{ question.value }}</div>
                         </div>
-                        <button v-if="!isLoading && question.studentId == profileStore.id" class="btn btn-outline-danger col-1" @click="deleteQuestion(question)">
+                        <button v-if="!isLoading && question.studentId == profileStore.id" id="delete-question" class="btn btn-outline-danger col-1" @click="deleteQuestion(question)">
                             <!-- trouvé sur internet-->
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
