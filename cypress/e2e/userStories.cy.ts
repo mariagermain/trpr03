@@ -1,7 +1,7 @@
 describe('Récits utilisateur - En tant que professeur', () => {
 
   // Exécuté avant chaque test
- /* beforeEach(() => {
+  beforeEach(() => {
     // On réinitialise la base de données en appelant le script backend:cypress:seed qui se trouve dans le package.json. Ce script copie le fichier db-cypress-default.json dans db-cypress.json qui est utilisé par le serveur backend. Ainsi, on a une base de données propre pour chaque test.
     cy.exec('npm run backend:cypress:seed')
 
@@ -72,10 +72,11 @@ describe('Récits utilisateur - En tant que professeur', () => {
     
     cy.visit('/students')
     cy.get('li').contains('Théo Hautois').click()
+    cy.get('button[id=delete-student]').click()
 
     cy.get('li').contains('Théo Hautois').should('not.exist')
   })
-*/
+
 
 })
 
@@ -88,7 +89,7 @@ describe('Récits utilisateur - En tant quétudiant', () => {
     cy.exec('npm run backend:cypress:seed')
 
   })
-/*
+
   it('En tant quétudiant, je peux me connecter', () => {
     // Ici on utilise la commande login qui est définie dans le fichier cypress/support/commands.js. Cette commande est disponible dans tous les tests et évite de répéter le code de connexion. Cette version est plus courte et plus lisible.
     cy.login("student@student.com", "test")
@@ -131,9 +132,9 @@ describe('Récits utilisateur - En tant quétudiant', () => {
 
     cy.visit('/student')
     cy.get('div').contains("P2 - Travail pratique - Théo Hautois").should('exist')
-  })*/
+  })
 
-  it ('En tant quétudiant, je peux supprimer un étudiant', ()=>{
+  it ('En tant quétudiant, je peux supprimer une question', ()=>{
     cy.login("student2@student.com", "test")
     
     cy.visit('/student')

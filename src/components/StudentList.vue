@@ -45,7 +45,7 @@ function addStudent(){
 </script>
 
 <template>
-    <StudentDetails v-if="selectedStudent != undefined" @delete-user="deleteSelectedStudent()" 
+    <StudentDetails v-if="selectedStudent != undefined" @delete-student="deleteSelectedStudent()" 
     @add-life="manageLifeToSelectedStudent(1)" @supp-life="manageLifeToSelectedStudent(-1)"
     :deleteIsLoading="deleteIsLoading" :manageLifeIsLoading="manageLifeIsLoading"
         :name="selectedStudent.name" :email="selectedStudent.email" :life="selectedStudent.life"/>
